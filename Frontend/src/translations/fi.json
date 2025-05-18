@@ -1,0 +1,365 @@
+{
+  "common": {
+    "signIn": "Kirjaudu",
+    "signUp": "Rekisteröidy",
+    "logout": "Kirjaudu ulos",
+    "email": "Sähköposti",
+    "password": "Salasana",
+    "confirmPassword": "Vahvista salasana",
+    "submit": "Lähetä",
+    "cancel": "Peruuta",
+    "loading": "Ladataan...",
+    "logoAlt": "Talopakettiin Logo"
+  },
+  "navigation": {
+    "home": "Etusivu",
+    "homeDescription": "Tutustu palveluumme, kilpailuta itsellesi paras talopaketti",
+    "about": "Tietoa meistä",
+    "contact": "Yhteystiedot",
+    "fillApplication": "Täytä hakemus",
+    "application": "Hakemus",
+    "myApplications": "Omat hakemukset",
+    "myOffers": "Saapuneet tarjoukset",
+    "allApplications": "Kaikki hakemukset",
+    "previous": "Edellinen",
+    "startAgain": "Aloita alusta",
+    "next": "Seuraava",
+    "sendApplication": "Lähetä Hakemus",
+    "signin": "Kirjaudu sisään",
+    "makeOffer": "Tee tarjous"
+  },
+  "auth": {
+    "selectUserType": "Valitse käyttäjätyyppisi jatkaaksesi",
+    "customer": {
+      "title": "Hakija",
+      "description": "Etsin sopivaa talopakettia"
+    },
+    "provider": {
+      "title": "Toimittaja",
+      "description": "Teen talopakettitarjouksia"
+    },
+    "googleSignIn": "Kirjaudu Google-tilillä",
+    "selectUserTypeFirst": "Valitse käyttäjätyyppi yllä olevista vaihtoehdoista jatkaaksesi"
+  },
+  "errors": {
+    "general": "Jokin meni pieleen",
+    "invalidCredentials": "Virheelliset kirjautumistiedot",
+    "networkError": "Verkkovirhe tapahtui"
+  },
+  "homepage": {
+    "hero": {
+      "title": "Löydä unelmiesi talopaketti!",
+      "subtitle": "Helpoin tapa vertailla talopaketteja ja saada tarjouksia luotettavilta toimittajilta. Täytä yksi hakemus ja anna meidän hoitaa loput.",
+      "cta": "Täytä hakemus",
+      "subtext": "Hakemuksen täyttäminen on täysin ilmaista"
+    },
+    "features": {
+      "dreamHome": {
+        "title": "Unelmakotisi suunnittelu",
+        "description": "Määrittele toiveesi ja vaatimuksesi unelmakodillesi - autamme sinua löytämään täydellisen talopaketin."
+      },
+      "easyProcess": {
+        "title": "Helppo hakuprosessi",
+        "description": "Täytä yksi hakemus ja saat tarjouksia useilta luotettavilta talotoimittajilta."
+      },
+      "reliablePartners": {
+        "title": "Luotettavat kumppanit",
+        "description": "Verkostoomme kuuluu vain tarkasti valittuja, luotettavia talotoimittajia."
+      },
+      "saveTime": {
+        "title": "Säästä aikaa ja vaivaa",
+        "description": "Ei tarvetta ottaa yhteyttä jokaiseen toimittajaan erikseen - me hoidamme sen puolestasi."
+      }
+    },
+    "process": {
+      "title": "Näin prosessi toimii",
+      "steps": {
+        "apply": {
+          "title": "Täytä hakemus",
+          "description": "Kerro meille toiveistasi ja vaatimuksistasi uuden kotisi suhteen."
+        },
+        "offers": {
+          "title": "Saat tarjouksia",
+          "description": "Talotoimittajat tutustuvat hakemukseesi ja tekevät sinulle tarjouksia."
+        },
+        "choose": {
+          "title": "Valitse paras",
+          "description": "Vertaile tarjouksia ja valitse sinulle sopivin vaihtoehto."
+        }
+      }
+    },
+    "cta": {
+      "title": "Valmis aloittamaan unelmakotisi etsimisen?",
+      "subtitle": "Täytä hakemus nyt ja ota ensimmäinen askel kohti uutta kotiasi.",
+      "button": "Täytä hakemus"
+    },
+    "blog": {
+      "title": "Ajankohtaisia artikkeleita",
+      "readMore": "Lue lisää →"
+    }
+  },
+  "form": {
+    "steps": {
+      "basicInfo": "Perustiedot",
+      "exterior": "Ulkopuoli",
+      "interior": "Sisäpuoli",
+      "heating": "Lämmitys",
+      "kitchen": "Keittiö",
+      "technical": "Talotekniikka",
+      "personalInfo": "Omat tiedot"
+    },
+    "fields": {
+      "applicationName": "Hakemuksen otsikko",
+      "applicationNamePlaceholder": "Vapaamuotoinen. esim. osoite tai “Kesämökki”",
+      "city": "Kaupunki",
+      "province": "Maakunta",
+      "budget": "Budjetti",
+      "houseSize": "Talon koko",
+      "bedrooms": "Makuuhuoneiden määrä",
+      "utilityRoom": "Kodinhoitohuone",
+      "utilityRoomDetails": "Kodinhoitohuone - Lisätietoja",
+      "mudroom": "Arkieteinen",
+      "mudroomDetails": "Arkieteinen - Lisätietoja",
+      "terrace": "Terassi",
+      "terraceDetails": "Terassi - Lisätietoja",
+      "carport": "Autokatos",
+      "carportDetails": "Autokatos - Lisätietoja",
+      "carportHowMany": "Monelle autolle?",
+      "garage": "Autotalli",
+      "garageDetails": "Autotalli - Lisätietoja",
+      "garageHowMany": "Monelle autolle?",
+      "houseType": "Talon tyyppi",
+      "houseMaterial": "Talon materiaali",
+      "houseMaterialOther": "Muu materiaali",
+      "houseShape": "Talon muoto",
+      "houseShapeOther": "Muu talon muoto",
+      "houseStyle": "Talon tyyli",
+      "roof": "Vesikaton materiaali",
+      "roofType": "Kattotyyppi",
+      "roofOther": "Muu vesikaton materiaali",
+      "ceiling": "Sisäkatto",
+      "floor": "Lattia",
+      "floorDetails": "Lattiamateriaali",
+      "interiorWalls": "Väliseinät",
+      "interiorWallsDetails": "Väliseinämateriaali",
+      "ceilingDetails": "Sisäkaton materiaali",
+      "stories": "Kerrokset",
+
+      "heatingType": "Lämmitysmuoto",
+      "heatingTypeOther": "Muu lämmitysmuoto",
+      "heatingMethod": "Lämmitystapa",
+      "heatingMethodOther": "Muu lämmitystapa",
+      "delivery": "Toimitus",
+      "deliveryOther": "Muu toimitustapa",
+
+      "fireplace": "Takka/Tulisija",
+      "fireplaceHeatStorage": "Varaavuus",
+      "bakingOven": "Leivinuuni",
+      "bakingOvenDetails": "Leivinuunin lisätiedot",
+      "kitchenType": "Keittiö",
+      "kitchenAccessories": "Keittiön lisävarusteet",
+      "otherInfoIndoor": "Muu tieto",
+      "interestedIn": "Minua kiinnostaa",
+      "interestedInOther": "Muu kiinnostava asia",
+      "wantsInOffer": "Haluan, että tarjoukseen sisältyy",
+      "wantsInOfferOther": "Muu tarjoukseen sisältyvä asia",
+      "personalStatus": "Olen",
+      "additionalInfo": "Vapaamuotoisia lisätietoja",
+      "technicalFeatures": "Talotekniikka",
+      "customerStatus": "Hankintavaihe",
+      "fullName": "Etu- ja Sukunimi",
+      "phoneNumber": "Puhelin numero",
+      "otherInfo": "Muu tieto",
+      "hasPlot": "Onko sinulla tontti?",
+      "directElectricHeating": "Suora sähkölämmitys"
+    },
+    "options": {
+      "yes": "Kyllä",
+      "no": "Ei",
+      "dontKnow": "En tiedä vielä",
+      "other": "Muu",
+      "otherWhat": "Muu, mikä?",
+      "selectOption": "Valitse vaihtoehto",
+      "selectDeliveryOption": "Valitse toimitustapa",
+      "selectCity": "Valitse kaupunki",
+      "selectstories": "Monestako kerroksesta haaveilet?",
+      "selectceiling": "Valitse sisäkatto",
+      "selectroofType": "Valitse kattotyyppi",
+      "selectinteriorWalls": "Valitse väliseinät",
+      "selectkitchenType": "Valitse keittiö",
+      "selectkitchenAccessories": "Valitse keittiökalusteet",
+      "fieldRequired": "Pakollinen kenttä",
+
+      "selectfloor": "Valitse lattia",
+      "selectProvince": "Valitse maakunta",
+      "selectAmount": "Valitse määrä",
+      "selecthouseType": "Valitse talon tyyppi",
+      "selecthouseMaterial": "Valitse talon Materiaali",
+      "selecthouseShape": "Valitse talon muoto",
+      "selecthouseStyle": "Valitse talon tyyli",
+      "selectdelivery": "Valitse toimitustapa",
+
+      "selectDeliveryType": "",
+      "selectMaterial": "Valitse materiaali",
+      "selectroof": "Valitse vesikatto",
+      "enterDetails": "Syötä lisätietoja...",
+      "enterOther": "Muu - mikä?",
+
+      "houseMaterial": {
+        "wood": "Puu",
+        "timber": "Hirsi",
+        "CLT": "CLT",
+        "concrete": "Betoni / Kivi",
+        "noPreference": "Ei Merkitystä",
+
+        "enterOther": "Muu - mikä?"
+      },
+
+      "roof": {
+        "metalRoof": "Pelti / Saumakatto",
+        "brick": "Tiili",
+        "felt": "Huopa",
+        "noPreference": "Ei Merkitystä",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "floor": {
+        "parquet": "Parketti",
+        "laminate": "Laminaatti",
+        "vinyl": "Vinyyli",
+        "cork": "Korkki",
+        "tile": "Laatta",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "roofType": {
+        "gableRoof": "Harjakatto",
+        "pulpitRoof": "Pulpettikatto",
+        "flatRoof": "Tasakatto",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "interiorWalls": {
+        "plasterBoard": "Kipsilevy",
+        "lightConcrete": "Kevytbetoni",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "ceiling": {
+        "plasterBoard": "Kipsilevy",
+        "woodPanel": "Paneeli",
+        "vinyl": "Vinyyli",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "lead1": "Harkitsen (ei vielä rahoitusta)",
+      "lead2": "Etsin vielä sopivaa talopakettia",
+      "lead3": "Kilpailutan talopaketteja (minulla on rahoitus)",
+
+      "houseType": {
+        "ownHouse": "Omakotitalo",
+        "pairHouse": "Paritalo",
+        "leisureHouse": "Vapaa-ajan asunto",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "delivery": {
+        "movingReady": "Muuttovalmis",
+        "decorationReady": "Sisustusvalmis",
+        "basicPackage": "Peruspaketti",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "stories": {
+        "1-floor": "1 kerros",
+        "1.5-floors": "1,5 kerrosta",
+        "2-floors": "2 kerrosta",
+        "3+-floor": "3+ kerrosta",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "houseShape": {
+        "l-shape": "L-mallinen talo",
+        "i-shape": "I-mallinen talo",
+        "u-shape": "U-mallinen talo",
+        "hillsideHouse": "Rinnetalo",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "houseStyle": {
+        "modern": "Moderni",
+        "classic": "Klassinen",
+        "traditional": "Perinteinen",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "kitchenType": {
+        "i-kitchen": "I-keittiö",
+        "u-kitchen": "U-keittiö",
+        "l-kitchen": "L-keittiö",
+        "openKitchenIsland": "Saarekkeellinen avokeittiö",
+        "peninsula": "Niemekkeellinen avokeittiö",
+        "noKitchen": "En halua keittiön sisältyvän tarjoukseen",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "kitchenAccessories": {
+        "breakfastCabinet": "Aamiaiskaappi",
+        "stoneCountertops": "Kivitasot",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "heatingType": {
+        "geothermalHeating": "Maalämpö",
+        "airToWaterHeatPump": "Ilma-vesilämpöpumppu",
+        "districtHeating": "Kaukolämpö",
+        "directElectricHeating": "Suora sähkölämmitys",
+        "fireplaceOrStove": "Tulisija",
+        "excludeFromOfferHeating": "En halua sisältyvän tarjoukseen",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "heatingMethod": {
+        "waterCirculatingUnderfloorHeating": "Vesikiertoinen lattialämmitys",
+        "electricRadiators": "Sähköpatterit",
+        "heatRecoveryVentilationUnit": "Lämmön talteenottokone",
+        "airHeatPump": "Ilmalämpöpumppu",
+        "excludeFromOfferHeatingSystem": "En halua sisältyvän tarjoukseen",
+        "enterOther": "Muu - mikä?"
+      },
+
+      "minSize": "Min koko (m²)",
+      "maxSize": "Max koko (m²)",
+      "heatStoring": "Varaava",
+      "airCirculationFireplace": "Kiertoilmatakka",
+      "openFireplace": "Avotakka",
+      "hasPlot": "Onko sinulla jo tontti?",
+
+      "interestedIn": {
+        "homeAutomation": "Taloautomaatio",
+        "solarElectricity": "Aurinkosähkö",
+        "evCharging": "Sähköauton latausasema",
+        "surveillanceSystem": "Valvontajärjestelmä",
+        "earthworks": "Maatyöt",
+        "foundations": "Perustukset",
+        "constructionManagement": "Rakennuttamispalvelut",
+        "enterOther": "Muu - mikä?"
+      },
+      "wantsInOffer": {
+        "hvac": "LVI-työt",
+        "electrical": "Sähkötyöt",
+        "earthworks": "Maatyöt",
+        "foundations": "Perustukset",
+        "constructionManagement": "Rakennuttamispalvelut",
+        "enterOther": "Muu - mikä?"
+      }
+    },
+    "validation": {
+      "required": "Pakollinen kenttä",
+      "selectOne": "Valitse vähintään yksi"
+    },
+
+    "kiertoilmaTakka": "Kiertoilmatakka",
+    "avotakka": "Avotakka"
+  }
+}

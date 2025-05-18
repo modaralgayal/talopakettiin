@@ -1,0 +1,306 @@
+{
+  "common": {
+    "signIn": "Logga in",
+    "signUp": "Registrera",
+    "logout": "Logga ut",
+    "email": "E-post",
+    "password": "Lösenord",
+    "confirmPassword": "Bekräfta lösenord",
+    "submit": "Skicka",
+    "cancel": "Avbryt",
+    "loading": "Laddar...",
+    "logoAlt": "Talopakettiin Logo"
+  },
+  "navigation": {
+    "home": "Hem",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "fillApplication": "Fyll i ansökan",
+    "application": "Ansökan",
+    "myApplications": "Mina ansökningar",
+    "myOffers": "Fått Erbjudanden",
+    "allApplications": "Alla ansökningar",
+    "previous": "Tidigare",
+    "startAgain": "Börja om",
+    "next": "Nästa",
+    "sendApplication": "Skicka ansökan"
+  },
+  "auth": {
+    "selectUserType": "Välj din användartyp för att fortsätta",
+    "customer": {
+      "title": "Sökande",
+      "description": "Jag söker ett lämpligt huspaket"
+    },
+    "provider": {
+      "title": "Leverantör",
+      "description": "Jag gör erbjudanden på huspaket"
+    },
+    "googleSignIn": "Logga in med Google",
+    "selectUserTypeFirst": "Välj en användartyp ovan för att aktivera inloggning"
+  },
+  "errors": {
+    "general": "Något gick fel",
+    "invalidCredentials": "Ogiltiga inloggningsuppgifter",
+    "networkError": "Ett nätverksfel uppstod"
+  },
+  "form": {
+    "steps": {
+      "basicInfo": "Grundläggande information",
+      "exterior": "Utsida",
+      "interior": "Insida",
+      "heating": "Uppvärmning",
+      "kitchen": "Kök",
+      "technical": "Husteknik",
+      "personalInfo": "Personuppgifter"
+    },
+    "fields": {
+      "applicationName": "Ansökans rubrik",
+      "city": "Stad",
+      "province": "Landskap",
+      "budget": "Budget",
+      "houseSize": "Husets storlek",
+      "bedrooms": "Antal sovrum",
+      "utilityRoom": "Grovkök",
+      "utilityRoomDetails": "Grovkök – Mer information",
+      "mudroom": "Groventré",
+      "mudroomDetails": "Groventré – Mer information",
+      "terrace": "Terrass",
+      "terraceDetails": "Terrass – Mer information",
+      "carport": "Carport",
+      "carportDetails": "Carport – Mer information",
+      "carportHowMany": "För hur många bilar?",
+      "garage": "Garage",
+      "garageDetails": "Garage – Mer information",
+      "garageHowMany": "För hur många bilar?",
+      "houseType": "Hustyp",
+      "houseMaterial": "Husets material",
+      "houseMaterialOther": "Annat material",
+      "houseShape": "Husets form",
+      "houseShapeOther": "Annan husform",
+      "houseStyle": "Husets stil",
+      "roof": "Yttertak",
+      "roofType": "Taktyp",
+      "roofOther": "Annat yttertak",
+      "ceiling": "Innertak",
+      "floor": "Golv",
+      "floorDetails": "Golvmaterial",
+      "interiorWalls": "Innerväggar",
+      "interiorWallsDetails": "Innerväggsmaterial",
+      "ceilingDetails": "Innertakets material",
+      "stories": "Våningar",
+
+      "heatingType": "Uppvärmningssätt",
+      "heatingTypeOther": "Annat uppvärmningssätt",
+      "heatingMethod": "Uppvärmningsmetod",
+      "heatingMethodOther": "Annan uppvärmningsmetod",
+      "delivery": "Leverans",
+      "deliveryOther": "Annat leveranssätt",
+
+      "fireplace": "Öppen spis / Eldstad",
+      "fireplaceHeatStorage": "Värmelagrande",
+      "bakingOven": "Bakarugn",
+      "bakingOvenDetails": "Mer information om bakarugn",
+      "kitchenType": "Kök",
+      "kitchenAccessories": "Köksutrustning",
+      "otherInfoIndoor": "Övrig information",
+      "interestedIn": "Jag är intresserad av",
+      "interestedInOther": "Annat intresse",
+      "wantsInOffer": "Jag vill att offerten ska inkludera",
+      "wantsInOfferOther": "Annat offertinnehåll",
+      "personalStatus": "Jag är",
+      "additionalInfo": "Ytterligare information",
+      "technicalFeatures": "Husteknik",
+      "customerStatus": "Kundstatus",
+      "otherInfo": "Övrig information",
+      "hasPlot": "Har du en tomt?",
+      "directElectricHeating": "Direkt elvärme"
+    },
+    "options": {
+      "yes": "Ja",
+      "no": "Nej",
+      "dontKnow": "Vet inte ännu",
+      "other": "Annat",
+      "otherWhat": "Annat, vad?",
+      "selectOption": "Välj alternativ",
+      "selectDeliveryOption": "Välj leveranssätt",
+      "selectCity": "Välj stad",
+      "selectstories": "Hur många våningar?",
+      "selectceiling": "Välj innertak",
+      "selectinteriorWalls": "Välj innerväggar",
+      "selectkitchenType": "Välj kök",
+      "selectkitchenAccessories": "Välj köksutrustning",
+      "fieldRequired": "Obligatoriskt fält",
+
+      "selectfloor": "Välj golv",
+      "selectProvince": "Välj landskap",
+      "selectAmount": "Välj antal",
+      "selecthouseType": "Välj hustyp",
+      "selecthouseMaterial": "Välj husets material",
+      "selecthouseShape": "Välj husets form",
+      "selecthouseStyle": "Välj husets stil",
+      "selectdelivery": "Välj leveranssätt",
+
+      "selectDeliveryType": "",
+      "selectMaterial": "Välj material",
+      "selectroof": "Välj yttertak",
+      "selectroofType": "Välj taktyp",
+      "enterDetails": "Fyll i mer information...",
+      "enterOther": "Annat – vad?",
+
+      "provinces": {
+        
+      },
+
+      "houseMaterial": {
+        "wood": "Trä",
+        "timber": "Timmer",
+        "CLT": "CLT",
+        "concrete": "Betong / Sten",
+        "noPreference": "Ingen preferens",
+        "metalRoof": "Plåt / Falsat tak",
+        "brick": "Tegel",
+        "felt": "Papp",
+        "enterOther": "Annat – vad?"
+      },
+
+      "roof": {
+        "metalRoof": "Plåt / Falsat tak",
+        "brick": "Tegel",
+        "felt": "Papp",
+        "noPreference": "Ingen preferens",
+        "enterOther": "Annat – vad?"
+      },
+
+      "roofType": {
+        "gableRoof": "Sadeltak",
+        "pulpitRoof": "Pulpettak",
+        "flatRoof": "Platt tak",
+        "enterOther": "Annat – vad?"
+      },
+
+      "floor": {
+        "parquet": "Parkett",
+        "laminate": "Laminat",
+        "vinyl": "Vinyl",
+        "cork": "Kork",
+        "tile": "Kakel",
+        "enterOther": "Annat – vad?"
+      },
+
+      "interiorWalls": {
+        "plasterBoard": "Gipsskiva",
+        "lightConcrete": "Lättbetong",
+        "woodPanel": "Träpanel",
+        "enterOther": "Annat – vad?"
+      },
+
+      "ceiling": {
+        "plasterBoard": "Gipsskiva",
+        "woodPanel": "Träpanel",
+        "vinyl": "Vinyl",
+        "enterOther": "Annat – vad?"
+      },
+
+      "lead1": "Funderingar på huspaket (ingen finansiering)",
+      "lead2": "Söker efter ett lämpligt huspaket",
+      "lead3": "Jämför huspaket (finansiering är klar)",
+
+      "houseType": {
+        "ownHouse": "Egnahemshus",
+        "pairHouse": "Parhus",
+        "leisureHouse": "Fritidshus",
+        "enterOther": "Annat – vad?"
+      },
+
+      "delivery": {
+        "movingReady": "Inflyttningsklart",
+        "decorationReady": "Inredningsklart",
+        "basicPackage": "Baspaket",
+        "enterOther": "Annat – vad?"
+      },
+
+      "stories": {
+        "1-floor": "1 våning",
+        "1.5-floors": "1,5 våningar",
+        "2-floors": "2 våningar",
+        "3+-floor": "3+ våningar",
+        "enterOther": "Annat – vad?"
+      },
+
+      "houseShape": {
+        "l-shape": "L-format hus",
+        "i-shape": "I-format hus",
+        "u-shape": "U-format hus",
+        "hillsideHouse": "Suterränghus",
+        "enterOther": "Annat – vad?"
+      },
+
+      "kitchenType": {
+        "i-kitchen": "I-kök",
+        "u-kitchen": "U-kök",
+        "l-kitchen": "L-kök",
+        "openKitchenIsland": "Öppet kök med köksö",
+        "noKitchen": "Jag vill inte att kök ska ingå i offerten",
+        "enterOther": "Annat – vad?"
+      },
+
+      "kitchenAccessories": {
+        "breakfastCabinet": "Frukostskåp",
+        "stoneCountertops": "Stenbänkskivor",
+        "enterOther": "Annat – vad?"
+      },
+
+      "heatingType": {
+        "geothermalHeating": "Bergvärme",
+        "airToWaterHeatPump": "Luft-vattenvärmepump",
+        "districtHeating": "Fjärrvärme",
+        "directElectricHeating": "Direkt elvärme",
+        "fireplaceOrStove": "Eldstad",
+        "excludeFromOfferHeating": "Jag vill inte att uppvärmning ingår i offerten",
+        "enterOther": "Annat – vad?"
+      },
+
+      "heatingMethod": {
+        "waterCirculatingUnderfloorHeating": "Vattenburen golvvärme",
+        "electricRadiators": "Elradiatorer",
+        "heatRecoveryVentilationUnit": "Värmeåtervinningsaggregat",
+        "airHeatPump": "Luftvärmepump",
+        "excludeFromOfferHeatingSystem": "Jag vill inte att värmesystem ingår i offerten",
+        "enterOther": "Annat – vad?"
+      },
+
+      "minSize": "Min storlek (m²)",
+      "maxSize": "Max storlek (m²)",
+      "heatStoring": "Värmelagrande",
+      "airCirculationFireplace": "Cirkulationseldstad",
+      "openFireplace": "Öppen spis",
+      "hasPlot": "Har du en tomt?",
+
+      "interestedIn": {
+        "homeAutomation": "Hemmautomation",
+        "solarElectricity": "Solenergi",
+        "evCharging": "Laddstation för elbil",
+        "surveillanceSystem": "Övervakningssystem",
+        "earthworks": "Markarbete",
+        "foundations": "Grunder",
+        "constructionManagement": "Byggledning",
+        "enterOther": "Annat – vad?"
+      },
+      "wantsInOffer": {
+        "hvac": "VVS-arbeten",
+        "electrical": "Elinstallationer",
+        "earthworks": "Markarbete",
+        "foundations": "Grunder",
+        "constructionManagement": "Byggledning",
+        "enterOther": "Annat – vad?"
+      }
+    },
+    "validation": {
+      "required": "Obligatoriskt fält",
+      "selectOne": "Välj minst en"
+    },
+
+    "kiertoilmaTakka": "Cirkulationseldstad",
+    "avotakka": "Öppen spis"
+  }
+}
