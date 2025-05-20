@@ -1,3 +1,10 @@
 name = "talopakettiin"
 compatibility_date = "2025-5-18"
 assets = { directory = "dist" }
+
+[site]
+bucket = "./dist"
+entry-point = "workers-site"
+
+[build]
+command = "npm run build"
