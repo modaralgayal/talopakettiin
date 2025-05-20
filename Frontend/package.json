@@ -8,8 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "preview:worker": "npm run build && wrangler pages dev dist",
-    "deploy:worker": "npm run build && wrangler pages deploy dist"
+    "preview:worker": "npm run build && wrangler pages dev",
+    "deploy:worker": "npm run build && wrangler pages deploy"
   },
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.810.0",
