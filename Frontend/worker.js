@@ -4,10 +4,10 @@ export default {
     
     // If the request is for a file that exists in the assets directory, serve it
     if (url.pathname.startsWith('/assets/')) {
-      return env.ASSETS.fetch(request);
+      return env.SITE.fetch(request);
     }
 
     // For all other routes, serve index.html
-    return env.ASSETS.fetch(new Request(new URL('/index.html', request.url)));
+    return env.SITE.fetch(new Request(new URL('/index.html', request.url)));
   }
 }; 
