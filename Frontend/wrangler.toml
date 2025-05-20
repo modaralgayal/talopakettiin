@@ -1,5 +1,6 @@
 name = "talopakettiin"
 compatibility_date = "2025-5-18"
+main = "worker.js"
 assets = { directory = "dist" }
 
 [site]
