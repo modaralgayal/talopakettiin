@@ -302,7 +302,7 @@ export const Homepage = () => {
             {t("homepage.cta.title")}
           </h2>
           <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            {t("homepage.cta.subtitle")} HOMEPAGE
+            {t("homepage.cta.subtitle")}
           </p>
           <Link
             to="/formpage"
