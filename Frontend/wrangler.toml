@@ -3,9 +3,5 @@ compatibility_date = "2025-5-18"
 main = "worker.js"
 assets = { directory = "dist" }
 
-[site]
-bucket = "./dist"
-entry-point = "workers-site"
-
 [build]
 command = "npm run build"
