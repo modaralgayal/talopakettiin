@@ -7,7 +7,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 
 // Firebase backend API endpoint
-const API_BASE_URL = "https://talopekttiin.fi";
+const API_BASE_URL = "https://api.talopakettiin.fi";
 
 export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
   const { t } = useTranslation();

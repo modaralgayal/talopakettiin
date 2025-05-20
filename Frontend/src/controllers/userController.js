@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://talopekttiin.fi/api/user";
+const BASE_URL = "https://api.talopakettiin.fi/api/user";
 
 console.log("This is the baseurl", BASE_URL);
 

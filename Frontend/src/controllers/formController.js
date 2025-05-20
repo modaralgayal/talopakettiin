@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://talopakettiin.fi/api/forms";
-
+const API_URL = "https://api.talopakettiin.fi/api/forms";
 
 // Send Form Data
 export const sendFormData = async (formData) => {
