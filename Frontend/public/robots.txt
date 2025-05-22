@@ -5,3 +5,7 @@ Allow: /
 # Sitemap location
 Sitemap: https://talopakettiin.fi/sitemap.xml
 
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+
