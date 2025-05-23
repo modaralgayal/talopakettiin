@@ -1,6 +1,11 @@
 import axios from "axios";
 
-const API_URL = "https://api.talopakettiin.fi/api/forms";
+
+
+const API_BASE_URL =
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_API_BASE_URL_DEV
+    : "https://api.talopakettiin.fi/api/user";
 
 // Send Form Data
 export const sendFormData = async (formData) => {
@@ -8,7 +13,7 @@ export const sendFormData = async (formData) => {
     // Get the token from wherever you store it after Google sign-in
 
     const response = await axios.post(
-      `${API_URL}/receive-form-data`,
+      `${API_BASE_URL}/receive-form-data`,
       formData,
       { withCredentials: true }
     );
@@ -46,7 +51,7 @@ export const sendFormData = async (formData) => {
 // Get User Forms
 export const getUserForms = async () => {
   try {
-    const response = await axios.get(`${API_URL}/get-user-forms`, {
+    const response = await axios.get(`${API_BASE_URL}/get-user-forms`, {
       withCredentials: true,
     });
     return response.data;
@@ -59,7 +64,7 @@ export const getUserForms = async () => {
 export const deleteUserEntry = async (entryId) => {
   try {
     const response = await axios.post(
-      `${API_URL}/delete-user-entry`,
+      `${API_BASE_URL}/delete-user-entry`,
       { entryId },
       {
         withCredentials: true,
@@ -74,7 +79,7 @@ export const deleteUserEntry = async (entryId) => {
 // Get All Entries
 export const getAllEntries = async () => {
   try {
-    const response = await axios.get(`${API_URL}/get-all-entries`, {
+    const response = await axios.get(`${API_BASE_URL}/get-all-entries`, {
       withCredentials: true,
     });
     return response.data;
@@ -86,7 +91,7 @@ export const getAllEntries = async () => {
 // Get User Offers
 export const getUserOffers = async () => {
   try {
-    const response = await axios.get(`${API_URL}/get-user-offers`, {
+    const response = await axios.get(`${API_BASE_URL}/get-user-offers`, {
       withCredentials: true,
     });
     return response.data;
@@ -99,7 +104,7 @@ export const getUserOffers = async () => {
 export const acceptOffer = async (id, entryId, emailAddress) => {
   try {
     const response = await axios.put(
-      `${API_URL}/accept-given-offer`,
+      `${API_BASE_URL}/accept-given-offer`,
       { id, entryId, emailAddress },
       {
         withCredentials: true,
@@ -125,7 +130,7 @@ export const makeOfferToUser = async (
     formData.append("pdfFile", pdfFile);
     formData.append("offerData", JSON.stringify(offerData));
 
-    const response = await axios.post(`${API_URL}/make-offer`, formData, {
+    const response = await axios.post(`${API_BASE_URL}/make-offer`, formData, {
       withCredentials: true,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -139,7 +144,7 @@ export const makeOfferToUser = async (
 
 export const getOffersForUser = async () => {
   try {
-    const response = await axios.get(`${API_URL}/get-user-offers`, {
+    const response = await axios.get(`${API_BASE_URL}/get-user-offers`, {
       withCredentials: true,
     });
     return response.data;
@@ -151,7 +156,7 @@ export const getOffersForUser = async () => {
 
 export const getOffersForProvider = async () => {
   try {
-    const response = await axios.get(`${API_URL}/get-provider-offers`, {
+    const response = await axios.get(`${API_BASE_URL}/get-provider-offers`, {
       withCredentials: true,
     });
     return response.data;
@@ -168,7 +173,7 @@ export const editApplication = async (id, formData) => {
     );
 
     const response = await axios.put(
-      `${API_URL}/edit-application`,
+      `${API_BASE_URL}/edit-application`,
       {
         id,
         formData,

@@ -3,13 +3,10 @@ import {
   checkApplicationLimit,
 } from "../services/dynamoServices.js";
 import { v4 as uuidv4 } from "uuid";
-import { getSecrets } from "../utils/secrets.js";
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 
-let secrets;
-(async () => {
-  secrets = await getSecrets();
-})();
+dotenv.config();
 
 export const receiveFormData = async (req, res) => {
   console.log("Receiving...");
@@ -77,29 +74,28 @@ export const receiveFormData = async (req, res) => {
 
     // Send confirmation email
     try {
-      const secrets = await getSecrets();
       const transporter = nodemailer.createTransport({
         host: "mail.smtp2go.com",
         port: 587,
         secure: false,
         auth: {
           user: "talopakettiin.fi",
-          pass: secrets.EMAIL_PASS,
+          pass: process.env.EMAIL_PASS,
         },
       });
 
-      // Try to get application name from formData or fallback
       const applicationName =
         req.body.applicationName ||
         req.body.formData?.applicationName ||
         req.body.name ||
-        "your application";
+        "";
 
       const mailOptions = {
         from: "info@talopakettiin.fi",
         to: user.email,
         subject: "Application Submitted Successfully",
-        text: `Hello,\n\nYour application \"${applicationName}\" has been submitted successfully.\n\nThank you,\nTalopakettiin Team`,
+        text: `Hello,\n\nYour application \"${applicationName}\" has been submitted successfully.
+        \n\nThank you,\nTalopakettiin Team`,
       };
 
       await transporter.sendMail(mailOptions);

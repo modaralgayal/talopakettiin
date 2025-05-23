@@ -29,6 +29,7 @@
     "makeOffer": "Tee tarjous"
   },
   "auth": {
+    "signInWithGoogle": "Kirjaudu Google palvelulla",
     "selectUserType": "Valitse käyttäjätyyppisi jatkaaksesi",
     "customer": {
       "title": "Hakija",
@@ -110,7 +111,7 @@
     },
     "fields": {
       "applicationName": "Hakemuksen otsikko",
-      "applicationNamePlaceholder": "Vapaamuotoinen. esim. osoite tai “Kesämökki”",
+      "applicationNamePlaceholder": "Vapaamuotoinen. esim. osoite tai \"Kesämökki\"",
       "city": "Kaupunki",
       "province": "Maakunta",
       "budget": "Budjetti",
@@ -120,13 +121,17 @@
       "utilityRoomDetails": "Kodinhoitohuone - Lisätietoja",
       "mudroom": "Arkieteinen",
       "mudroomDetails": "Arkieteinen - Lisätietoja",
+      "mudroomPlaceholder": "Syötä arkieteisen tiedot",
       "terrace": "Terassi",
       "terraceDetails": "Terassi - Lisätietoja",
+      "terracePlaceholder": "Syötä terassin tiedot",
       "carport": "Autokatos",
       "carportDetails": "Autokatos - Lisätietoja",
-      "carportHowMany": "Monelle autolle?",
+      "carportPlaceholder": "Syötä autokatoksen tiedot",
       "garage": "Autotalli",
       "garageDetails": "Autotalli - Lisätietoja",
+      "garagePlaceholder": "Syötä autotallin tiedot",
+      "carportHowMany": "Monelle autolle?",
       "garageHowMany": "Monelle autolle?",
       "houseType": "Talon tyyppi",
       "houseMaterial": "Talon materiaali",
@@ -144,14 +149,12 @@
       "interiorWallsDetails": "Väliseinämateriaali",
       "ceilingDetails": "Sisäkaton materiaali",
       "stories": "Kerrokset",
-
       "heatingType": "Lämmitysmuoto",
       "heatingTypeOther": "Muu lämmitysmuoto",
       "heatingMethod": "Lämmitystapa",
       "heatingMethodOther": "Muu lämmitystapa",
       "delivery": "Toimitus",
       "deliveryOther": "Muu toimitustapa",
-
       "fireplace": "Takka/Tulisija",
       "fireplaceHeatStorage": "Varaavuus",
       "bakingOven": "Leivinuuni",
@@ -189,7 +192,6 @@
       "selectkitchenType": "Valitse keittiö",
       "selectkitchenAccessories": "Valitse keittiökalusteet",
       "fieldRequired": "Pakollinen kenttä",
-
       "selectfloor": "Valitse lattia",
       "selectProvince": "Valitse maakunta",
       "selectAmount": "Valitse määrä",
@@ -198,23 +200,19 @@
       "selecthouseShape": "Valitse talon muoto",
       "selecthouseStyle": "Valitse talon tyyli",
       "selectdelivery": "Valitse toimitustapa",
-
       "selectDeliveryType": "",
       "selectMaterial": "Valitse materiaali",
       "selectroof": "Valitse vesikatto",
       "enterDetails": "Syötä lisätietoja...",
       "enterOther": "Muu - mikä?",
-
       "houseMaterial": {
         "wood": "Puu",
         "timber": "Hirsi",
         "CLT": "CLT",
         "concrete": "Betoni / Kivi",
         "noPreference": "Ei Merkitystä",
-
         "enterOther": "Muu - mikä?"
       },
-
       "roof": {
         "metalRoof": "Pelti / Saumakatto",
         "brick": "Tiili",
@@ -222,7 +220,6 @@
         "noPreference": "Ei Merkitystä",
         "enterOther": "Muu - mikä?"
       },
-
       "floor": {
         "parquet": "Parketti",
         "laminate": "Laminaatti",
@@ -231,45 +228,38 @@
         "tile": "Laatta",
         "enterOther": "Muu - mikä?"
       },
-
       "roofType": {
         "gableRoof": "Harjakatto",
         "pulpitRoof": "Pulpettikatto",
         "flatRoof": "Tasakatto",
         "enterOther": "Muu - mikä?"
       },
-
       "interiorWalls": {
         "plasterBoard": "Kipsilevy",
         "lightConcrete": "Kevytbetoni",
         "enterOther": "Muu - mikä?"
       },
-
       "ceiling": {
         "plasterBoard": "Kipsilevy",
         "woodPanel": "Paneeli",
         "vinyl": "Vinyyli",
         "enterOther": "Muu - mikä?"
       },
-
       "lead1": "Harkitsen (ei vielä rahoitusta)",
       "lead2": "Etsin vielä sopivaa talopakettia",
       "lead3": "Kilpailutan talopaketteja (minulla on rahoitus)",
-
       "houseType": {
         "ownHouse": "Omakotitalo",
         "pairHouse": "Paritalo",
         "leisureHouse": "Vapaa-ajan asunto",
         "enterOther": "Muu - mikä?"
       },
-
       "delivery": {
         "movingReady": "Muuttovalmis",
         "decorationReady": "Sisustusvalmis",
         "basicPackage": "Peruspaketti",
         "enterOther": "Muu - mikä?"
       },
-
       "stories": {
         "1-floor": "1 kerros",
         "1.5-floors": "1,5 kerrosta",
@@ -277,7 +267,6 @@
         "3+-floor": "3+ kerrosta",
         "enterOther": "Muu - mikä?"
       },
-
       "houseShape": {
         "l-shape": "L-mallinen talo",
         "i-shape": "I-mallinen talo",
@@ -285,14 +274,12 @@
         "hillsideHouse": "Rinnetalo",
         "enterOther": "Muu - mikä?"
       },
-
       "houseStyle": {
         "modern": "Moderni",
         "classic": "Klassinen",
         "traditional": "Perinteinen",
         "enterOther": "Muu - mikä?"
       },
-
       "kitchenType": {
         "i-kitchen": "I-keittiö",
         "u-kitchen": "U-keittiö",
@@ -302,13 +289,11 @@
         "noKitchen": "En halua keittiön sisältyvän tarjoukseen",
         "enterOther": "Muu - mikä?"
       },
-
       "kitchenAccessories": {
         "breakfastCabinet": "Aamiaiskaappi",
         "stoneCountertops": "Kivitasot",
         "enterOther": "Muu - mikä?"
       },
-
       "heatingType": {
         "geothermalHeating": "Maalämpö",
         "airToWaterHeatPump": "Ilma-vesilämpöpumppu",
@@ -318,7 +303,6 @@
         "excludeFromOfferHeating": "En halua sisältyvän tarjoukseen",
         "enterOther": "Muu - mikä?"
       },
-
       "heatingMethod": {
         "waterCirculatingUnderfloorHeating": "Vesikiertoinen lattialämmitys",
         "electricRadiators": "Sähköpatterit",
@@ -327,14 +311,12 @@
         "excludeFromOfferHeatingSystem": "En halua sisältyvän tarjoukseen",
         "enterOther": "Muu - mikä?"
       },
-
       "minSize": "Min koko (m²)",
       "maxSize": "Max koko (m²)",
       "heatStoring": "Varaava",
       "airCirculationFireplace": "Kiertoilmatakka",
       "openFireplace": "Avotakka",
       "hasPlot": "Onko sinulla jo tontti?",
-
       "interestedIn": {
         "homeAutomation": "Taloautomaatio",
         "solarElectricity": "Aurinkosähkö",
@@ -358,7 +340,6 @@
       "required": "Pakollinen kenttä",
       "selectOne": "Valitse vähintään yksi"
     },
-
     "kiertoilmaTakka": "Kiertoilmatakka",
     "avotakka": "Avotakka"
   }

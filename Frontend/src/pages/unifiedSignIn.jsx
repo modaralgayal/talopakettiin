@@ -6,8 +6,11 @@ import LanguageSwitcher from "../components/LanguageSwitcher";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 
-// Firebase backend API endpoint
-const API_BASE_URL = "https://api.talopakettiin.fi";
+const API_BASE_URL =
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_API_BASE_URL_DEV
+    : "https://api.talopakettiin.fi";
+
 
 export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
   const { t } = useTranslation();

@@ -12,7 +12,9 @@ import {
   makeOffer,
   makeOfferMiddleware,
 } from "../services/dynamoServices.js";
-import { getSecrets } from "../utils/secrets.js";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const router = express.Router();
 router.post("/receive-form-data", protect, receiveFormData);
@@ -29,10 +31,9 @@ router.put("/edit-application", protect, editApplication);
 // Get all secrets
 router.get("/get-secrets", protect, async (req, res) => {
   try {
-    const secrets = await getSecrets();
     // Only return non-sensitive secrets
     const safeSecrets = {
-      API_URL: secrets.API_URL,
+      API_URL: process.env.API_URL,
       // Add other non-sensitive secrets here
     };
     res.json({ success: true, secrets: safeSecrets });

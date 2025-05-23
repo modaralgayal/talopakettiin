@@ -11,18 +11,19 @@ import {
 import nodemailer from "nodemailer";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 import { v4 as uuidv4 } from "uuid";
-import { getSecrets } from "../utils/secrets.js";
+import dotenv from "dotenv";
 import multer from "multer";
+
+dotenv.config()
 
 const APPLICATION_LIMIT = 10;
 
 const initDynamoDBClient = async () => {
-  const secrets = await getSecrets();
   return new DynamoDBClient({
-    region: secrets.AWS_DEFAULT_REGION,
+    region: process.env.AWS_DEFAULT_REGION,
     credentials: {
-      accessKeyId: secrets.AWS_ACCESS_KEY_ID,
-      secretAccessKey: secrets.AWS_SECRET_ACCESS_KEY,
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     },
   });
 };
@@ -268,7 +269,6 @@ export const acceptOffer = async (req, res) => {
   try {
     const dynamoDBClient = await initDynamoDBClient();
     const { id, entryId } = req.body;
-    const secrets = await getSecrets();
 
     console.log("Request Body:", req.body);
 
@@ -352,7 +352,7 @@ export const acceptOffer = async (req, res) => {
       secure: false,
       auth: {
         user: "talopakettiin.fi",
-        pass: secrets.EMAIL_PASS,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
@@ -446,14 +446,13 @@ export const makeOffer = async (req, res) => {
     await client.send(new PutItemCommand(params));
 
     // Send email notification to customer
-    const secrets = await getSecrets();
     const transporter = nodemailer.createTransport({
       host: "mail.smtp2go.com",
       port: 587,
       secure: false,
       auth: {
         user: "talopakettiin.fi",
-        pass: secrets.EMAIL_PASS,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
@@ -530,14 +529,13 @@ export const editApplication = async (req, res) => {
     const result = await client.send(new UpdateItemCommand(params));
 
     try {
-      const secrets = await getSecrets();
       const transporter = nodemailer.createTransport({
         host: "mail.smtp2go.com",
         port: 587,
         secure: false,
         auth: {
           user: "talopakettiin.fi",
-          pass: secrets.EMAIL_PASS,
+          pass: process.env.EMAIL_PASS,
         },
       });
 

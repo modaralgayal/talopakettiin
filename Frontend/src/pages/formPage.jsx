@@ -14,6 +14,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 
+const API_BASE_URL =
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_API_BASE_URL_DEV
+    : "https://api.talopakettiin.fi/api/user";
+
 export const ApplicationForm = (prop) => {
   const {
     formData,
@@ -81,8 +86,6 @@ export const ApplicationForm = (prop) => {
       const idToken = await user.getIdToken();
 
       // 2. Send the ID token to your backend to create a session
-
-      const API_BASE_URL = "https://api.talopekttiin.fi";
 
       const res = await fetch(`${API_BASE_URL}/api/user/firebaseGoogleSignIn`, {
         method: "POST",
