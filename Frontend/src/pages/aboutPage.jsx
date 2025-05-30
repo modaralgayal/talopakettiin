@@ -2,13 +2,50 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 import { useLanguage } from "../context/languageContext";
+import Seo from "../seo/Seo";
+
 export const AboutPage = () => {
   const { t } = useTranslation();
-  const currentLanguage = useLanguage();
+  const { currentLanguage } = useLanguage();
 
   useEffect(() => {
     document.title = `Talopakettiin - ${t("navigation.about")}`;
   }, [t]);
+
+  // JSON-LD structured data for About page
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Talopakettiin - Tietoa meistä",
+    "description": "Tutustu Talopakettiin-tiimiin! Olemme intohimoisia ammattilaisia, jotka yhdistävät teknologian, visuaalisuuden ja rakennusalan osaamisen luodaksemme parhaan palvelun talopakettien hankintaan.",
+    "url": "https://talopakettiin.fi/about",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Talopakettiin",
+      "description": "Talopakettien kilpailutuspalvelu",
+      "url": "https://talopakettiin.fi",
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Mudar Algayal",
+          "jobTitle": "Technical Lead",
+          "description": "Opiskelija Helsingin yliopistossa ja tekninen johtaja Talopakettiin-projektissa. Erikoistunut ohjelmistokehitykseen ja teknisiin ratkaisuihin."
+        },
+        {
+          "@type": "Person",
+          "name": "Valtteri Nikkanen",
+          "jobTitle": "Valokuvaaja & Yrittäjä",
+          "description": "Ammattitaitoinen valokuvaaja ja yrittäjä, joka tuo visuaalista osaamista ja yrittäjähenkeä Talopakettiin-projektiin."
+        },
+        {
+          "@type": "Person",
+          "name": "Robert Enroth",
+          "jobTitle": "Sähköasentaja & Yrittäjä",
+          "description": "Kokenut sähköasentaja ja yrittäjä, joka tuo laaja-alaisen rakennusalan osaamisen ja yrittäjähenkeä projektiimme."
+        }
+      ]
+    }
+  };
 
   const teamMembers = [
     {
@@ -36,44 +73,12 @@ export const AboutPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-16">
-      <Helmet>
-        <title>{`Talopakettiin - ${t("navigation.about")}`}</title>
-        <meta
-          name="description"
-          content="Tutustu Talopakettiin-tiimiin! Olemme intohimoisia ammattilaisia, jotka yhdistävät teknologian, visuaalisuuden ja rakennusalan osaamisen luodaksemme parhaan palvelun talopakettien hankintaan."
-        />
-        <meta
-          name="keywords"
-          content="talopaketti tiimi, talopaketti ammattilaiset, talonrakentaminen asiantuntijat, talopaketti palvelu, talopaketti yritys, talopaketti suomi"
-        />
-        <meta name="author" content="Talopakettiin" />
-        <meta name="robots" content="index, follow" />
-        <meta
-          property="og:title"
-          content={`Talopakettiin - ${t("navigation.about")}`}
-        />
-        <meta
-          property="og:description"
-          content="Tutustu Talopakettiin-tiimiin! Olemme intohimoisia ammattilaisia, jotka yhdistävät teknologian, visuaalisuuden ja rakennusalan osaamisen."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://talopakettiin.fi/about" />
-        <meta
-          property="og:image"
-          content="https://talopakettiin.fi/about-og-image.jpg"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content={`Talopakettiin - ${t("navigation.about")}`}
-        />
-        <meta
-          name="twitter:description"
-          content="Tutustu Talopakettiin-tiimiin! Olemme intohimoisia ammattilaisia, jotka yhdistävät teknologian, visuaalisuuden ja rakennusalan osaamisen."
-        />
-        <link rel="canonical" href="https://talopakettiin.fi/about" />
-        <html lang={currentLanguage} />
-      </Helmet>
+      <Seo
+        title="Tietoa meistä - Talopakettiin"
+        description="Tutustu Talopakettiin-tiimiin! Olemme intohimoisia ammattilaisia, jotka yhdistävät teknologian, visuaalisuuden ja rakennusalan osaamisen luodaksemme parhaan palvelun talopakettien hankintaan."
+        canonical="https://talopakettiin.fi/about"
+        schemaMarkup={jsonLd}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -95,8 +100,12 @@ export const AboutPage = () => {
               <div className="aspect-w-1 aspect-h-1">
                 <img
                   src={member.image}
-                  alt={member.name}
+                  alt={`${member.name} - ${member.role} at Talopakettiin`}
                   className="w-full h-64 object-cover"
+                  loading="lazy"
+                  width="400"
+                  height="400"
+                  decoding="async"
                 />
               </div>
               <div className="p-6">

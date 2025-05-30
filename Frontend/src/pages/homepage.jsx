@@ -5,6 +5,7 @@ import { ImageSlideshow } from "../components/ImageSlideshow";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "../context/languageContext";
 import { Helmet } from "react-helmet-async";
+import Seo from "../seo/Seo";
 
 export const Homepage = () => {
   const { t } = useTranslation();
@@ -188,6 +189,19 @@ export const Homepage = () => {
         <html lang={currentLanguage} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
+
+      <Seo
+        title="Talopakettiin"
+        description="Kilpailuta talopaketit yhdessä paikassa ja valitse niistä sopivin! Löydä unelmiesi talopaketti helposti ja nopeasti."
+        canonical="https://talopakettiin.fi/"
+        schemaMarkup={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Talopakettiin",
+          url: "https://talopakettiin.fi/",
+        }}
+      />
+
       {/* Hero + Cards with Slideshow background */}
       <div className="relative w-full flex flex-col justify-center">
         <div className="absolute inset-0 w-full h-full z-0">

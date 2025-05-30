@@ -3,13 +3,9 @@ import {
   checkApplicationLimit,
 } from "../services/dynamoServices.js";
 import { v4 as uuidv4 } from "uuid";
-import { getSecrets } from "../utils/secrets.js";
 import nodemailer from "nodemailer";
-
-let secrets;
-(async () => {
-  secrets = await getSecrets();
-})();
+import dotenv from "dotenv"
+dotenv.config()
 
 export const receiveFormData = async (req, res) => {
   console.log("Receiving...");
@@ -77,14 +73,14 @@ export const receiveFormData = async (req, res) => {
 
     // Send confirmation email
     try {
-      const secrets = await getSecrets();
+
       const transporter = nodemailer.createTransport({
         host: "mail.smtp2go.com",
         port: 587,
         secure: false,
         auth: {
           user: "talopakettiin.fi",
-          pass: secrets.EMAIL_PASS,
+          pass: process.env.EMAIL_PASS,
         },
       });
 

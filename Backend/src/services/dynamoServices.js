@@ -11,18 +11,19 @@ import {
 import nodemailer from "nodemailer";
 import { marshall, unmarshall } from "@aws-sdk/util-dynamodb";
 import { v4 as uuidv4 } from "uuid";
-import { getSecrets } from "../utils/secrets.js";
 import multer from "multer";
+import { configDotenv } from "dotenv";
+
+configDotenv()
 
 const APPLICATION_LIMIT = 10;
 
 const initDynamoDBClient = async () => {
-  const secrets = await getSecrets();
   return new DynamoDBClient({
-    region: secrets.AWS_DEFAULT_REGION,
+    region: process.env.AWS_DEFAULT_REGION,
     credentials: {
-      accessKeyId: secrets.AWS_ACCESS_KEY_ID,
-      secretAccessKey: secrets.AWS_SECRET_ACCESS_KEY,
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     },
   });
 };

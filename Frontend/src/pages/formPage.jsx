@@ -82,7 +82,7 @@ export const ApplicationForm = (prop) => {
 
       // 2. Send the ID token to your backend to create a session
 
-      const API_BASE_URL = "https://api.talopekttiin.fi";
+      const API_BASE_URL = "https://api.talopakettiin.fi";
 
       const res = await fetch(`${API_BASE_URL}/api/user/firebaseGoogleSignIn`, {
         method: "POST",

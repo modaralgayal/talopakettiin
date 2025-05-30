@@ -1,11 +1,12 @@
-
 import { auth as adminAuth } from "../config/firebaseConfig.js";
-
 
 export const protect = async (req, res, next) => {
   // console.log("Authenticating user with Firebase session cookie"); // For debugging
   try {
     const sessionCookie = req.cookies.session || ""; // We named the cookie 'session'
+
+    console.log("Request body is: ", req.body);
+    console.log("Request cookies is: ", req.cookies);
 
     if (!sessionCookie) {
       console.log("Firebase session cookie not found in Backend");

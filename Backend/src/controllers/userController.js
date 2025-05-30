@@ -78,7 +78,7 @@ export const firebaseGoogleSignIn = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // Corrected
       maxAge: expiresIn,
-      sameSite: "lax", // Good default
+      sameSite: "None", // Good default
     };
     res.cookie("session", sessionCookie, cookieOptions); // Changed cookie name to 'session'
 

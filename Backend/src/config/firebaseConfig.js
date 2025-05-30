@@ -1,7 +1,8 @@
 // Import specific functions from the modular Admin SDK
 import { initializeApp, cert } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
-import { getSecrets } from "../utils/secrets.js";
+import dotenv from "dotenv"
+dotenv.config()
 // Import other services as you need them, e.g.:
 // import { getFirestore } from 'firebase-admin/firestore';
 // import { getStorage } from 'firebase-admin/storage';
@@ -16,8 +17,7 @@ let app = null;
 let auth = null;
 
 export async function initFirebaseAdmin() {
-  const secrets = await getSecrets();
-  const serviceKey = JSON.parse(secrets.SERVICE_ACCOUNT_KEY);
+  const serviceKey = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 
   app = initializeApp({
     credential: cert(serviceKey),
