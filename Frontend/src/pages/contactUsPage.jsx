@@ -16,7 +16,7 @@ export const ContactUsPage = () => {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": "Talopakettiin - Yhteystiedot",
-    "description": "Ota yhteyttä Talopakettiin-tiimiin! Autamme sinua löytämään unelmiesi talopaketin.",
+    "description": "Ota yhteyttä Talopakettiin-asiakaspalveluun ja tiimiimme! Autamme sinua kaikissa talopaketteihin liittyvissä kysymyksissä ja unelmiesi kodin löytämisessä. Lähetä sähköpostia tai täytä yhteydenottolomake.",
     "url": "https://talopakettiin.fi/contact",
     "mainEntity": {
       "@type": "Organization",
@@ -31,7 +31,7 @@ export const ContactUsPage = () => {
     <div className="min-h-screen bg-gray-50 py-16">
       <Seo
         title="Yhteystiedot - Talopakettiin"
-        description="Ota yhteyttä Talopakettiin-tiimiin! Autamme sinua löytämään unelmiesi talopaketin."
+        description="Ota yhteyttä Talopakettiin-asiakaspalveluun ja tiimiimme! Autamme sinua kaikissa talopaketteihin liittyvissä kysymyksissä ja unelmiesi kodin löytämisessä. Lähetä sähköpostia tai täytä yhteydenottolomake."
         canonical="https://talopakettiin.fi/contact"
         schemaMarkup={jsonLd}
       />
@@ -57,6 +57,12 @@ export const ContactUsPage = () => {
               info@talopakettiin.fi
             </a>
           </div>
+        </div>
+
+        <div className="mt-8 text-center">
+          <p className="text-gray-600">
+            Lisätietoa meistä löydät <a href="/about" className="text-blue-600 hover:underline">Tietoa meistä -sivultamme</a>.
+          </p>
         </div>
       </div>
     </div>

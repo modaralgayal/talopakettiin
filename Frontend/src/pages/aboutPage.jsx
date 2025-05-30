@@ -75,7 +75,7 @@ export const AboutPage = () => {
     <div className="min-h-screen bg-gray-50 py-16">
       <Seo
         title="Tietoa meistä - Talopakettiin"
-        description="Tutustu Talopakettiin-tiimiin! Olemme intohimoisia ammattilaisia, jotka yhdistävät teknologian, visuaalisuuden ja rakennusalan osaamisen luodaksemme parhaan palvelun talopakettien hankintaan."
+        description="Tutustu Talopakettiin-tiimiin, joka auttaa sinua löytämään unelmiesi talopaketin. Yhdistämme teknologian, visuaalisuuden ja rakennusalan osaamisen parhaan palvelun luomiseksi."
         canonical="https://talopakettiin.fi/about"
         schemaMarkup={jsonLd}
       />
@@ -129,7 +129,7 @@ export const AboutPage = () => {
             Haluamme tehdä talopakettien hankinnasta helpompaa ja
             läpinäkyvämpää. Yhdistämällä teknologian, visuaalisuuden ja
             rakennusalan osaamisen, autamme asiakkaitamme löytämään
-            unelmakotinsa.
+            unelmakotinsa. Ota meihin yhteyttä <a href="/contact" className="text-blue-600 hover:underline">täältä</a>.
           </p>
         </div>
       </div>

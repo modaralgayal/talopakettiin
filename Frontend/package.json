@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "analyze": "npx vite-bundle-visualizer",
     "preview:worker": "npm run build && wrangler pages dev",
-    "deploy:worker": "npm run build && wrangler pages deploy"
+    "deploy": "npm run build && wrangler pages deploy"
   },
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.810.0",

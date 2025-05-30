@@ -374,6 +374,13 @@ export const Homepage = () => {
             </div>
           </div>
         </div>
+
+        {/* Optional: Link to Contact page after Blog Section */}
+        <div className="mt-8 text-center">
+          <p className="text-gray-600">
+            Onko sinulla kysyttävää? <a href="/contact" className="text-blue-600 hover:underline">Ota meihin yhteyttä</a>.
+          </p>
+        </div>
       </div>
     </>
   );
