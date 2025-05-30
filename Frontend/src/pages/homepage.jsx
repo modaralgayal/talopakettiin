@@ -201,6 +201,15 @@ export const Homepage = () => {
         schemaMarkup={jsonLd}
       />
 
+      {/* Keywords Meta Tag (for other search engines) */}
+      <Helmet>
+        <meta
+          name="keywords"
+          content="talopaketti, talopaketit, omakotitalo, rakentaminen, talonrakentaminen, kilpailutus, vertailu, Talopakettiin, omakotitalon rakentaminen, omakotitalon hankinta, omakotitalon valinta, omakotitalon hankintaprosessi, omakotitalon hankintaprosessi, omakotitalon hankintaprosessi, omakotitalon hankintaprosessi, talopaketin kilpailuttaminen, talopaketin valinta, 
+          talopaketin hankinta, talopaketin hankintaprosessi, talopaketin hankintaprosessi, talopaketin hankintaprosessi, talopaketin hankintaprosessi"
+        />
+      </Helmet>
+
       <div className="min-h-screen font-['Avenir']">
         {/* Hero + Cards with Slideshow background */}
         <div className="relative w-full flex flex-col justify-center">
@@ -299,7 +308,7 @@ export const Homepage = () => {
                         {step.title}
                       </h3>
                       <p className="text-gray-600 leading-relaxed text-2xl text-center">
-                        {step.description}
+                        {index === 0 ? "Talopaketin hankinta alkaa täyttämällä helppo hakemus lomake." : step.description}
                       </p>
                     </div>
                   </div>
