@@ -17,13 +17,13 @@ await initFirebaseAdmin();
 // Define allowed origins for CORS
 const allowedOrigins = [
   "https://talopakettiin.fi",
+  "https://api.talopakettiin.fi",
   "https://talopakettiin.fi",
   "https://www.talopakettiin.fi",
   "http://www.talopakettiin.fi",
   "http://localhost:5173",
   "https://localhost:8001",
   "http://localhost:8000",
-  "https://2zw0m0hc-8000.euw.devtunnels.ms",
 ];
 
 // Use CORS middleware
