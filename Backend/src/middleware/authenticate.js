@@ -5,8 +5,8 @@ export const protect = async (req, res, next) => {
   try {
     const sessionCookie = req.cookies.session || ""; // We named the cookie 'session'
 
-    console.log("Request body is: ", req.body);
-    console.log("Request cookies is: ", req.cookies);
+    //console.log("Request body is: ", req.body);
+    //console.log("Request cookies is: ", req.cookies);
 
     if (!sessionCookie) {
       console.log("Firebase session cookie not found in Backend");

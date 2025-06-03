@@ -21,7 +21,7 @@ export const receiveFormData = async (req, res) => {
       });
     }
 
-    console.log("Request body:", req.body);
+    //console.log("Request body:", req.body);
 
     // Initialize limitCheck with default values
     let limitCheck = {

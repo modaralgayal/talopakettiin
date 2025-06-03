@@ -411,7 +411,7 @@ export const acceptOffer = async (req, res) => {
       secure: false,
       auth: {
         user: "talopakettiin.fi",
-        pass: secrets.EMAIL_PASS,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
@@ -505,14 +505,13 @@ export const makeOffer = async (req, res) => {
     await client.send(new PutItemCommand(params));
 
     // Send email notification to customer
-    const secrets = await getSecrets();
     const transporter = nodemailer.createTransport({
       host: "mail.smtp2go.com",
       port: 587,
       secure: false,
       auth: {
         user: "talopakettiin.fi",
-        pass: secrets.EMAIL_PASS,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
@@ -595,7 +594,7 @@ export const editApplication = async (req, res) => {
         secure: false,
         auth: {
           user: "talopakettiin.fi",
-          pass: secrets.EMAIL_PASS,
+          pass: process.env.EMAIL_PASS,
         },
       });
 

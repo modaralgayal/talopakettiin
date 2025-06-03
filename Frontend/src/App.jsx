@@ -121,7 +121,7 @@ function App() {
         <Header handleLogout={handleLogout} />
       )}
 
-      <main className="flex-grow">
+      <main className={`flex-grow ${location.pathname !== '/' ? 'pt-38' : ''}`}>
         <Routes>
           {/* Public Routes */}
           <Route

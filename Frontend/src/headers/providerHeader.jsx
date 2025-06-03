@@ -18,7 +18,7 @@ export const ProviderHeader = ({ handleLogout }) => {
   ];
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white/40 backdrop-blur-lg shadow-lg border border-white/30 transition-colors duration-300 w-full z-20 fixed">
       <nav className="w-full px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Left side - Logo and main navigation */}

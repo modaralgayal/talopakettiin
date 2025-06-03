@@ -2,7 +2,7 @@
   "common": {
     "signIn": "Sign In",
     "signUp": "Sign Up",
-    "logout": "Logout",
+    "logout": "Log Out",
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
@@ -13,6 +13,7 @@
   },
   "navigation": {
     "home": "Home",
+    "homeDescription": "Explore our service, compare house packages and find the best fit for you",
     "about": "About Us",
     "contact": "Contact",
     "fillApplication": "Fill Application",
@@ -21,81 +22,84 @@
     "myOffers": "Received Offers",
     "allApplications": "All Applications",
     "previous": "Previous",
-    "startAgain": "Start Again",
+    "startAgain": "Start Over",
     "next": "Next",
-    "sendApplication": "Send Application"
+    "sendApplication": "Send Application",
+    "signin": "Sign In",
+    "makeOffer": "Make Offer"
   },
   "auth": {
-    "selectUserType": "Please select your user type to continue",
+    "signInWithGoogle": "Sign in with Google",
+    "selectUserType": "Select your user type to continue",
     "customer": {
       "title": "Applicant",
-      "description": "I'm looking for a suitable house package"
+      "description": "Looking for a house package"
     },
     "provider": {
       "title": "Provider",
-      "description": "I make house package offers"
+      "description": "Offering house package deals"
     },
-    "googleSignIn": "Sign in with Google",
-    "selectUserTypeFirst": "Please select a user type above to enable sign-in"
+    "googleSignIn": "Sign in with Google account",
+    "selectUserTypeFirst": "Select a user type from above to continue"
   },
   "errors": {
     "general": "Something went wrong",
-    "invalidCredentials": "Invalid credentials",
-    "networkError": "Network error occurred"
+    "invalidCredentials": "Invalid login credentials",
+    "networkError": "A network error occurred"
   },
   "homepage": {
     "hero": {
-      "title": "Find Your Dream House Package",
-      "subtitle": "The easiest way to compare house packages and get offers from reliable providers. Fill out one application and let us handle the rest.",
-      "cta": "Start Application Process",
-      "subtext": "Fill out the application and get offers from reliable house providers"
+      "title": "Find the house package of your dreams!",
+      "subtitle": "The easiest way to compare house packages and get offers from reliable suppliers. Fill out one application and we’ll take care of the rest.",
+      "cta": "Fill Application",
+      "subtext": "Filling out the application is completely free"
     },
     "features": {
+      "title": "What do we do here?",
       "dreamHome": {
-        "title": "Dream Home Planning",
-        "description": "Define your wishes and requirements for your dream home - we'll help you find the perfect house package."
+        "title": "Design your dream home",
+        "description": "Define your wishes and requirements for your dream home – we help you find the perfect package."
       },
       "easyProcess": {
-        "title": "Easy Application Process",
-        "description": "Fill out one application and get offers from multiple reliable house providers."
+        "title": "Easy application process",
+        "description": "Fill out one application and receive offers from multiple reliable suppliers."
       },
       "reliablePartners": {
-        "title": "Reliable Partners",
-        "description": "Our network includes only carefully selected, reliable house providers."
+        "title": "Reliable partners",
+        "description": "Our network only includes carefully selected, trustworthy house suppliers."
       },
       "saveTime": {
-        "title": "Save Time and Effort",
-        "description": "No need to contact each provider separately - we'll handle it for you."
+        "title": "Save time and effort",
+        "description": "No need to contact every supplier separately – we do it for you."
       }
     },
     "process": {
-      "title": "How the Process Works",
+      "title": "How the process works",
       "steps": {
         "apply": {
-          "title": "Fill Out Application",
-          "description": "Tell us about your wishes and requirements for your new home."
+          "title": "Fill Application",
+          "description": "Tell us your wishes and requirements for your new home."
         },
         "offers": {
-          "title": "Get Offers",
-          "description": "House providers will review your application and make you offers."
+          "title": "Receive Offers",
+          "description": "Suppliers review your application and send you offers."
         },
         "choose": {
           "title": "Choose the Best",
-          "description": "Compare offers and choose the best option for you."
+          "description": "Compare offers and choose the one that suits you best."
         }
       }
     },
     "cta": {
-      "title": "Ready to Start Planning Your Dream Home?",
-      "subtitle": "Fill out the application now and take the first step towards your new home.",
-      "button": "Fill Out Application"
+      "title": "Ready to start searching for your dream home?",
+      "subtitle": "Fill in the application now and take the first step towards your new home.",
+      "button": "Fill Application"
     },
     "blog": {
-      "title": "Latest Articles",
+      "title": "Topical Articles",
       "readMore": "Read More →"
     }
   },
-
   "form": {
     "steps": {
       "basicInfo": "Basic Info",
@@ -103,38 +107,38 @@
       "interior": "Interior",
       "heating": "Heating",
       "kitchen": "Kitchen",
-      "technical": "Technical",
+      "technical": "Technical Features",
       "personalInfo": "Personal Info"
     },
     "fields": {
       "applicationName": "Application Title",
+      "applicationNamePlaceholder": "Freeform. e.g. address or “Summer Cabin”",
       "city": "City",
       "province": "Province",
       "budget": "Budget",
       "houseSize": "House Size",
       "bedrooms": "Number of Bedrooms",
       "utilityRoom": "Utility Room",
-      "utilityRoomDetails": "Utility Room - Additional Info",
+      "utilityRoomDetails": "Utility Room - Additional Details",
       "mudroom": "Mudroom",
-      "mudroomDetails": "Mudroom - Additional Info",
+      "mudroomDetails": "Mudroom - Additional Details",
       "terrace": "Terrace",
-      "terraceDetails": "Terrace - Additional Info",
+      "terraceDetails": "Terrace - Additional Details",
       "carport": "Carport",
-      "carportDetails": "Carport - Additional Info",
+      "carportDetails": "Carport - Additional Details",
       "carportHowMany": "For how many cars?",
       "garage": "Garage",
-      "garageDetails": "Garage - Additional Info",
+      "garageDetails": "Garage - Additional Details",
       "garageHowMany": "For how many cars?",
       "houseType": "House Type",
       "houseMaterial": "House Material",
       "houseMaterialOther": "Other Material",
       "houseShape": "House Shape",
-      "houseShapeOther": "Other house shape",
-
+      "houseShapeOther": "Other House Shape",
       "houseStyle": "House Style",
-      "roof": "Roof",
+      "roof": "Roof Material",
       "roofType": "Roof Type",
-      "roofOther": "Other Roof",
+      "roofOther": "Other Roof Material",
       "ceiling": "Ceiling",
       "floor": "Floor",
       "floorDetails": "Floor Material",
@@ -153,18 +157,20 @@
       "fireplace": "Fireplace",
       "fireplaceHeatStorage": "Heat Storage",
       "bakingOven": "Baking Oven",
-      "bakingOvenDetails": "Baking Oven Details",
-      "kitchenType": "Kitchen",
+      "bakingOvenDetails": "Baking Oven - Additional Details",
+      "kitchenType": "Kitchen Type",
       "kitchenAccessories": "Kitchen Accessories",
       "otherInfoIndoor": "Other Info",
       "interestedIn": "I'm Interested In",
-      "interestedInOther": "Other Interesting Item",
+      "interestedInOther": "Other Interest",
       "wantsInOffer": "I Want Included in the Offer",
-      "wantsInOfferOther": "Other Item in Offer",
+      "wantsInOfferOther": "Other Item to Include in Offer",
       "personalStatus": "I Am",
-      "additionalInfo": "Additional Information",
+      "additionalInfo": "Additional Freeform Info",
       "technicalFeatures": "Technical Features",
-      "customerStatus": "Customer Status",
+      "customerStatus": "Purchase Stage",
+      "fullName": "Full Name",
+      "phoneNumber": "Phone Number",
       "otherInfo": "Other Info",
       "hasPlot": "Do You Have a Plot?",
       "directElectricHeating": "Direct Electric Heating"
@@ -174,16 +180,17 @@
       "no": "No",
       "dontKnow": "Don't Know Yet",
       "other": "Other",
-      "otherWhat": "Other, What?",
+      "otherWhat": "Other, what?",
       "selectOption": "Select an Option",
-      "selectDeliveryOption": "Select Delivery Method",
+      "selectDeliveryOption": "Select Delivery Option",
       "selectCity": "Select City",
-      "selectstories": "How Many Stories?",
+      "selectstories": "How many stories do you want?",
       "selectceiling": "Select Ceiling",
+      "selectroofType": "Select Roof Type",
       "selectinteriorWalls": "Select Interior Walls",
-      "selectkitchenType": "Select Kitchen",
+      "selectkitchenType": "Select Kitchen Type",
       "selectkitchenAccessories": "Select Kitchen Accessories",
-      "fieldRequired": "Field is Required",
+      "fieldRequired": "Field Required",
 
       "selectfloor": "Select Floor",
       "selectProvince": "Select Province",
@@ -192,14 +199,13 @@
       "selecthouseMaterial": "Select House Material",
       "selecthouseShape": "Select House Shape",
       "selecthouseStyle": "Select House Style",
-      "selectdelivery": "Select Delivery Method",
+      "selectdelivery": "Select Delivery Type",
 
       "selectDeliveryType": "",
       "selectMaterial": "Select Material",
       "selectroof": "Select Roof",
-      "selectroofType": "Select Roof Type",
-      "enterDetails": "Enter Additional Info...",
-      "enterOther": "Other - What?",
+      "enterDetails": "Enter additional details...",
+      "enterOther": "Other – what?",
 
       "houseMaterial": {
         "wood": "Wood",
@@ -207,25 +213,16 @@
         "CLT": "CLT",
         "concrete": "Concrete / Stone",
         "noPreference": "No Preference",
-        "metalRoof": "Metal / Seam Roof",
-        "brick": "Brick",
-        "felt": "Felt",
-        "enterOther": "Other - What?"
+
+        "enterOther": "Other – what?"
       },
 
       "roof": {
-        "metalRoof": "Metal / Seam Roof",
-        "brick": "Brick",
+        "metalRoof": "Metal Roof",
+        "brick": "Tile",
         "felt": "Felt",
         "noPreference": "No Preference",
-        "enterOther": "Other - What?"
-      },
-
-      "roofType": {
-        "gableRoof": "Gable Roof",
-        "pulpitRoof": "Shed Roof",
-        "flatRoof": "Flat Roof",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
 
       "floor": {
@@ -234,39 +231,45 @@
         "vinyl": "Vinyl",
         "cork": "Cork",
         "tile": "Tile",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
+      },
+
+      "roofType": {
+        "gableRoof": "Gable Roof",
+        "pulpitRoof": "Mono-pitched Roof",
+        "flatRoof": "Flat Roof",
+        "enterOther": "Other – what?"
       },
 
       "interiorWalls": {
         "plasterBoard": "Plasterboard",
         "lightConcrete": "Lightweight Concrete",
-        "woodPanel": "Wood Paneling",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
 
       "ceiling": {
         "plasterBoard": "Plasterboard",
-        "woodPanel": "Wood Paneling",
+        "woodPanel": "Wood Panel",
         "vinyl": "Vinyl",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
 
-      "lead1": "Considering a house package (No financing)",
-      "lead2": "Looking for a suitable house package",
-      "lead3": "Comparing house packages (financing is ready)",
+      "lead1": "Considering (no funding yet)",
+      "lead2": "Still searching for suitable package",
+      "lead3": "Comparing offers (I have funding)",
 
       "houseType": {
         "ownHouse": "Detached House",
-        "pairHouse": "Semi-Detached",
-        "leisureHouse": "Leisure Home",
-        "enterOther": "Other - What?"
+        "pairHouse": "Semi-detached",
+        "leisureHouse": "Holiday Home",
+        "enterOther": "Other – what?"
       },
 
       "delivery": {
         "movingReady": "Move-in Ready",
-        "decorationReady": "Decoration Ready",
+        "decorationReady": "Decorated Ready",
         "basicPackage": "Basic Package",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
 
       "stories": {
@@ -274,56 +277,57 @@
         "1.5-floors": "1.5 Floors",
         "2-floors": "2 Floors",
         "3+-floor": "3+ Floors",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
 
       "houseShape": {
-        "l-shape": "L-Shaped House",
-        "i-shape": "I-Shaped House",
-        "u-shape": "U-Shaped House",
+        "l-shape": "L-shaped House",
+        "i-shape": "I-shaped House",
+        "u-shape": "U-shaped House",
         "hillsideHouse": "Hillside House",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
 
       "houseStyle": {
         "modern": "Modern",
         "classic": "Classic",
         "traditional": "Traditional",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
 
       "kitchenType": {
-        "i-kitchen": "I-Shaped Kitchen",
-        "u-kitchen": "U-Shaped Kitchen",
-        "l-kitchen": "L-Shaped Kitchen",
+        "i-kitchen": "I-shaped Kitchen",
+        "u-kitchen": "U-shaped Kitchen",
+        "l-kitchen": "L-shaped Kitchen",
         "openKitchenIsland": "Open Kitchen with Island",
-        "noKitchen": "I Don't Want a Kitchen in the Offer",
-        "enterOther": "Other - What?"
+        "peninsula": "Open Kitchen with Peninsula",
+        "noKitchen": "I don't want a kitchen included",
+        "enterOther": "Other – what?"
       },
 
       "kitchenAccessories": {
         "breakfastCabinet": "Breakfast Cabinet",
         "stoneCountertops": "Stone Countertops",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
 
       "heatingType": {
         "geothermalHeating": "Geothermal Heating",
-        "airToWaterHeatPump": "Air-to-Water Heat Pump",
+        "airToWaterHeatPump": "Air-to-water Heat Pump",
         "districtHeating": "District Heating",
         "directElectricHeating": "Direct Electric Heating",
-        "fireplaceOrStove": "Fireplace or Stove",
-        "excludeFromOfferHeating": "Do Not Include in Offer",
-        "enterOther": "Other - What?"
+        "fireplaceOrStove": "Fireplace",
+        "excludeFromOfferHeating": "Do not include in offer",
+        "enterOther": "Other – what?"
       },
 
       "heatingMethod": {
-        "waterCirculatingUnderfloorHeating": "Water-Circulating Underfloor Heating",
+        "waterCirculatingUnderfloorHeating": "Water-circulated Underfloor Heating",
         "electricRadiators": "Electric Radiators",
-        "heatRecoveryVentilationUnit": "Heat Recovery Ventilation Unit",
+        "heatRecoveryVentilationUnit": "Heat Recovery Ventilation",
         "airHeatPump": "Air Heat Pump",
-        "excludeFromOfferHeatingSystem": "Do Not Include in Offer",
-        "enterOther": "Other - What?"
+        "excludeFromOfferHeatingSystem": "Do not include in offer",
+        "enterOther": "Other – what?"
       },
 
       "minSize": "Min Size (m²)",
@@ -331,7 +335,7 @@
       "heatStoring": "Heat Storing",
       "airCirculationFireplace": "Air Circulation Fireplace",
       "openFireplace": "Open Fireplace",
-      "hasPlot": "Do You Have a Plot?",
+      "hasPlot": "Do you already have a plot?",
 
       "interestedIn": {
         "homeAutomation": "Home Automation",
@@ -341,20 +345,17 @@
         "earthworks": "Earthworks",
         "foundations": "Foundations",
         "constructionManagement": "Construction Management",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       },
       "wantsInOffer": {
         "hvac": "HVAC Work",
         "electrical": "Electrical Work",
-        "earthworks": "Earthworks",
-        "foundations": "Foundations",
-        "constructionManagement": "Construction Management",
-        "enterOther": "Other - What?"
+        "enterOther": "Other – what?"
       }
     },
     "validation": {
-      "required": "Field is Required",
-      "selectOne": "Select at Least One"
+      "required": "Field Required",
+      "selectOne": "Select at least one"
     },
 
     "kiertoilmaTakka": "Air Circulation Fireplace",

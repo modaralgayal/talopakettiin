@@ -22,8 +22,8 @@ export const Header = () => {
     <header
       className={
         isHome
-          ? "bg-white/40 backdrop-blur-lg shadow-lg border border-white/30 transition-colors duration-300 w-full"
-          : "bg-white shadow-sm w-full"
+          ? "bg-white/40 backdrop-blur-lg shadow-lg border border-white/30 transition-colors duration-300 w-full z-20 fixed"
+          : "bg-white/40 backdrop-blur-lg shadow-lg border border-white/30 transition-colors duration-300 w-full z-20 fixed"
       }
     >
       <nav className="w-full px-4 py-4">
@@ -46,8 +46,7 @@ export const Header = () => {
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
-                      `text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative
-                      ${isActive ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600" : ""}`
+                      `text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${isActive ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600" : ""}`
                     }
                   >
                     {item.name}
@@ -63,8 +62,7 @@ export const Header = () => {
             <NavLink
               to="/signin"
               className={({ isActive }) =>
-                `hidden md:inline-block text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative
-                ${isActive ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600" : ""}`
+                `hidden md:inline-block text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${isActive ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600" : ""}`
               }
             >
               {t('common.signIn')}
@@ -114,11 +112,7 @@ export const Header = () => {
                 key={item.name}
                 to={item.path}
                 className={({ isActive }) =>
-                  `block px-3 py-2 rounded-md text-base font-medium ${
-                    isActive
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
-                  }`
+                  `block px-3 py-2 rounded-md text-base font-medium ${isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-white/20'}`
                 }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -128,11 +122,7 @@ export const Header = () => {
             <NavLink
               to="/signin"
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-md text-base font-medium ${
-                  isActive
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
-                }`
+                `block px-3 py-2 rounded-md text-base font-medium ${isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-white/20'}`
               }
               onClick={() => setIsMobileMenuOpen(false)}
             >
