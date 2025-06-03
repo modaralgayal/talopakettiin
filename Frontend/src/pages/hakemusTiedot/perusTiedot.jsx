@@ -469,8 +469,8 @@ export const PerustiedotForm = ({
   };
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-semibold text-gray-800 border-b pb-3">
+    <div className="space-y-4 sm:space-y-6">
+      <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 border-b pb-2 sm:pb-3">
         {t("form.steps.basicInfo")}
       </h2>
 
@@ -485,16 +485,16 @@ export const PerustiedotForm = ({
 
       {/* Province (Required) */}
       <div>
-        <label className="block text-lg font-medium text-gray-700">
+        <label className="block text-base sm:text-lg font-medium text-gray-700">
           {t("form.fields.province")} *
           {validationErrors.province && (
-            <span className="text-red-500 text-sm ml-2">
+            <span className="text-red-500 text-xs sm:text-sm ml-2">
               {validationErrors.province}
             </span>
           )}
         </label>
         <select
-          className={`w-full p-3 border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 ${
+          className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 ${
             validationErrors.province ? "border-red-500" : ""
           }`}
           value={formData.province || ""}
@@ -513,16 +513,16 @@ export const PerustiedotForm = ({
       {/* City (Required) */}
       {formData.province && (
         <>
-          <label className="block text-lg font-medium text-gray-700">
+          <label className="block text-base sm:text-lg font-medium text-gray-700">
             {t("form.fields.city")} *
-            {validationErrors.province && (
-              <span className="text-red-500 text-sm ml-2">
-                {validationErrors.province}
+            {validationErrors.city && (
+              <span className="text-red-500 text-xs sm:text-sm ml-2">
+                {validationErrors.city}
               </span>
             )}
           </label>
           <select
-            className={`w-full p-3 border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 ${
+            className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 ${
               validationErrors.city ? "border-red-500" : ""
             }`}
             value={formData.city || ""}
@@ -563,10 +563,10 @@ export const PerustiedotForm = ({
 
       {/* Budget (Required) */}
       <div>
-        <label className="block text-lg font-medium text-gray-700">
+        <label className="block text-base sm:text-lg font-medium text-gray-700">
           {t("form.fields.budget")} *
           {validationErrors.budget && (
-            <span className="text-red-500 text-sm ml-2">
+            <span className="text-red-500 text-xs sm:text-sm ml-2">
               {validationErrors.budget}
             </span>
           )}
@@ -575,7 +575,7 @@ export const PerustiedotForm = ({
           <input
             type="number"
             placeholder="Min €"
-            className={`w-1/2 p-3 border rounded-lg ${
+            className={`w-1/2 p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
               validationErrors.budget ? "border-red-500" : ""
             }`}
             value={formData.minBudget ?? ""}
@@ -587,7 +587,7 @@ export const PerustiedotForm = ({
           <input
             type="number"
             placeholder="Max €"
-            className={`w-1/2 p-3 border rounded-lg ${
+            className={`w-1/2 p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
               validationErrors.budget ? "border-red-500" : ""
             }`}
             value={formData.maxBudget ?? ""}
@@ -601,10 +601,10 @@ export const PerustiedotForm = ({
 
       {/* House Size (Required) */}
       <div>
-        <label className="block text-lg font-medium text-gray-700">
+        <label className="block text-base sm:text-lg font-medium text-gray-700">
           {t("form.fields.houseSize")} *
           {validationErrors.houseSize && (
-            <span className="text-red-500 text-sm ml-2">
+            <span className="text-red-500 text-xs sm:text-sm ml-2">
               {validationErrors.houseSize}
             </span>
           )}
@@ -613,7 +613,7 @@ export const PerustiedotForm = ({
           <input
             type="number"
             placeholder="Min m²"
-            className={`w-1/2 p-3 border rounded-lg ${
+            className={`w-1/2 p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
               validationErrors.houseSize ? "border-red-500" : ""
             }`}
             value={formData.minSize ?? ""}
@@ -625,7 +625,7 @@ export const PerustiedotForm = ({
           <input
             type="number"
             placeholder="Max m²"
-            className={`w-1/2 p-3 border rounded-lg ${
+            className={`w-1/2 p-2 sm:p-3 text-sm sm:text-base border rounded-lg ${
               validationErrors.houseSize ? "border-red-500" : ""
             }`}
             value={formData.maxSize ?? ""}
@@ -639,16 +639,16 @@ export const PerustiedotForm = ({
 
       {/* Number of Bedrooms */}
       <div>
-        <label className="block text-lg font-medium text-gray-700">
+        <label className="block text-base sm:text-lg font-medium text-gray-700">
           {t("form.fields.bedrooms")} *
           {validationErrors.bedrooms && (
-            <span className="text-red-500 text-sm ml-2">
+            <span className="text-red-500 text-xs sm:text-sm ml-2">
               {validationErrors.bedrooms}
             </span>
           )}
         </label>
         <select
-          className={`w-full p-3 border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 ${
+          className={`w-full p-2 sm:p-3 text-sm sm:text-base border rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 ${
             validationErrors.bedrooms ? "border-red-500" : ""
           }`}
           value={formData.bedrooms || ""}

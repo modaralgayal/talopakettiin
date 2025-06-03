@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
+import { API_BASE_URL } from "../config/apiConfig";
 
 export const ApplicationForm = (prop) => {
   const {
@@ -81,9 +82,6 @@ export const ApplicationForm = (prop) => {
       const idToken = await user.getIdToken();
 
       // 2. Send the ID token to your backend to create a session
-
-      const API_BASE_URL = "https://api.talopakettiin.fi";
-
       const res = await fetch(`${API_BASE_URL}/api/user/firebaseGoogleSignIn`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -148,13 +146,13 @@ export const ApplicationForm = (prop) => {
   }, [currentStep]);
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-12 pb-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 pt-8 sm:pt-12 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             Rakennushakemus
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-base sm:text-lg text-gray-600">
             Täytä kaikki vaaditut tiedot vaiheittain
           </p>
           {applicationCount !== null && (
@@ -165,15 +163,15 @@ export const ApplicationForm = (prop) => {
         </div>
 
         {error && (
-          <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <div className="mb-6 sm:mb-8 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg">
             <div className="flex items-center">
-              <FaExclamationTriangle className="h-5 w-5 text-red-400 mr-2" />
-              <p className="text-red-700">{error}</p>
+              <FaExclamationTriangle className="h-5 w-5 text-red-400 mr-2 flex-shrink-0" />
+              <p className="text-red-700 text-sm sm:text-base">{error}</p>
             </div>
           </div>
         )}
 
-        <div className="relative mb-12">
+        <div className="relative mb-8 sm:mb-12">
           <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -z-10"></div>
           <div className="flex justify-between">
             {steps.map(({ number, title }) => (
@@ -183,16 +181,16 @@ export const ApplicationForm = (prop) => {
                 onClick={() => goToStep(number)}
               >
                 <div
-                  className={`w-12 h-12 flex items-center justify-center rounded-full border-2 transition-colors ${
+                  className={`w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border-2 transition-colors ${
                     currentStep >= number
                       ? "border-blue-600 bg-blue-600 text-white"
                       : "border-gray-300 bg-white text-gray-400"
                   }`}
                 >
-                  <span className="font-medium">{number}</span>
+                  <span className="font-medium text-sm sm:text-base">{number}</span>
                 </div>
                 <span
-                  className={`mt-3 text-sm font-medium ${
+                  className={`mt-2 sm:mt-3 text-xs sm:text-sm font-medium text-center max-w-[60px] sm:max-w-none ${
                     currentStep >= number ? "text-blue-600" : "text-gray-500"
                   }`}
                 >
@@ -204,7 +202,7 @@ export const ApplicationForm = (prop) => {
         </div>
 
         <div className="bg-white shadow-xl rounded-lg overflow-hidden">
-          <div className="p-8">
+          <div className="p-4 sm:p-8">
             {currentStep === 1 && (
               <PerustiedotForm
                 formData={formData}
@@ -256,13 +254,13 @@ export const ApplicationForm = (prop) => {
             )}
           </div>
 
-          <div className="px-8 py-6 bg-gray-50 border-t border-gray-200 flex flex-col items-center gap-4">
-            <div className="flex w-full justify-between">
-              <div className="flex gap-4">
+          <div className="px-4 sm:px-8 py-4 sm:py-6 bg-gray-50 border-t border-gray-200">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <button
                   onClick={prevStep}
                   disabled={currentStep === 1}
-                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                  className={`w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors ${
                     currentStep === 1
                       ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                       : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-300 shadow-sm"
@@ -272,7 +270,7 @@ export const ApplicationForm = (prop) => {
                 </button>
                 <button
                   onClick={resetForm}
-                  className="px-6 py-3 rounded-lg font-medium transition-colors bg-white text-red-600 hover:bg-red-50 border border-red-300 shadow-sm"
+                  className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors bg-white text-red-600 hover:bg-red-50 border border-red-300 shadow-sm"
                 >
                   {t("navigation.startAgain")}
                 </button>
@@ -290,7 +288,7 @@ export const ApplicationForm = (prop) => {
                     }
                   }}
                   disabled={applicationCount === applicationLimit}
-                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                  className={`w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors ${
                     applicationCount === applicationLimit
                       ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                       : "bg-green-600 text-white hover:bg-green-700 shadow-md"
@@ -301,7 +299,7 @@ export const ApplicationForm = (prop) => {
               ) : (
                 <button
                   onClick={nextStep}
-                  className="px-6 py-3 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition-colors shadow-md"
+                  className="w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors bg-blue-600 text-white hover:bg-blue-700 shadow-md"
                 >
                   {t("navigation.next")}
                 </button>

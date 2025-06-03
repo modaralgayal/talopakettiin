@@ -6,6 +6,9 @@ import { useTranslation } from "react-i18next";
 import { useLanguage } from "../context/languageContext";
 import { Helmet } from "react-helmet-async";
 import Seo from "../seo/Seo";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage } from "@cloudinary/react";
+import { fill } from "@cloudinary/url-gen/actions/resize";
 
 export const Homepage = () => {
   const { t } = useTranslation();
@@ -308,7 +311,9 @@ export const Homepage = () => {
                         {step.title}
                       </h3>
                       <p className="text-gray-600 leading-relaxed text-2xl text-center">
-                        {index === 0 ? "Talopaketin hankinta alkaa täyttämällä helppo hakemus lomake." : step.description}
+                        {index === 0
+                          ? "Talopaketin hankinta alkaa täyttämällä helppo hakemus lomake."
+                          : step.description}
                       </p>
                     </div>
                   </div>
@@ -384,15 +389,11 @@ export const Homepage = () => {
           </div>
         </div>
 
-        {/* Optional: Link to Contact page after Blog Section */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-600">
-            Onko sinulla kysyttävää? <a href="/contact" className="text-blue-600 hover:underline">Ota meihin yhteyttä</a>.
-          </p>
-        </div>
+
       </div>
     </>
   );
 };
 
 export default Homepage;
+ 

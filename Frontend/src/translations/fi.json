@@ -29,6 +29,7 @@
     "makeOffer": "Tee tarjous"
   },
   "auth": {
+    "signInWithGoogle":"Kirjaudu Googlella",
     "selectUserType": "Valitse käyttäjätyyppisi jatkaaksesi",
     "customer": {
       "title": "Hakija",
@@ -167,8 +168,8 @@
       "additionalInfo": "Vapaamuotoisia lisätietoja",
       "technicalFeatures": "Talotekniikka",
       "customerStatus": "Hankintavaihe",
-      "fullName": "Etu- ja Sukunimi",
-      "phoneNumber": "Puhelin numero",
+      "fullName": "Etu- ja sukunimi",
+      "phoneNumber": "Puhelinnumero",
       "otherInfo": "Muu tieto",
       "hasPlot": "Onko sinulla tontti?",
       "directElectricHeating": "Suora sähkölämmitys"
@@ -348,9 +349,6 @@
       "wantsInOffer": {
         "hvac": "LVI-työt",
         "electrical": "Sähkötyöt",
-        "earthworks": "Maatyöt",
-        "foundations": "Perustukset",
-        "constructionManagement": "Rakennuttamispalvelut",
         "enterOther": "Muu - mikä?"
       }
     },

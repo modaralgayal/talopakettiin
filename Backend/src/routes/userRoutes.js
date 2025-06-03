@@ -1,5 +1,5 @@
 import express from "express";
-import { firebaseGoogleSignIn, logOut } from "../controllers/userController.js";
+import { firebaseSignIn, logOut } from "../controllers/userController.js";
 import { protect } from "../middleware/authenticate.js";
 
 const router = express.Router();
@@ -7,7 +7,7 @@ const router = express.Router();
 // Logout route
 router.post("/logout", logOut);
 
-router.post("/firebaseGoogleSignIn", firebaseGoogleSignIn);
+router.post("/firebaseSignIn", firebaseSignIn);
 
 // Validate token route
 router.post("/validate-token", protect, (req, res) => {

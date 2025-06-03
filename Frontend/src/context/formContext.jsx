@@ -173,10 +173,6 @@ export const FormProvider = ({ children }) => {
           console.log("Error in type");
           errors.kitchenType = t("form.options.fieldRequired");
         }
-        if (!formData.kitchenAccessories) {
-          console.log("Error in accessories");
-          errors.kitchenAccessories = t("form.options.fieldRequired");
-        }
         break;
 
       case 5: // Lämmitys
@@ -193,10 +189,7 @@ export const FormProvider = ({ children }) => {
         if (!formData.interestedIn || formData.interestedIn.length === 0) {
           errors.interestedIn = t("form.options.chooseOneAtLeast");
         }
-        if (!formData.wantsInOffer || formData.wantsInOffer.length === 0) {
-          errors.wantsInOffer = t("form.options.chooseOneAtLeast");
-        }
-
+       
         break;
       case 7: // Omat Tiedot
         if (!formData.customerStatus) {

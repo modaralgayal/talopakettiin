@@ -1,12 +1,11 @@
 import axios from "axios";
+import { USER_API_URL } from "../config/apiConfig";
 
-const BASE_URL = "https://api.talopakettiin.fi/api/user";
-
-console.log("This is the baseurl", BASE_URL);
+console.log("This is the baseurl", USER_API_URL);
 
 export const testConnection = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/api/test`);
+    const response = await axios.get(`${USER_API_URL}/api/test`);
     console.log("Response is: ", response.data);
     return response.data;
   } catch (error) {
@@ -17,7 +16,7 @@ export const testConnection = async () => {
 // Logout
 export const logOut = async () => {
   try {
-    await axios.post(`${BASE_URL}/logout`, {}, { withCredentials: true });
+    await axios.post(`${USER_API_URL}/logout`, {}, { withCredentials: true });
   } catch (error) {
     throw error.response?.data || error.message;
   }
@@ -28,11 +27,11 @@ export const validateToken = async () => {
   try {
     console.log("Checking validity");
     const response = await axios.post(
-      `${BASE_URL}/validate-token`,
+      `${USER_API_URL}/validate-token`,
       {},
       { withCredentials: true }
     );
-    console.log("This is the response: ", response);
+    // console.log("This is the response: ", response);
     return {
       isValid: response.status,
       userType: response.data.userType,

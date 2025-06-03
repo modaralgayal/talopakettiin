@@ -1,4 +1,6 @@
 import { auth } from "../config/firebaseConfig.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const logOut = (req, res) => {
   try {
@@ -33,7 +35,9 @@ export const logOut = (req, res) => {
   }
 };
 
-export const firebaseGoogleSignIn = async (req, res) => {
+
+
+export const firebaseSignIn = async (req, res) => {
   // 1. Make async
   try {
     const idToken = req.body.token; // Renamed for clarity to match client
@@ -104,4 +108,4 @@ export const firebaseGoogleSignIn = async (req, res) => {
   }
 };
 
-// ... (logOut function will be updated next) ...
+

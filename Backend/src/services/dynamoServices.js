@@ -14,7 +14,7 @@ import { v4 as uuidv4 } from "uuid";
 import multer from "multer";
 import { configDotenv } from "dotenv";
 
-configDotenv()
+configDotenv();
 
 const APPLICATION_LIMIT = 10;
 
@@ -26,6 +26,65 @@ const initDynamoDBClient = async () => {
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     },
   });
+};
+
+export const checkProviderApproval = async (req, res) => {
+  try {
+    const client = await initDynamoDBClient(); // Assumes this initializes your DynamoDB client
+    // Make sure req.user and req.user.email are available (e.g., from middleware)
+    const email = req.user.email;
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Email not provided in request user.",
+      });
+    }
+
+    const queryParams = {
+      TableName: "Talopakettiin-API",
+      IndexName: "email-isApproved-index", // Your GSI where email is the Partition Key and isApproved is the Sort Key (String)
+      KeyConditionExpression: "email = :email",
+      ExpressionAttributeValues: {
+        ":email": { S: email }, // Assuming S is the correct type for email in your table/index
+      },
+      ProjectionExpression: "isApproved", // Fetch only the isApproved attribute to save RCU/network
+    };
+
+    console.log(
+      "Querying DynamoDB with params:",
+      JSON.stringify(queryParams, null, 2)
+    );
+
+    const result = await client.query(queryParams).promise(); // Assuming a V2-style client with .promise()
+
+    console.log("DynamoDB query result:", JSON.stringify(result, null, 2));
+
+    let isApproved = false;
+
+    // Check if items were returned and if the isApproved attribute exists and is the approval string
+    if (result.Items && result.Items.length > 0) {
+      // Assuming the first item is sufficient for approval status for a given email
+      const item = result.Items[0];
+      // Check if the isApproved attribute exists and its value (as a string) is 'approved'
+      // Adjust 'approved' string if you use a different value like 'true', 'active', etc.
+      if (item.isApproved && item.isApproved.S === "approved") {
+        // Assuming S type for string
+        isApproved = true;
+      }
+      // If you used the KeyConditionExpression to filter for 'approved', you could just check if result.Items.length > 0
+    }
+
+    // Send the approval status back to the client
+    res.json({ isApproved: isApproved });
+  } catch (error) {
+    console.error("Error in checkProviderApproval:", error);
+    // Send an error response back to the client
+    res.status(500).json({
+      success: false,
+      message: "Internal server error checking approval status.",
+    });
+  }
 };
 
 export const scanTable = async () => {
@@ -269,7 +328,6 @@ export const acceptOffer = async (req, res) => {
   try {
     const dynamoDBClient = await initDynamoDBClient();
     const { id, entryId } = req.body;
-    const secrets = await getSecrets();
 
     console.log("Request Body:", req.body);
 
@@ -531,7 +589,6 @@ export const editApplication = async (req, res) => {
     const result = await client.send(new UpdateItemCommand(params));
 
     try {
-      const secrets = await getSecrets();
       const transporter = nodemailer.createTransport({
         host: "mail.smtp2go.com",
         port: 587,
