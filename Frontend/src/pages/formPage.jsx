@@ -173,11 +173,11 @@ export const ApplicationForm = (prop) => {
 
         <div className="relative mb-8 sm:mb-12">
           <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -z-10"></div>
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-wrap gap-x-2 sm:gap-x-0">
             {steps.map(({ number, title }) => (
               <div
                 key={number}
-                className="flex flex-col items-center cursor-pointer"
+                className="flex flex-col items-center cursor-pointer mb-2 sm:mb-0"
                 onClick={() => goToStep(number)}
               >
                 <div
@@ -190,7 +190,7 @@ export const ApplicationForm = (prop) => {
                   <span className="font-medium text-sm sm:text-base">{number}</span>
                 </div>
                 <span
-                  className={`mt-2 sm:mt-3 text-xs sm:text-sm font-medium text-center max-w-[60px] sm:max-w-none ${
+                  className={`mt-2 sm:mt-3 text-xs sm:text-sm font-medium text-center ${
                     currentStep >= number ? "text-blue-600" : "text-gray-500"
                   }`}
                 >

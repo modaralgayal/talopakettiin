@@ -7,8 +7,10 @@ export const logOut = (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "lax", // Should match how it was set
-      // path: '/' // if you set a specific path when creating
+      sameSite: "Lax",
+      domain:
+        process.env.NODE_ENV === "production" ? ".talopakettiin.fi" : undefined,
+      path: "/",
     };
 
     // Clear the session cookie
@@ -34,8 +36,6 @@ export const logOut = (req, res) => {
     }
   }
 };
-
-
 
 export const firebaseSignIn = async (req, res) => {
   // 1. Make async
@@ -80,11 +80,14 @@ export const firebaseSignIn = async (req, res) => {
     // 4. Set the session cookie
     const cookieOptions = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Corrected
+      secure: process.env.NODE_ENV === "production",
       maxAge: expiresIn,
-      sameSite: "None", // Good default
+      sameSite: "Lax",
+      domain:
+        process.env.NODE_ENV === "production" ? ".talopakettiin.fi" : undefined,
+      path: "/",
     };
-    res.cookie("session", sessionCookie, cookieOptions); // Changed cookie name to 'session'
+    res.cookie("session", sessionCookie, cookieOptions);
 
     // 5. Handle userType cookie (can be improved later)
     // For now, let's keep it, but ensure options are consistent
@@ -107,5 +110,3 @@ export const firebaseSignIn = async (req, res) => {
     }
   }
 };
-
-
