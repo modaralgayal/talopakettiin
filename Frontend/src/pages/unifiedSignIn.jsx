@@ -76,33 +76,34 @@ export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
         if (selectedUserType === "customer") {
           navigate("/formpage");
         } else if (selectedUserType === "provider") {
+          navigate("/allapplications");
           // For providers, check approval status with backend
-          try {
-            const approvalRes = await fetch(`${API_BASE_URL}/api/user/checkProviderApproval`, { // Replace with your actual backend endpoint
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ uid: user.uid, email: user.email }), // Send UID and potentially email
-            });
+          // try {
+          //   const approvalRes = await fetch(`${API_BASE_URL}/api/user/checkProviderApproval`, { // Replace with your actual backend endpoint
+          //     method: "POST",
+          //     headers: { "Content-Type": "application/json" },
+          //     body: JSON.stringify({ uid: user.uid, email: user.email }), // Send UID and potentially email
+          //   });
 
-            const approvalData = await approvalRes.json();
+          //   const approvalData = await approvalRes.json();
 
-            if (approvalData.isApproved) { // Assuming your backend sends { isApproved: true/false }
-              navigate("/allapplications");
-            } else {
-              // Provider account is pending approval
-              showMessage("Your account is pending admin approval.", "info");
-              console.log("Provider account pending approval:", user.uid);
-               // Optionally log out the user from Firebase if you don't want them partially signed in
-              // auth.signOut();
-               // setIsAuthenticated(false);
-            }
-          } catch (approvalError) {
-            console.error("Error checking provider approval status:", approvalError);
-            showMessage("Could not verify provider approval status.", "error");
-             // Optionally log out the user on error
-            // auth.signOut();
-             // setIsAuthenticated(false);
-          }
+          //   if (approvalData.isApproved) { // Assuming your backend sends { isApproved: true/false }
+          //     navigate("/allapplications");
+          //   } else {
+          //     // Provider account is pending approval
+          //     showMessage("Your account is pending admin approval.", "info");
+          //     console.log("Provider account pending approval:", user.uid);
+          //      // Optionally log out the user from Firebase if you don't want them partially signed in
+          //     // auth.signOut();
+          //      // setIsAuthenticated(false);
+          //   }
+          // } catch (approvalError) {
+          //   console.error("Error checking provider approval status:", approvalError);
+          //   showMessage("Could not verify provider approval status.", "error");
+          //    // Optionally log out the user on error
+          //   // auth.signOut();
+          //    // setIsAuthenticated(false);
+          // }
         } else {
           // Handle other user types or default navigation
            navigate("/formpage"); // Default to customer page or a general dashboard
