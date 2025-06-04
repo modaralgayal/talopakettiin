@@ -22,8 +22,9 @@ const allowedOrigins = [
   "https://www.talopakettiin.fi",
   "http://www.talopakettiin.fi",
   "http://localhost:5173",
-  "https://localhost:8001",
+  "https://localhost:5173",
   "http://localhost:8000",
+  "https://localhost:8000"
 ];
 
 // Use CORS middleware
@@ -50,9 +51,11 @@ app.use(
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "token", "usertype"],
-    exposedHeaders: ["Content-Range", "X-Content-Range"],
+    allowedHeaders: ["Content-Type", "Authorization", "token", "usertype", "Set-Cookie"],
+    exposedHeaders: ["Content-Range", "X-Content-Range", "Set-Cookie"],
     maxAge: 86400, // 24 hours
+    preflightContinue: false,
+    optionsSuccessStatus: 204
   })
 );
 

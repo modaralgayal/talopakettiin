@@ -1,4 +1,14 @@
 import { auth } from "../config/firebaseConfig.js";
+import {
+  addVerifiedProviderDomain,
+  addVerifiedProviderEmail,
+  isAdminUser,
+  getAllAdminUsers,
+  verifyProviderEmail,
+  getAllProviders,
+  getAllDomains,
+  checkProvider,
+} from "../services/dynamoServices.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -7,9 +17,7 @@ export const logOut = (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "Lax",
-      domain:
-        process.env.NODE_ENV === "production" ? ".talopakettiin.fi" : undefined,
+      sameSite: "None",
       path: "/",
     };
 
@@ -82,16 +90,16 @@ export const firebaseSignIn = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: expiresIn,
-      sameSite: "Lax",
-      domain:
-        process.env.NODE_ENV === "production" ? ".talopakettiin.fi" : undefined,
+      sameSite: "None",
       path: "/",
     };
     res.cookie("session", sessionCookie, cookieOptions);
 
-    // 5. Handle userType cookie (can be improved later)
-    // For now, let's keep it, but ensure options are consistent
-    res.cookie("userType", userType, cookieOptions);
+    // 5. Handle userType cookie
+    const userTypeCookieOptions = {
+      ...cookieOptions,
+    };
+    res.cookie("userType", userType, userTypeCookieOptions);
 
     res.status(200).json({
       success: true,
@@ -108,5 +116,242 @@ export const firebaseSignIn = async (req, res) => {
         error: "Internal server error during sign-in.",
       });
     }
+  }
+};
+
+// Verify provider email during sign in
+export const verifyProviderSignIn = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        error: "Email is required",
+      });
+    }
+
+    const isVerified = await verifyProviderEmail(email);
+
+    if (!isVerified) {
+      return res.status(403).json({
+        success: false,
+        error: "This email is not from a verified provider domain",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Provider email verified",
+    });
+  } catch (error) {
+    console.error("Error verifying provider:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+};
+
+// Admin endpoint to add verified provider domain
+export const addProviderDomain = async (req, res) => {
+  try {
+    const { domain } = req.body;
+
+    if (!domain) {
+      return res.status(400).json({
+        success: false,
+        error: "Domain is required",
+      });
+    }
+
+    const success = await addVerifiedProviderDomain(domain);
+
+    if (!success) {
+      return res.status(500).json({
+        success: false,
+        error: "Failed to add verified domain",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Domain added successfully",
+    });
+  } catch (error) {
+    console.error("Error adding provider domain:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+};
+
+// Admin endpoint to add verified provider email
+export const addProviderEmail = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        error: "Email is required",
+      });
+    }
+
+    const success = await addVerifiedProviderEmail(email);
+
+    if (!success) {
+      return res.status(500).json({
+        success: false,
+        error: "Failed to add verified email",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Email added successfully",
+    });
+  } catch (error) {
+    console.error("Error adding provider email:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+};
+
+// Admin management endpoints
+export const checkAdminStatus = async (req, res) => {
+  console.log("req.body.email", req.body.email);
+  try {
+    const email = req.body.email;
+    console.log("Checking admin status for email:", email);
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        error: "Email is required",
+      });
+    }
+
+    const isAdmin = await isAdminUser(email);
+
+    if (!isAdmin) {
+      return res.status(400).json({
+        success: false,
+        isAdmin,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      isAdmin,
+    });
+  } catch (error) {
+    console.error("Error checking admin status:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+};
+
+export const getAdminUsers = async (req, res) => {
+  try {
+    const admins = await getAllAdminUsers();
+
+    return res.status(200).json({
+      success: true,
+      admins,
+    });
+  } catch (error) {
+    console.error("Error fetching admin users:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+};
+
+export const getProvidersHelper = async (req, res) => {
+  try {
+    const userType = req.user.userType;
+    if (userType !== "admin") {
+      return res.status(400).json({
+        success: false,
+        error: "User is not authorized to access authorized providers",
+      });
+    }
+
+    const providerList = await getAllProviders();
+
+    return res.status(200).json({
+      success: true,
+      providerList,
+    });
+  } catch (error) {
+    console.error("Error fetching providers:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+};
+
+export const getDomainsHelper = async (req, res) => {
+  try {
+    const userType = req.user.userType;
+    if (userType !== "admin") {
+      return res.status(400).json({
+        success: false,
+        error: "User is not authorized to access authorized domains",
+      });
+    }
+    const domainList = await getAllDomains();
+
+    return res.status(200).json({
+      success: true,
+      domainList,
+    });
+  } catch (error) {
+    console.error("Error fetching domains:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
+  }
+};
+
+// Check provider status
+export const checkProviderStatus = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        error: "Email is required",
+      });
+    }
+
+    const isProvider = await checkProvider(email);
+
+    if (!isProvider) {
+      return res.status(400).json({
+        success: false,
+        isProvider,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      isProvider,
+    });
+  } catch (error) {
+    console.error("Error checking provider status:", error);
+    return res.status(500).json({
+      success: false,
+      error: "Internal server error",
+    });
   }
 };

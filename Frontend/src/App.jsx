@@ -14,6 +14,8 @@ import { UnifiedSignIn } from "./pages/unifiedSignIn";
 import { ApplicationForm } from "./pages/formPage";
 import { MyApplications } from "./pages/viewMyApplications";
 import { ViewCustomerApplications } from "./pages/viewCustomerApplications";
+import { AdminPage } from "./pages/adminPage";
+import { ProviderManagementPage } from "./pages/admin/ProviderManagementPage";
 // Headers
 import { Header } from "./headers/Header";
 import { ProviderHeader } from "./headers/providerHeader";
@@ -89,7 +91,7 @@ function App() {
   }, [location.pathname]); // Add location.pathname as dependency
 
   // Protected route wrapper component
-  const ProtectedRoute = ({ children }) => {
+  const ProtectedRoute = ({ children, requiredUserType }) => {
     // If still loading, don't redirect yet
     if (isLoading) {
       return null; // or a loading spinner component
@@ -103,6 +105,12 @@ function App() {
     ) {
       return <Navigate to="/signin" />;
     }
+
+    // Check for specific user type requirement
+    if (requiredUserType && userType !== requiredUserType) {
+      return <Navigate to="/" />;
+    }
+
     return children;
   };
 
@@ -219,7 +227,7 @@ function App() {
           <Route
             path="/viewmyapplications"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredUserType="customer">
                 <>
                   <Helmet>
                     <title>{`Talopakettiin - ${t(
@@ -239,7 +247,7 @@ function App() {
           <Route
             path="/allapplications"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredUserType="provider">
                 <>
                   <Helmet>
                     <title>{`Talopakettiin - ${t(
@@ -259,7 +267,7 @@ function App() {
           <Route
             path="/makeoffer"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredUserType="provider">
                 <>
                   <Helmet>
                     <title>{`Talopakettiin - ${t(
@@ -279,7 +287,7 @@ function App() {
           <Route
             path="/viewmyoffers"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredUserType="customer">
                 <>
                   <Helmet>
                     <title>{`Talopakettiin - ${t(
@@ -296,6 +304,44 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute requiredUserType="admin">
+                <>
+                  <Helmet>
+                    <title>{`Talopakettiin - Admin Dashboard`}</title>
+                    <meta
+                      name="description"
+                      content="Admin Dashboard - Talopakettiin"
+                    />
+                    <link rel="canonical" href="/admin" />
+                  </Helmet>
+                  <AdminPage />
+                </>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/provider-management"
+            element={
+              <ProtectedRoute requiredUserType="admin">
+                <>
+                  <Helmet>
+                    <title>{`Talopakettiin - Provider Management`}</title>
+                    <meta
+                      name="description"
+                      content="Admin Provider Management - Talopakettiin"
+                    />
+                    <link rel="canonical" href="/admin/provider-management" />
+                  </Helmet>
+                  <ProviderManagementPage />
+                </>
+              </ProtectedRoute>
+            }
+          />
+          
+
         </Routes>
       </main>
       <Footer />

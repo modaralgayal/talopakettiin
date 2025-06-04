@@ -626,3 +626,235 @@ export const editApplication = async (req, res) => {
     res.status(500).json({ error: "Failed to update application" });
   }
 };
+
+// Function to check if a user is an admin using GSI
+export const isAdminUser = async (email) => {
+  try {
+    const client = await initDynamoDBClient();
+
+    const params = {
+      TableName: "Talopakettiin-API",
+      IndexName: "email-userType-index", // GSI for email and userType
+      KeyConditionExpression: "email = :email AND userType = :userType",
+      ExpressionAttributeValues: marshall({
+        ":email": email,
+        ":userType": "admin",
+      }),
+    };
+
+    const command = new QueryCommand(params);
+    const result = await client.send(command);
+    console.log("result", result);
+
+    return result.Items && result.Items.length > 0;
+  } catch (error) {
+    console.error("Error checking admin status:", error);
+    return false;
+  }
+};
+
+// Function to get all admin users using GSI
+export const getAllAdminUsers = async () => {
+  try {
+    const client = await initDynamoDBClient();
+
+    const params = {
+      TableName: "Talopakettiin-API",
+      IndexName: "userType-entryType-index", // GSI for userType and entryType
+      KeyConditionExpression: "userType = :userType AND entryType = :entryType",
+      ExpressionAttributeValues: marshall({
+        ":userType": "admin",
+        ":entryType": "adminUser",
+      }),
+    };
+
+    const command = new QueryCommand(params);
+    const result = await client.send(command);
+
+    return result.Items ? result.Items.map((item) => unmarshall(item)) : [];
+  } catch (error) {
+    console.error("Error fetching admin users:", error);
+    return [];
+  }
+};
+
+export const getAllProviders = async () => {
+  console.log("Fetching providers...");
+  try {
+    const client = await initDynamoDBClient();
+
+    const command = new QueryCommand({
+      TableName: "Talopakettiin-API",
+      IndexName: "entryType-index",
+      KeyConditionExpression: "entryType = :entryType",
+      ExpressionAttributeValues: marshall({
+        ":entryType": "verifiedProvider"
+      })
+    });
+
+    const result = await client.send(command);
+    return result.Items ? result.Items.map(item => unmarshall(item)) : [];
+  } catch (error) {
+    console.error("Error fetching providers:", error);
+    throw error;
+  }
+};
+
+export const getAllDomains = async () => {
+  try {
+    const client = await initDynamoDBClient();
+
+    const command = new QueryCommand({
+      TableName: "Talopakettiin-API",
+      IndexName: "entryType-index",
+      KeyConditionExpression: "entryType = :entryType",
+      ExpressionAttributeValues: marshall({
+        ":entryType": "verifiedDomain"
+      })
+    });
+
+    const result = await client.send(command);
+    return result.Items ? result.Items.map(item => unmarshall(item)) : [];
+  } catch (error) {
+    console.error("Error fetching domains:", error);
+    throw error;
+  }
+};
+
+// Function to verify if an email belongs to a verified provider domain using GSI
+export const verifyProviderEmail = async (email) => {
+  try {
+    const client = await initDynamoDBClient();
+
+    // Check if email is in verified providers table using GSI
+    const params = {
+      TableName: "Talopakettiin-API",
+      IndexName: "email-entryType-index", // GSI for email and entryType
+      KeyConditionExpression: "email = :email AND entryType = :entryType",
+      ExpressionAttributeValues: marshall({
+        ":email": email,
+        ":entryType": "verifiedProvider",
+      }),
+    };
+
+    const result = await client.send(new QueryCommand(params));
+
+    if (result.Items && result.Items.length > 0) {
+      const item = result.Items[0];
+      return item.isApproved && item.isApproved.S === "approved";
+    }
+
+    // If not found in verified providers, check if domain is verified using GSI
+    const domain = email.split("@")[1];
+    const domainParams = {
+      TableName: "Talopakettiin-API",
+      IndexName: "domain-entryType-index", // GSI for domain and entryType
+      KeyConditionExpression: "domain = :domain AND entryType = :entryType",
+      ExpressionAttributeValues: marshall({
+        ":domain": domain,
+        ":entryType": "verifiedDomain",
+      }),
+    };
+
+    const domainResult = await client.send(new QueryCommand(domainParams));
+    return domainResult.Items && domainResult.Items.length > 0;
+  } catch (error) {
+    console.error("Error verifying provider email:", error);
+    return false;
+  }
+};
+
+// Function to add a verified provider domain
+export const addVerifiedProviderDomain = async (domain) => {
+  try {
+    const client = await initDynamoDBClient();
+
+    const params = {
+      TableName: "Talopakettiin-API",
+      Item: marshall({
+        id: uuidv4(),
+        domain,
+        isVerified: "true",
+        entryType: "verifiedDomain",
+        timestamp: new Date().toISOString(),
+      }),
+    };
+
+    await client.send(new PutItemCommand(params));
+    return true;
+  } catch (error) {
+    console.error("Error adding verified provider domain:", error);
+    return false;
+  }
+};
+
+// Function to add a verified provider email
+export const addVerifiedProviderEmail = async (email) => {
+  try {
+    const client = await initDynamoDBClient();
+
+    const params = {
+      TableName: "Talopakettiin-API",
+      Item: marshall({
+        id: uuidv4(),
+        email,
+        isApproved: "approved",
+        entryType: "verifiedProvider",
+        timestamp: new Date().toISOString(),
+      }),
+    };
+
+    await client.send(new PutItemCommand(params));
+    return true;
+  } catch (error) {
+    console.error("Error adding verified provider email:", error);
+    return false;
+  }
+};
+
+export const checkProvider = async (email) => {
+  try {
+    const client = await initDynamoDBClient();
+    console.log("Checking provider status for email:", email);
+
+    // First check if the email is a verified provider
+    const verifiedProviderParams = {
+      TableName: "Talopakettiin-API",
+      IndexName: "email-entryType-index",
+      KeyConditionExpression: "email = :email AND entryType = :entryType",
+      ExpressionAttributeValues: {
+        ":email": { S: email },
+        ":entryType": { S: "verifiedProvider" }
+      }
+    };
+
+    console.log("Checking verified provider with params:", JSON.stringify(verifiedProviderParams, null, 2));
+    const verifiedProviderResult = await client.send(new QueryCommand(verifiedProviderParams));
+    console.log("Verified provider result:", verifiedProviderResult);
+
+    if (verifiedProviderResult.Items && verifiedProviderResult.Items.length > 0) {
+      return true;
+    }
+
+    // If not directly verified, check if the domain is verified
+    const domain = email.split('@')[1];
+    const domainParams = {
+      TableName: "Talopakettiin-API",
+      IndexName: "domain-entryType-index",
+      KeyConditionExpression: "domain = :domain AND entryType = :entryType",
+      ExpressionAttributeValues: {
+        ":domain": { S: domain },
+        ":entryType": { S: "verifiedDomain" }
+      }
+    };
+
+    console.log("Checking verified domain with params:", JSON.stringify(domainParams, null, 2));
+    const domainResult = await client.send(new QueryCommand(domainParams));
+    console.log("Domain result:", domainResult);
+
+    return domainResult.Items && domainResult.Items.length > 0;
+  } catch (error) {
+    console.error("Error checking provider status:", error);
+    return false;
+  }
+};

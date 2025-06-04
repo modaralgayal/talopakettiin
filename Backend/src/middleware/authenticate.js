@@ -1,4 +1,5 @@
 import { auth as adminAuth } from "../config/firebaseConfig.js";
+import { checkProvider } from "../services/dynamoServices.js";
 
 export const protect = async (req, res, next) => {
   // console.log("Authenticating user with Firebase session cookie"); // For debugging
@@ -24,29 +25,42 @@ export const protect = async (req, res, next) => {
     );
 
     // Session cookie is valid.
-    // decodedClaims will contain standard claims like 'sub' (user ID), 'email', etc.,
-    // and any custom claims you might have added when creating the session cookie.
-    // The UID is typically in `decodedClaims.sub` or `decodedClaims.uid`.
-    // Firebase Admin SDK often maps `sub` to `uid` on the decoded object.
     req.user = {
       uid: decodedClaims.uid, // Or decodedClaims.sub
       email: decodedClaims.email,
-      // Add other relevant claims you need from decodedClaims
-      ...decodedClaims, // You can spread all claims if useful
+      ...decodedClaims,
     };
 
-    // Continue to get userType from its own cookie for now
-    // This should ideally be a custom claim in the session cookie or fetched from your DB
-    req.user.userType = req.cookies.userType || null;
-    if (!req.userType && req.user) {
-      // Attempt to get it if it was a custom claim (example)
-      req.userType = decodedClaims.userType || null;
+    // Check user type based on cookie, but verify provider status from DB
+    const userTypeFromCookie = req.cookies.userType || null;
+
+    if (userTypeFromCookie === "provider" && req.user.email) {
+      const isVerifiedProvider = await checkProvider(req.user.email);
+      if (isVerifiedProvider) {
+        req.user.userType = "provider";
+      } else {
+        // If cookie says provider but DB doesn't verify, treat as unauthenticated or default
+        req.user.userType = null; // Or a default type like 'customer' if appropriate
+        // Optionally clear the invalid provider cookie
+        res.clearCookie("userType");
+      }
+    } else {
+      // For other user types (e.g., admin) or if cookie is not 'provider', use the cookie value
+      // or a default. Ideally, admin status would also be verified against the DB/claims.
+      // For now, stick to the existing logic for non-provider types.
+      req.user.userType = userTypeFromCookie;
+       if (!req.user.userType && decodedClaims.userType) {
+         // Attempt to get it if it was a custom claim (example)
+         req.user.userType = decodedClaims.userType;
+       }
     }
-    // console.log("Firebase session cookie verified. User:", req.user, "UserType:", req.userType); // For debugging
+
+    console.log("Firebase session cookie verified. User:", req.user); // For debugging
+
     next();
   } catch (error) {
     // Session cookie is invalid, expired, or revoked.
-    console.error("Error verifying Firebase session cookie:", error.message);
+    console.error("Error verifying Firebase session cookie:", error);
     let errorMessage =
       "Unauthorized: Invalid, expired, or revoked session. Please login again.";
     if (error.code === "auth/session-cookie-revoked") {
@@ -72,11 +86,11 @@ export const authorize = (userTypeRequired) => {
         .status(401)
         .json({ success: false, error: "User not authenticated." });
     }
-    if (req.userType && req.userType === userTypeRequired) {
+    if (req.user.userType && req.user.userType === userTypeRequired) {
       next();
     } else {
       const message = `Forbidden: Access denied. Required user type: '${userTypeRequired}', but current user type is '${
-        req.userType || "not defined"
+        req.user.userType || "not defined"
       }'.`;
       res.status(403).json({ success: false, error: message });
     }

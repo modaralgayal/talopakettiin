@@ -53,86 +53,27 @@ export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      const idToken = await user.getIdToken(); // Get the correct Firebase ID token
-
-      const res = await fetch(`${API_BASE_URL}/api/user/firebaseSignIn`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          token: idToken, // Send the correct token
-          userType: selectedUserType,
-        }),
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setUserType(selectedUserType);
-        setIsAuthenticated(true);
-        showMessage("Successfully signed in with Google!", "success");
-
-        // After successful Firebase sign-in and backend user creation/update
-        // Check user type and then verify approval status for providers
-        if (selectedUserType === "customer") {
-          navigate("/formpage");
-        } else if (selectedUserType === "provider") {
-          navigate("/allapplications");
-          // For providers, check approval status with backend
-          // try {
-          //   const approvalRes = await fetch(`${API_BASE_URL}/api/user/checkProviderApproval`, { // Replace with your actual backend endpoint
-          //     method: "POST",
-          //     headers: { "Content-Type": "application/json" },
-          //     body: JSON.stringify({ uid: user.uid, email: user.email }), // Send UID and potentially email
-          //   });
-
-          //   const approvalData = await approvalRes.json();
-
-          //   if (approvalData.isApproved) { // Assuming your backend sends { isApproved: true/false }
-          //     navigate("/allapplications");
-          //   } else {
-          //     // Provider account is pending approval
-          //     showMessage("Your account is pending admin approval.", "info");
-          //     console.log("Provider account pending approval:", user.uid);
-          //      // Optionally log out the user from Firebase if you don't want them partially signed in
-          //     // auth.signOut();
-          //      // setIsAuthenticated(false);
-          //   }
-          // } catch (approvalError) {
-          //   console.error("Error checking provider approval status:", approvalError);
-          //   showMessage("Could not verify provider approval status.", "error");
-          //    // Optionally log out the user on error
-          //   // auth.signOut();
-          //    // setIsAuthenticated(false);
-          // }
-        } else {
-          // Handle other user types or default navigation
-           navigate("/formpage"); // Default to customer page or a general dashboard
-        }
-      } else {
-        showMessage(data.error || "Failed to sign in with Google", "error");
-      }
-    } catch (error) {
-      console.log("Google Sign-In error:", error);
-      showMessage("Error during Google Sign-In", "error");
-      setIsLoading(false); // Ensure loading state is false on error
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const initalizeMicrosoftSignin = async () => {
-    if (!selectedUserType) {
-      showMessage("Please select your user type first", "error");
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const auth = getAuth();
-      const result = await signInWithPopup(auth, microsoftProvider);
-      const user = result.user;
       const idToken = await user.getIdToken();
+
+      // If user is a provider, verify their email first
+      if (selectedUserType === "provider") {
+        const verifyRes = await fetch(`${API_BASE_URL}/api/user/check-provider`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({
+            email: user.email
+          })
+        });
+
+        const verifyData = await verifyRes.json();
+        console.log("This is the check-provider response:",verifyData);
+        if (!verifyData.success) {
+          showMessage(verifyData.error || "This email is not from a verified provider domain", "error");
+          setIsLoading(false);
+          return;
+        }
+      }
 
       const res = await fetch(`${API_BASE_URL}/api/user/firebaseSignIn`, {
         method: "POST",
@@ -148,20 +89,19 @@ export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
       if (data.success) {
         setUserType(selectedUserType);
         setIsAuthenticated(true);
-        showMessage("Successfully signed in with Outlook!", "success");
-        navigate(
-          selectedUserType === "customer" ? "/formpage" : "/allapplications"
-        );
+        showMessage("Successfully signed in with Google!", "success");
+        navigate(selectedUserType === "customer" ? "/formpage" : "/allapplications");
       } else {
-        showMessage(data.error || "Failed to sign in with Outlook", "error");
+        showMessage(data.error || "Failed to sign in with Google", "error");
       }
     } catch (error) {
-      console.log("Microsoft Sign-In error:", error);
-      showMessage("Error during Microsoft Sign-In", "error");
+      console.log("Google Sign-In error:", error);
+      showMessage("Error during Google Sign-In", "error");
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div

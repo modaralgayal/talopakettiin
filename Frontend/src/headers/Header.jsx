@@ -1,22 +1,78 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import blackLogo from "./talopakettiinlogovariants-black.png";
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../context/languageContext';
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../config/firebaseConfig";
+import { API_BASE_URL } from "../config/apiConfig";
 
 export const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
   const isHome = location.pathname === "/";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userEmail, setUserEmail] = useState(null);
 
   const navigationItems = [
     { name: t('navigation.home'), path: "/" },
     { name: t('navigation.about'), path: "/about" },
     { name: t('navigation.contact'), path: "/contact" },
   ];
+
+  const handleAdminSignIn = async () => {
+    setIsLoading(true);
+    try {
+      const googleProvider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      setUserEmail(user.email);
+      const idToken = await user.getIdToken();
+
+      // Check if user is admin
+      const checkRes = await fetch(`${API_BASE_URL}/api/user/check-admin`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          token: idToken,
+          userType: "admin",
+          email: userEmail
+
+        }),
+      });
+
+      const checkData = await checkRes.json();
+      if (checkData.success && checkData.isAdmin) {
+        // Sign in as admin
+        const res = await fetch(`${API_BASE_URL}/api/user/firebaseSignIn`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({
+            token: idToken,
+            userType: "admin"
+          }),
+        });
+
+        const data = await res.json();
+        if (data.success) {
+          navigate("/admin");
+        }
+      } else {
+        alert("You are not authorized as an admin.");
+      }
+    } catch (error) {
+      console.error("Admin Sign-In error:", error);
+      alert("Error during admin sign-in");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <header
@@ -59,6 +115,13 @@ export const Header = () => {
           {/* Right side - Language Switcher and Buttons */}
           <div className="flex items-center space-x-4 md:space-x-6">
             <LanguageSwitcher />
+            <button
+              onClick={handleAdminSignIn}
+              disabled={isLoading}
+              className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 transition-colors disabled:opacity-50"
+            >
+              {isLoading ? "Loading..." : "Admin"}
+            </button>
             <NavLink
               to="/signin"
               className={({ isActive }) =>
@@ -119,6 +182,16 @@ export const Header = () => {
                 {item.name}
               </NavLink>
             ))}
+            <button
+              onClick={() => {
+                handleAdminSignIn();
+                setIsMobileMenuOpen(false);
+              }}
+              disabled={isLoading}
+              className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-purple-600 hover:bg-purple-700 disabled:opacity-50"
+            >
+              {isLoading ? "Loading..." : "Admin"}
+            </button>
             <NavLink
               to="/signin"
               className={({ isActive }) =>

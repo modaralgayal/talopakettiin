@@ -216,10 +216,10 @@ export const Homepage = () => {
       <div className="relative min-h-screen font-['Avenir']">
         {/* Slideshow background - fixed to cover the entire viewport */}
         <div className="fixed inset-0 w-full h-full z-0">
-          <ImageSlideshow />
+            <ImageSlideshow />
           {/* Optional overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/10" />
-        </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/10" />
+          </div>
 
         {/* Main content - positioned relative and above the slideshow */}
         <div className="relative z-10 pt-20">
@@ -229,135 +229,19 @@ export const Homepage = () => {
           <div className="pt-32 pb-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
-                  {t("homepage.hero.title")}
-                </h1>
-                <p className="text-2xl text-white max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
-                  {t("homepage.hero.subtitle")}
-                </p>
-                <Link
-                  to="/formpage"
-                  className="inline-flex items-center px-12 py-6 border-2 border-transparent text-xl font-bold rounded-full shadow-xl text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 tracking-wide transform hover:scale-105"
-                >
-                  {t("homepage.hero.cta")}
-                  <svg
-                    className="ml-3 -mr-1 w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </Link>
-                <p className="mt-4 text-lg text-white/90">
-                  {t("homepage.hero.subtext")}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Features Section */}
-          <div className="py-16 relative z-10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* White background banner for the title */}
-              <div className="bg-white bg-opacity-90 backdrop-blur-sm py-4 mb-12 rounded-lg shadow-md">
-                <h2 className="text-3xl font-bold text-center text-gray-900 tracking-tight">
-                  {t("homepage.features.title")}
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-blue-500 hover:border-2 cursor-pointer group"
-                  >
-                    <div className="mb-4 text-blue-500 group-hover:text-blue-700 transition-colors duration-300">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2 tracking-tight group-hover:text-blue-700 transition-colors duration-300">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Process Section with solid background */}
-          <div className="w-full relative z-10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-              {/* White background banner for the title */}
-              <div className="bg-white bg-opacity-90 backdrop-blur-sm py-4 mb-12 rounded-lg shadow-md">
-                <h2 className="text-3xl font-bold text-center text-gray-900 tracking-tight">
-                  {t("homepage.process.title")}
-                </h2>
-              </div>
-              <div className="relative">
-                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-blue-200 -translate-y-1/2 hidden lg:block" />
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  {[
-                    {
-                      number: "1",
-                      title: t("homepage.process.steps.apply.title"),
-                      description: t("homepage.process.steps.apply.description"),
-                    },
-                    {
-                      number: "2",
-                      title: t("homepage.process.steps.offers.title"),
-                      description: t("homepage.process.steps.offers.description"),
-                    },
-                    {
-                      number: "3",
-                      title: t("homepage.process.steps.choose.title"),
-                      description: t("homepage.process.steps.choose.description"),
-                    },
-                  ].map((step, index) => (
-                    <div
-                      key={index}
-                      className="relative flex justify-center items-start"
-                    >
-                      <div className="bg-white aspect-square w-full rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-blue-500 hover:border-2 cursor-pointer group flex flex-col items-center pt-10 pb-6 px-6">
-                        <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg transition-all duration-300 group-hover:bg-blue-700 z-10">
-                          {step.number}
-                        </div>
-                        <h3 className="text-4xl font-semibold text-gray-900 mb-2 mt-6 tracking-tight group-hover:text-blue-700 transition-colors duration-300 text-center">
-                          {step.title}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed text-2xl text-center">
-                          {index === 0
-                            ? "Talopaketin hankinta alkaa täyttämällä helppo hakemus lomake."
-                            : step.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA Section */}
-          <div className="w-full bg-white bg-opacity-40 backdrop-blur-lg py-16 relative z-10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl font-bold mb-4 tracking-tight text-gray-800">
-                {t("homepage.cta.title")}
-              </h2>
-              <p className="text-xl mb-8 leading-relaxed text-gray-800">
-                {t("homepage.cta.subtitle")}
+              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
+                {t("homepage.hero.title")}
+              </h1>
+              <p className="text-2xl text-white max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
+                {t("homepage.hero.subtitle")}
               </p>
               <Link
                 to="/formpage"
-                className="inline-flex items-center px-8 py-4 border-2 border-transparent text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 tracking-wide"
+                className="inline-flex items-center px-12 py-6 border-2 border-transparent text-xl font-bold rounded-full shadow-xl text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 tracking-wide transform hover:scale-105"
               >
-                {t("homepage.cta.button")}
+                {t("homepage.hero.cta")}
                 <svg
-                  className="ml-2 -mr-1 w-5 h-5"
+                  className="ml-3 -mr-1 w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -368,48 +252,164 @@ export const Homepage = () => {
                   />
                 </svg>
               </Link>
+              <p className="mt-4 text-lg text-white/90">
+                {t("homepage.hero.subtext")}
+              </p>
+              </div>
             </div>
-          </div>
+            </div>
 
-          {/* Blog Section */}
+            {/* Features Section */}
           <div className="py-16 relative z-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* White background banner for the title */}
               <div className="bg-white bg-opacity-90 backdrop-blur-sm py-4 mb-12 rounded-lg shadow-md">
                 <h2 className="text-3xl font-bold text-center text-gray-900 tracking-tight">
-                  {t("homepage.blog.title")}
+                  {t("homepage.features.title")}
                 </h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {sortedAndLimitedPosts.map((post, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((feature, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-blue-500 hover:border-2 cursor-pointer group"
+                >
+                  <div className="mb-4 text-blue-500 group-hover:text-blue-700 transition-colors duration-300">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2 tracking-tight group-hover:text-blue-700 transition-colors duration-300">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Process Section with solid background */}
+          <div className="w-full relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+              {/* White background banner for the title */}
+              <div className="bg-white bg-opacity-90 backdrop-blur-sm py-4 mb-12 rounded-lg shadow-md">
+                <h2 className="text-3xl font-bold text-center text-gray-900 tracking-tight">
+              {t("homepage.process.title")}
+            </h2>
+              </div>
+            <div className="relative">
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-blue-200 -translate-y-1/2 hidden lg:block" />
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {[
+                  {
+                    number: "1",
+                    title: t("homepage.process.steps.apply.title"),
+                    description: t("homepage.process.steps.apply.description"),
+                  },
+                  {
+                    number: "2",
+                    title: t("homepage.process.steps.offers.title"),
+                    description: t("homepage.process.steps.offers.description"),
+                  },
+                  {
+                    number: "3",
+                    title: t("homepage.process.steps.choose.title"),
+                    description: t("homepage.process.steps.choose.description"),
+                  },
+                ].map((step, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105"
+                    className="relative flex justify-center items-start"
                   >
-                    <div className="aspect-w-16 aspect-h-9">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-48 object-cover"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <div className="text-sm text-blue-600 mb-2">
-                        {formatDate(post.date)}
+                    <div className="bg-white aspect-square w-full rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-blue-500 hover:border-2 cursor-pointer group flex flex-col items-center pt-10 pb-6 px-6">
+                      <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg transition-all duration-300 group-hover:bg-blue-700 z-10">
+                        {step.number}
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                        {post.title}
+                      <h3 className="text-4xl font-semibold text-gray-900 mb-2 mt-6 tracking-tight group-hover:text-blue-700 transition-colors duration-300 text-center">
+                        {step.title}
                       </h3>
-                      <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                      <button className="text-blue-600 font-medium hover:text-blue-800 transition-colors">
-                        {t("homepage.blog.readMore")}
-                      </button>
+                      <p className="text-gray-600 leading-relaxed text-2xl text-center">
+                        {index === 0
+                          ? "Talopaketin hankinta alkaa täyttämällä helppo hakemus lomake."
+                          : step.description}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
+        </div>
+
+        {/* CTA Section */}
+          <div className="w-full bg-white bg-opacity-40 backdrop-blur-lg py-16 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h2 className="text-3xl font-bold mb-4 tracking-tight text-gray-800">
+              {t("homepage.cta.title")}
+            </h2>
+              <p className="text-xl mb-8 leading-relaxed text-gray-800">
+              {t("homepage.cta.subtitle")}
+            </p>
+            <Link
+              to="/formpage"
+                className="inline-flex items-center px-8 py-4 border-2 border-transparent text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 tracking-wide"
+            >
+              {t("homepage.cta.button")}
+              <svg
+                className="ml-2 -mr-1 w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
+          </div>
+        </div>
+
+        {/* Blog Section */}
+          <div className="py-16 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* White background banner for the title */}
+              <div className="bg-white bg-opacity-90 backdrop-blur-sm py-4 mb-12 rounded-lg shadow-md">
+                <h2 className="text-3xl font-bold text-center text-gray-900 tracking-tight">
+              {t("homepage.blog.title")}
+            </h2>
+              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {sortedAndLimitedPosts.map((post, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105"
+                >
+                  <div className="aspect-w-16 aspect-h-9">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-48 object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="text-sm text-blue-600 mb-2">
+                      {formatDate(post.date)}
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                    <button className="text-blue-600 font-medium hover:text-blue-800 transition-colors">
+                      {t("homepage.blog.readMore")}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </>
