@@ -27,15 +27,14 @@ const allowedOrigins = [
   "https://localhost:8000"
 ];
 
-// Use CORS middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(express.static("dist"));
+// Logging middleware (add this first)
+app.use((req, res, next) => {
+  console.log('Raw Request URL:', req.originalUrl);
+  console.log('Raw Query Parameters:', req.query);
+  next();
+});
 
-app.set("trust proxy", true);
-
-// Configure CORS with more specific options
+// Use CORS middleware (move this before bodyParser)
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -58,6 +57,14 @@ app.use(
     optionsSuccessStatus: 204
   })
 );
+
+// Body parsers and cookie parser (after CORS)
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(express.static("dist"));
+
+app.set("trust proxy", true);
 
 app.use((req, res, next) => {
   req.domain = req.headers.host;

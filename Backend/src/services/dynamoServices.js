@@ -157,14 +157,16 @@ export const getApplicationsForUser = async (req, res) => {
 
 export const getAllEntryIds = async (req, res) => {
   try {
-    if (req.user.userType !== "provider") {
+    if (req.user.userType !== "admin") {
       return res
         .status(403)
-        .json({ error: "Access denied: User is not a provider" });
+        .json({ error: "Access denied: User is not an admin" });
     }
 
     console.log("got here");
     const client = await initDynamoDBClient();
+    const entryType = req.body.entryType;
+    console.log("This is the entryType: ", entryType);
 
     const params = {
       TableName: "Talopakettiin-API",
@@ -173,7 +175,7 @@ export const getAllEntryIds = async (req, res) => {
         "#entryType": "entryType",
       },
       ExpressionAttributeValues: {
-        ":entryTypeVal": { S: "application" },
+        ":entryTypeVal": { S: entryType },
       },
     };
 
@@ -189,7 +191,7 @@ export const getAllEntryIds = async (req, res) => {
       return parsedItem;
     });
 
-    console.log("Fetched entries:", result);
+    // console.log("Fetched entries:", result);
 
     res.status(200).json({ entries: result });
   } catch (error) {
@@ -282,10 +284,12 @@ export const getOfferForProvider = async (req, res) => {
 };
 
 export const deleteItemByEntryId = async (req, res) => {
-  if (req.user.userType !== "customer") {
+  console.log("Trying to delete");
+  console.log(req.user.userType);
+  if (req.user.userType !== "customer" && req.user.userType !== "admin") {
     return res
       .status(403)
-      .json({ error: "Access denied: User is not a customer" });
+      .json({ error: "Access denied: User is not a customer or an admin" });
   }
   console.log("req.body: ", req.body);
   const idToDelete = req.body.entryId;
@@ -308,11 +312,13 @@ export const deleteItemByEntryId = async (req, res) => {
     await client.send(new DeleteItemCommand(deleteParams));
     console.log(`Successfully deleted item with id: ${idToDelete}`);
     res.status(200).json({
+      success: true,
       message: `Successfully deleted item with id: ${idToDelete}`,
     });
   } catch (error) {
     console.error(`Error deleting item with id: ${idToDelete}`, error);
     res.status(500).json({
+      success: false,
       error: `Failed to delete item with id: ${idToDelete}`,
     });
   }
@@ -688,12 +694,12 @@ export const getAllProviders = async () => {
       IndexName: "entryType-index",
       KeyConditionExpression: "entryType = :entryType",
       ExpressionAttributeValues: marshall({
-        ":entryType": "verifiedProvider"
-      })
+        ":entryType": "verifiedProvider",
+      }),
     });
 
     const result = await client.send(command);
-    return result.Items ? result.Items.map(item => unmarshall(item)) : [];
+    return result.Items ? result.Items.map((item) => unmarshall(item)) : [];
   } catch (error) {
     console.error("Error fetching providers:", error);
     throw error;
@@ -709,12 +715,12 @@ export const getAllDomains = async () => {
       IndexName: "entryType-index",
       KeyConditionExpression: "entryType = :entryType",
       ExpressionAttributeValues: marshall({
-        ":entryType": "verifiedDomain"
-      })
+        ":entryType": "verifiedDomain",
+      }),
     });
 
     const result = await client.send(command);
-    return result.Items ? result.Items.map(item => unmarshall(item)) : [];
+    return result.Items ? result.Items.map((item) => unmarshall(item)) : [];
   } catch (error) {
     console.error("Error fetching domains:", error);
     throw error;
@@ -824,31 +830,42 @@ export const checkProvider = async (email) => {
       KeyConditionExpression: "email = :email AND entryType = :entryType",
       ExpressionAttributeValues: {
         ":email": { S: email },
-        ":entryType": { S: "verifiedProvider" }
-      }
+        ":entryType": { S: "verifiedProvider" },
+      },
     };
 
-    console.log("Checking verified provider with params:", JSON.stringify(verifiedProviderParams, null, 2));
-    const verifiedProviderResult = await client.send(new QueryCommand(verifiedProviderParams));
+    console.log(
+      "Checking verified provider with params:",
+      JSON.stringify(verifiedProviderParams, null, 2)
+    );
+    const verifiedProviderResult = await client.send(
+      new QueryCommand(verifiedProviderParams)
+    );
     console.log("Verified provider result:", verifiedProviderResult);
 
-    if (verifiedProviderResult.Items && verifiedProviderResult.Items.length > 0) {
+    if (
+      verifiedProviderResult.Items &&
+      verifiedProviderResult.Items.length > 0
+    ) {
       return true;
     }
 
     // If not directly verified, check if the domain is verified
-    const domain = email.split('@')[1];
+    const domain = email.split("@")[1];
     const domainParams = {
       TableName: "Talopakettiin-API",
       IndexName: "domain-entryType-index",
       KeyConditionExpression: "domain = :domain AND entryType = :entryType",
       ExpressionAttributeValues: {
         ":domain": { S: domain },
-        ":entryType": { S: "verifiedDomain" }
-      }
+        ":entryType": { S: "verifiedDomain" },
+      },
     };
 
-    console.log("Checking verified domain with params:", JSON.stringify(domainParams, null, 2));
+    console.log(
+      "Checking verified domain with params:",
+      JSON.stringify(domainParams, null, 2)
+    );
     const domainResult = await client.send(new QueryCommand(domainParams));
     console.log("Domain result:", domainResult);
 

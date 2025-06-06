@@ -78,7 +78,7 @@ export const OptionRender = ({
   useEffect(() => {
     console.log("fetching values...");
     const fetchedVals = t(`form.options.${field}`, { returnObjects: true });
-    console.log("These are the fetched values: ", fetchedVals);
+    // console.log("These are the fetched values: ", fetchedVals);
 
     if (fetchedVals) {
       const keys = Object.keys(fetchedVals);

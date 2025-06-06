@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import blackLogo from "./talopakettiinlogovariants-black.png";
-import LanguageSwitcher from '../components/LanguageSwitcher';
-import { useTranslation } from 'react-i18next';
-import { useLanguage } from '../context/languageContext';
+import LanguageSwitcher from "../components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "../context/languageContext";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 import { API_BASE_URL } from "../config/apiConfig";
@@ -16,12 +16,11 @@ export const Header = () => {
   const isHome = location.pathname === "/";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [userEmail, setUserEmail] = useState(null);
 
   const navigationItems = [
-    { name: t('navigation.home'), path: "/" },
-    { name: t('navigation.about'), path: "/about" },
-    { name: t('navigation.contact'), path: "/contact" },
+    { name: t("navigation.home"), path: "/" },
+    { name: t("navigation.about"), path: "/about" },
+    { name: t("navigation.contact"), path: "/contact" },
   ];
 
   const handleAdminSignIn = async () => {
@@ -29,8 +28,9 @@ export const Header = () => {
     try {
       const googleProvider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, googleProvider);
+
       const user = result.user;
-      setUserEmail(user.email);
+      console.log("This is the user: ", user.email);
       const idToken = await user.getIdToken();
 
       // Check if user is admin
@@ -41,8 +41,7 @@ export const Header = () => {
         body: JSON.stringify({
           token: idToken,
           userType: "admin",
-          email: userEmail
-
+          email: user.email,
         }),
       });
 
@@ -55,7 +54,7 @@ export const Header = () => {
           credentials: "include",
           body: JSON.stringify({
             token: idToken,
-            userType: "admin"
+            userType: "admin",
           }),
         });
 
@@ -90,7 +89,7 @@ export const Header = () => {
             <NavLink to="/" className="flex-shrink-0">
               <img
                 src={blackLogo}
-                alt={t('common.logoAlt')}
+                alt={t("common.logoAlt")}
                 className="w-24 md:w-32 h-auto object-contain hover:opacity-80 transition-opacity"
               />
             </NavLink>
@@ -102,7 +101,11 @@ export const Header = () => {
                   <NavLink
                     to={item.path}
                     className={({ isActive }) =>
-                      `text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${isActive ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600" : ""}`
+                      `text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
+                        isActive
+                          ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
+                          : ""
+                      }`
                     }
                   >
                     {item.name}
@@ -125,16 +128,20 @@ export const Header = () => {
             <NavLink
               to="/signin"
               className={({ isActive }) =>
-                `hidden md:inline-block text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${isActive ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600" : ""}`
+                `hidden md:inline-block text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
+                  isActive
+                    ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
+                    : ""
+                }`
               }
             >
-              {t('common.signIn')}
+              {t("common.signIn")}
             </NavLink>
             <NavLink
               to="/formpage"
               className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors"
             >
-              {t('navigation.fillApplication')}
+              {t("navigation.fillApplication")}
             </NavLink>
 
             {/* Mobile menu button */}
@@ -145,37 +152,51 @@ export const Header = () => {
               <span className="sr-only">Open main menu</span>
               {/* Hamburger icon */}
               <svg
-                className={`${isMobileMenuOpen ? 'hidden' : 'block'} h-6 w-6`}
+                className={`${isMobileMenuOpen ? "hidden" : "block"} h-6 w-6`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
               {/* Close icon */}
               <svg
-                className={`${isMobileMenuOpen ? 'block' : 'hidden'} h-6 w-6`}
+                className={`${isMobileMenuOpen ? "block" : "hidden"} h-6 w-6`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
         </div>
 
         {/* Mobile menu */}
-        <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden`}>
+        <div className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navigationItems.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.path}
                 className={({ isActive }) =>
-                  `block px-3 py-2 rounded-md text-base font-medium ${isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-white/20'}`
+                  `block px-3 py-2 rounded-md text-base font-medium ${
+                    isActive
+                      ? "text-blue-600 bg-blue-50"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-white/20"
+                  }`
                 }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -195,18 +216,22 @@ export const Header = () => {
             <NavLink
               to="/signin"
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-md text-base font-medium ${isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-white/20'}`
+                `block px-3 py-2 rounded-md text-base font-medium ${
+                  isActive
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-white/20"
+                }`
               }
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {t('common.signIn')}
+              {t("common.signIn")}
             </NavLink>
             <NavLink
               to="/formpage"
               className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {t('navigation.fillApplication')}
+              {t("navigation.fillApplication")}
             </NavLink>
           </div>
         </div>

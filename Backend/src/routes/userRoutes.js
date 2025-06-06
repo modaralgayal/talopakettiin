@@ -8,8 +8,10 @@ import {
   getProvidersHelper,
   getDomainsHelper,
   checkProviderStatus,
+  deleteProviderOrDomain,
 } from "../controllers/userController.js";
 import { protect } from "../middleware/authenticate.js";
+import { deleteItemByEntryId } from "../services/dynamoServices.js";
 
 const router = express.Router();
 
@@ -28,6 +30,8 @@ router.post("/add-provider-email", addProviderEmail);
 
 router.get("/get-all-providers", protect, getProvidersHelper);
 router.get("/get-all-domain", protect, getDomainsHelper);
+
+router.delete("/delete-domain-or-provider", protect, deleteProviderOrDomain, deleteItemByEntryId);
 
 // Validate token route
 router.post("/validate-token", protect, (req, res) => {

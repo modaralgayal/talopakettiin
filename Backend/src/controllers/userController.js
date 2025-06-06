@@ -8,6 +8,7 @@ import {
   getAllProviders,
   getAllDomains,
   checkProvider,
+  deleteItemByEntryId,
 } from "../services/dynamoServices.js";
 import dotenv from "dotenv";
 dotenv.config();
@@ -352,6 +353,31 @@ export const checkProviderStatus = async (req, res) => {
     return res.status(500).json({
       success: false,
       error: "Internal server error",
+    });
+  }
+};
+
+export const deleteProviderOrDomain = async (req, res, next) => {
+  try {
+    console.log("Delete request body:", req.body);
+
+    const userType = req.user.userType;
+    console.log("User type:", userType);
+
+    if (userType !== "admin") {
+      return res.status(403).json({
+        success: false,
+        message: "User is not an admin, action is unauthorized",
+      });
+    }
+
+    // If we get here, the user is an admin, proceed to the next middleware
+    next();
+  } catch (error) {
+    console.error("Error in deleteProviderOrDomain middleware:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error in delete middleware: " + error.message,
     });
   }
 };

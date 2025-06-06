@@ -13,6 +13,7 @@
   },
   "navigation": {
     "home": "Home",
+    "adminDashboard":"Dashboard",
     "homeDescription": "Explore our service, compare house packages and find the best fit for you",
     "about": "About Us",
     "contact": "Contact",

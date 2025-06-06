@@ -3,6 +3,9 @@ import { checkProvider } from "../services/dynamoServices.js";
 
 export const protect = async (req, res, next) => {
   // console.log("Authenticating user with Firebase session cookie"); // For debugging
+  console.log("Query parameters in protect middleware:", req.query);
+  console.log("Body parameters in protect middleware:", req.body);
+
   try {
     const sessionCookie = req.cookies.session || ""; // We named the cookie 'session'
 
@@ -49,13 +52,13 @@ export const protect = async (req, res, next) => {
       // or a default. Ideally, admin status would also be verified against the DB/claims.
       // For now, stick to the existing logic for non-provider types.
       req.user.userType = userTypeFromCookie;
-       if (!req.user.userType && decodedClaims.userType) {
-         // Attempt to get it if it was a custom claim (example)
-         req.user.userType = decodedClaims.userType;
-       }
+      if (!req.user.userType && decodedClaims.userType) {
+        // Attempt to get it if it was a custom claim (example)
+        req.user.userType = decodedClaims.userType;
+      }
     }
 
-    console.log("Firebase session cookie verified. User:", req.user); // For debugging
+    // console.log("Firebase session cookie verified. User:", req.user); // For debugging
 
     next();
   } catch (error) {

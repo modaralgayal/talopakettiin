@@ -1,7 +1,6 @@
 import axios from "axios";
 import { FORMS_API_URL } from "../config/apiConfig";
 
-
 // Send Form Data
 export const sendFormData = async (formData) => {
   try {
@@ -71,17 +70,24 @@ export const deleteUserEntry = async (entryId) => {
   }
 };
 
-// Get All Entries
-export const getAllEntries = async () => {
+export const getAllEntries = async (entryType) => {
+  console.log("Passing this entryType to the backend: ", entryType)
   try {
-    const response = await axios.get(`${FORMS_API_URL}/get-all-entries`, {
-      withCredentials: true,
-    });
+    const response = await axios.post(
+      `${FORMS_API_URL}/get-all-entries`,
+      { entryType },
+      {
+        withCredentials: true,
+      }
+    );
+    console.log("Response from backend:", response.data);
     return response.data;
   } catch (error) {
+    console.error("Error in getAllEntries:", error);
     throw error.response?.data || error.message;
   }
 };
+
 
 // Get User Offers
 export const getUserOffers = async () => {
@@ -163,9 +169,9 @@ export const getOffersForProvider = async () => {
 
 export const editApplication = async (id, formData) => {
   try {
-    console.log(
-      `Sending id: ${id}, formData: ${JSON.stringify(formData, null, 2)}`
-    );
+    // console.log(
+    //   `Sending id: ${id}, formData: ${JSON.stringify(formData, null, 2)}`
+    // );
 
     const response = await axios.put(
       `${FORMS_API_URL}/edit-application`,

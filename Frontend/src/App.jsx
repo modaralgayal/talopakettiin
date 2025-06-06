@@ -16,10 +16,12 @@ import { MyApplications } from "./pages/viewMyApplications";
 import { ViewCustomerApplications } from "./pages/viewCustomerApplications";
 import { AdminPage } from "./pages/adminPage";
 import { ProviderManagementPage } from "./pages/admin/ProviderManagementPage";
+import { ApplicationManagementPage } from "./pages/admin/ApplicationManagementPage";
 // Headers
 import { Header } from "./headers/Header";
 import { ProviderHeader } from "./headers/providerHeader";
 import { CustomerHeader } from "./headers/customerHeader";
+import { AdminHeader } from "./headers/adminHeader";
 import MakeOffer from "./pages/makeOffer";
 import GetOffers from "./pages/getOffers";
 // Auth utils
@@ -125,6 +127,8 @@ function App() {
         <CustomerHeader handleLogout={handleLogout} />
       ) : userType === "provider" ? (
         <ProviderHeader handleLogout={handleLogout} />
+      ) : userType === "admin" ? (
+        <AdminHeader handleLogout={handleLogout} />
       ) : (
         <Header handleLogout={handleLogout} />
       )}
@@ -336,6 +340,24 @@ function App() {
                     <link rel="canonical" href="/admin/provider-management" />
                   </Helmet>
                   <ProviderManagementPage />
+                </>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/application-management"
+            element={
+              <ProtectedRoute requiredUserType="admin">
+                <>
+                  <Helmet>
+                    <title>{`Talopakettiin - Application Management`}</title>
+                    <meta
+                      name="description"
+                      content="Admin Application Management - Talopakettiin"
+                    />
+                    <link rel="canonical" href="/admin/application-management" />
+                  </Helmet>
+                  <ApplicationManagementPage />
                 </>
               </ProtectedRoute>
             }

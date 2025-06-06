@@ -27,7 +27,7 @@ export const ViewCustomerApplications = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    getAllEntries()
+    getAllEntries("application")
       .then((response) => {
         console.log(response.entries);
         setApplications(response.entries || []);

@@ -19,7 +19,7 @@ const router = express.Router();
 router.post("/receive-form-data", protect, receiveFormData);
 router.get("/get-user-forms", protect, getApplicationsForUser);
 router.post("/delete-user-entry", protect, deleteItemByEntryId);
-router.get("/get-all-entries", protect, getAllEntryIds);
+router.post("/get-all-entries", protect, getAllEntryIds);
 router.get("/get-user-offers", protect, getOffersForUser);
 router.put("/accept-given-offer", protect, acceptOffer);
 router.get("/test-sub-content", protect);
