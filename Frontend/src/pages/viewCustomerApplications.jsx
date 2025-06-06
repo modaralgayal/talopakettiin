@@ -51,6 +51,24 @@ export const ViewCustomerApplications = () => {
       });
   }, []);
 
+  const handleViewPdf = (pdfFile) => {
+    console.log("pdfFile type:", typeof pdfFile, pdfFile);
+
+    if (pdfFile && pdfFile.buffer) {
+      const base64Pdf = pdfFile.buffer;
+      if (base64Pdf.startsWith("JVBER")) {
+        const pdfWindow = window.open();
+        pdfWindow.document.write(
+          `<embed src="data:application/pdf;base64,${base64Pdf}" width="100%" height="100%" />`
+        );
+      } else {
+        alert("Invalid PDF data.");
+      }
+    } else {
+      alert("No PDF available.");
+    }
+  };
+
   const parseValue = (val) => {
     if (!val) return "";
     if (val.S) return val.S;
@@ -111,6 +129,10 @@ export const ViewCustomerApplications = () => {
     return offers.some((offer) => offer && offer.entryId === entryId);
   };
 
+  const getOfferForApplication = (entryId) => {
+    return offers.find(offer => offer.entryId === entryId);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -148,6 +170,7 @@ export const ViewCustomerApplications = () => {
             const budget = formData.budget || "Ei määritelty";
             const size = formData.houseSize || "Ei määritelty";
             const bedrooms = formData.bedrooms || "Ei määritelty";
+            const matchingOffer = getOfferForApplication(app.id);
 
             return (
               <div
@@ -189,13 +212,36 @@ export const ViewCustomerApplications = () => {
                         : "Näytä tiedot"}
                     </button>
                     {hasOffer(app.id) ? (
-                      <button
-                        disabled
-                        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 cursor-not-allowed"
-                      >
-                        <FaCheck className="h-4 w-4 mr-2" />
-                        Tarjous tehty
-                      </button>
+                      <>
+                        <button
+                          disabled
+                          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 cursor-not-allowed"
+                        >
+                          <FaCheck className="h-4 w-4 mr-2" />
+                          Tarjous tehty
+                        </button>
+
+                        <button
+                          onClick={() => handleViewPdf(matchingOffer?.offerData?.pdfFile)}
+                          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+                        >
+                          <svg
+                            className="w-4 h-4 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                            />
+                          </svg>
+                          View Proposal
+                        </button>
+                      </>
                     ) : (
                       <button
                         onClick={() =>

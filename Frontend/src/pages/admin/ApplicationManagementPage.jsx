@@ -163,8 +163,8 @@ export const ApplicationManagementPage = () => {
           <h1 className="text-3xl font-bold text-gray-900 mb-8">
             Application Management
           </h1>
-
-          {/* Search */}
+          {/*
+            Search: 
           <div className="mb-8">
             <input
               type="text"
@@ -174,13 +174,12 @@ export const ApplicationManagementPage = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-
           {error && (
             <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
               <p className="text-red-700">{error}</p>
             </div>
           )}
-
+          */}
           {isLoading ? (
             <div className="text-center py-12">
               <p className="text-gray-600">Loading...</p>

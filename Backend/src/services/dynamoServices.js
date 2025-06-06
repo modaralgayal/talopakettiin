@@ -157,10 +157,10 @@ export const getApplicationsForUser = async (req, res) => {
 
 export const getAllEntryIds = async (req, res) => {
   try {
-    if (req.user.userType !== "admin") {
+    if (req.user.userType !== "admin" && req.user.userType !== "provider") {
       return res
         .status(403)
-        .json({ error: "Access denied: User is not an admin" });
+        .json({ error: "Access denied: User is not an admin or provider" });
     }
 
     console.log("got here");

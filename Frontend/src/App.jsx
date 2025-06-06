@@ -99,18 +99,14 @@ function App() {
       return null; // or a loading spinner component
     }
 
-    // Only redirect if not authenticated and not on a public route
-    if (
-      !isAuthenticated &&
-      !publicRoutes.includes(location.pathname) &&
-      location.pathname !== "/signin"
-    ) {
+    // First check if user is authenticated
+    if (!isAuthenticated && !publicRoutes.includes(location.pathname)) {
       return <Navigate to="/signin" />;
     }
 
-    // Check for specific user type requirement
+    // Then check for specific user type requirement
     if (requiredUserType && userType !== requiredUserType) {
-      return <Navigate to="/" />;
+      return <Navigate to="/signin" />;
     }
 
     return children;
