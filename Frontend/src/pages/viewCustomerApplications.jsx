@@ -202,7 +202,8 @@ export const ViewCustomerApplications = () => {
                     </div>
                   </div>
 
-                  <div className="mt-6 flex justify-between items-center">
+                  <div className="mt-6 flex items-center justify-between">
+                    {/* Left button */}
                     <button
                       onClick={() => handleToggle(index)}
                       className="text-blue-600 hover:text-blue-800 text-sm font-medium"
@@ -211,8 +212,11 @@ export const ViewCustomerApplications = () => {
                         ? "Piilota tiedot"
                         : "Näytä tiedot"}
                     </button>
+
+                    {/* Right buttons container */}
                     {hasOffer(app.id) ? (
-                      <>
+                      <div className="flex items-center space-x-3">
+                        {/* Tarjous tehty button (disabled) */}
                         <button
                           disabled
                           className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 cursor-not-allowed"
@@ -221,6 +225,7 @@ export const ViewCustomerApplications = () => {
                           Tarjous tehty
                         </button>
 
+                        {/* View Proposal button */}
                         <button
                           onClick={() => handleViewPdf(matchingOffer?.offerData?.pdfFile)}
                           className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center"
@@ -241,7 +246,7 @@ export const ViewCustomerApplications = () => {
                           </svg>
                           View Proposal
                         </button>
-                      </>
+                      </div>
                     ) : (
                       <button
                         onClick={() =>
