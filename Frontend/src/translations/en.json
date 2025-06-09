@@ -12,8 +12,9 @@
     "logoAlt": "Talopakettiin Logo"
   },
   "navigation": {
+    "blog": "Blog",
     "home": "Home",
-    "adminDashboard":"Dashboard",
+    "adminDashboard": "Dashboard",
     "homeDescription": "Explore our service, compare house packages and find the best fit for you",
     "about": "About Us",
     "contact": "Contact",
