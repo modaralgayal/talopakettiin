@@ -24,8 +24,11 @@ const defaultTransformations = {
  */
 export const getCloudinaryImage = (publicId, options = {}) => {
   const img = cld.image(publicId);
-  const { width = defaultTransformations.width, height = defaultTransformations.height } = options;
-  
+  const {
+    width = defaultTransformations.width,
+    height = defaultTransformations.height,
+  } = options;
+
   img.resize(fill().width(width).height(height));
   return img;
 };
@@ -37,20 +40,22 @@ export const getCloudinaryImage = (publicId, options = {}) => {
  * @returns {Object[]} Array of Cloudinary image objects
  */
 export const getCloudinaryImages = (publicIds, options = {}) => {
-  return publicIds.map(publicId => getCloudinaryImage(publicId, options));
+  return publicIds.map((publicId) => getCloudinaryImage(publicId, options));
 };
 
 // Predefined image collections
 export const imageCollections = {
   slideshow: [
+    "pexels-heyho-7587829_hhuv50",
     "pexels-pixabay-259588_z6o2v9",
     "pexels-pixasquare-1115804_ntadqq",
     "pexels-binyaminmellish-106399_qnas3c",
+    "pexels-pixabay-534220_opvcow",
     "pexels-frans-van-heerden-201846-1438832_rbsijk",
     "pexels-pixabay-358636_p4jgdj",
     "pexels-davidmcbee-1546166_nq2yim",
   ],
   icons: {
-    google: "google_h79wym"
-  }
-}; 
+    google: "google_h79wym",
+  },
+};

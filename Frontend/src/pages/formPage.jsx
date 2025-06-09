@@ -15,7 +15,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 import { API_BASE_URL } from "../config/apiConfig";
 
-export const ApplicationForm = (prop) => {
+export const ApplicationForm = ({isAuthenticated, setIsAuthenticated, setUserType}) => {
   const {
     formData,
     setFormData,
@@ -25,7 +25,6 @@ export const ApplicationForm = (prop) => {
     setCurrentStep,
     validationErrors,
     validateStep,
-    setIsAuthenticated,
   } = useFormContext();
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -47,9 +46,6 @@ export const ApplicationForm = (prop) => {
     { number: 6, title: t("form.steps.technical") },
     { number: 7, title: t("form.steps.personalInfo") },
   ];
-
-  let isAuthenticated = prop.isAuthenticated;
-  //console.log(isAuthenticated);
 
   const nextStep = () => {
     console.log(currentStep, "AND", steps.length);
@@ -82,7 +78,7 @@ export const ApplicationForm = (prop) => {
       const idToken = await user.getIdToken();
 
       // 2. Send the ID token to your backend to create a session
-      const res = await fetch(`${API_BASE_URL}/api/user/firebaseGoogleSignIn`, {
+      const res = await fetch(`${API_BASE_URL}/api/user/firebaseSignIn`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -97,6 +93,7 @@ export const ApplicationForm = (prop) => {
         // Set isAuthenticated to true to prevent logic loop
         if (typeof setIsAuthenticated === "function") {
           setIsAuthenticated(true);
+          setUserType("customer"); // Assuming a guest submit means they are a customer
         }
         // 3. Now the user is authenticated, you can submit the form
         await handleSubmit({ preventDefault: () => {} });

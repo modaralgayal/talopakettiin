@@ -21,6 +21,7 @@ export const Header = () => {
     { name: t("navigation.home"), path: "/" },
     { name: t("navigation.about"), path: "/about" },
     { name: t("navigation.contact"), path: "/contact" },
+    { name: t("navigation.blog"), path: "/blog" },
   ];
 
   const handleAdminSignIn = async () => {
@@ -118,13 +119,6 @@ export const Header = () => {
           {/* Right side - Language Switcher and Buttons */}
           <div className="flex items-center space-x-4 md:space-x-6">
             <LanguageSwitcher />
-            <button
-              onClick={handleAdminSignIn}
-              disabled={isLoading}
-              className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-full text-white bg-purple-600 hover:bg-purple-700 transition-colors disabled:opacity-50"
-            >
-              {isLoading ? "Loading..." : "Admin"}
-            </button>
             <NavLink
               to="/signin"
               className={({ isActive }) =>

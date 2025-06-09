@@ -29,9 +29,19 @@ import { validateToken, logOut } from "./controllers/userController";
 import Footer from "./components/Footer";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import Blog from "./pages/blogPost";
+import Blogs from "./pages/blogs";
 
 // Define public routes that don't require authentication
-const publicRoutes = ["/", "/about", "/contact", "/signin", "/formpage"];
+const publicRoutes = [
+  "/",
+  "/about",
+  "/contact",
+  "/signin",
+  "/formpage",
+  "/blog",
+  "/blog/:id",
+];
 
 function App() {
   const [userType, setUserType] = useState(null);
@@ -62,17 +72,20 @@ function App() {
       console.log("Checking session...");
       try {
         const { isValid, userType } = await validateToken();
-        console.log("Validation reponse: ", isValid, userType);
+        console.log("Validation response: ", isValid, userType);
+
         if (isValid) {
           setUserType(userType);
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);
           setUserType(null);
-          if (
-            !publicRoutes.includes(location.pathname) &&
-            location.pathname !== "/signin"
-          ) {
+
+          const isPublicRoute =
+            publicRoutes.includes(location.pathname) ||
+            location.pathname.startsWith("/blog");
+
+          if (!isPublicRoute) {
             navigate("/signin");
           }
         }
@@ -87,10 +100,9 @@ function App() {
 
     checkSession();
 
-    // Set up interval for session check
     const interval = setInterval(checkSession, 60000);
     return () => clearInterval(interval);
-  }, [location.pathname]); // Add location.pathname as dependency
+  }, [location.pathname]);
 
   // Protected route wrapper component
   const ProtectedRoute = ({ children, requiredUserType }) => {
@@ -129,7 +141,7 @@ function App() {
         <Header handleLogout={handleLogout} />
       )}
 
-      <main className={`flex-grow ${location.pathname !== '/' ? 'pt-38' : ''}`}>
+      <main className={`flex-grow ${location.pathname !== "/" ? "pt-38" : ""}`}>
         <Routes>
           {/* Public Routes */}
           <Route
@@ -218,10 +230,16 @@ function App() {
                   formData={formData}
                   setFormData={setFormData}
                   isAuthenticated={isAuthenticated}
+                  setIsAuthenticated={setIsAuthenticated}
+                  setUserType={setUserType}
                 />
               </>
             }
           />
+
+          <Route path="/blog/:id" element={<Blog />} />
+
+          <Route path="/blog" element={<Blogs />} />
 
           {/* Protected Routes */}
           <Route
@@ -351,15 +369,16 @@ function App() {
                       name="description"
                       content="Admin Application Management - Talopakettiin"
                     />
-                    <link rel="canonical" href="/admin/application-management" />
+                    <link
+                      rel="canonical"
+                      href="/admin/application-management"
+                    />
                   </Helmet>
                   <ApplicationManagementPage />
                 </>
               </ProtectedRoute>
             }
           />
-          
-
         </Routes>
       </main>
       <Footer />

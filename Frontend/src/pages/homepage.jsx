@@ -9,6 +9,7 @@ import Seo from "../seo/Seo";
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "@cloudinary/react";
 import { fill } from "@cloudinary/url-gen/actions/resize";
+import BlogSection from "../components/BlogSection";
 
 export const Homepage = () => {
   const { t } = useTranslation();
@@ -125,75 +126,6 @@ export const Homepage = () => {
       description: t("homepage.features.saveTime.description"),
     },
   ];
-
-  // Blog posts data with translations based on language
-  const blogPosts = [
-    {
-      title:
-        currentLanguage === "fi"
-          ? "Talopaketin valinta: Näin löydät parhaan vaihtoehdon"
-          : currentLanguage === "sv"
-          ? "Val av huspaket: Så hittar du det bästa alternativet"
-          : "House Package Selection: How to Find the Best Option",
-      excerpt:
-        currentLanguage === "fi"
-          ? "Opi valitsemaan oikea talopaketti tarpeisiisi sopivaksi. Käymme läpi tärkeimmät huomioitavat asiat."
-          : currentLanguage === "sv"
-          ? "Lär dig välja rätt huspaket för dina behov. Vi går igenom de viktigaste sakerna att tänka på."
-          : "Learn how to choose the right house package for your needs. We'll go through the most important things to consider.",
-      date: "2024-03-15",
-      image: "https://placehold.co/600x400/e2e8f0/1e40af?text=Talopaketti",
-    },
-    {
-      title:
-        currentLanguage === "fi"
-          ? "Energiatehokkuus uudessa kodissa"
-          : currentLanguage === "sv"
-          ? "Energieffektivitet i det nya hemmet"
-          : "Energy Efficiency in Your New Home",
-      excerpt:
-        currentLanguage === "fi"
-          ? "Miten energiatehokkuus vaikuttaa talopaketin valintaan? Käymme läpi nykyaikaiset ratkaisut."
-          : currentLanguage === "sv"
-          ? "Hur påverkar energieffektivitet valet av huspaket? Vi går igenom moderna lösningar."
-          : "How does energy efficiency affect house package selection? We'll go through modern solutions.",
-      date: "2024-03-10",
-      image: "https://placehold.co/600x400/e2e8f0/1e40af?text=Energia",
-    },
-    {
-      title: "Rahoitusvaihtoehdot talopaketille",
-      excerpt:
-        "Tutustu erilaisiin rahoitusvaihtoehtoihin ja löydä sinulle sopivin ratkaisu.",
-      date: "2024-03-05",
-      image: "https://placehold.co/600x400/e2e8f0/1e40af?text=Rahoitus",
-    },
-    {
-      title: "Sisustussuunnittelu uuteen kotiin",
-      excerpt:
-        "Vinkkejä sisustussuunnitteluun ja sisätilojen toteutukseen uudessa kodissa.",
-      date: "2024-03-01",
-      image: "https://placehold.co/600x400/e2e8f0/1e40af?text=Sisustus",
-    },
-    {
-      title: "Ympäristöystävällinen rakentaminen",
-      excerpt:
-        "Miten rakentaa ympäristöystävällisesti? Käymme läpi kestävän kehityksen periaatteet.",
-      date: "2024-02-25",
-      image: "https://placehold.co/600x400/e2e8f0/1e40af?text=Ympäristö",
-    },
-    {
-      title: "Talopaketin hankintaprosessi",
-      excerpt:
-        "Vaihe vaiheelta opas talopaketin hankintaprosessiin ja tärkeimmät huomioitavat asiat.",
-      date: "2024-02-20",
-      image: "https://placehold.co/600x400/e2e8f0/1e40af?text=Prosessi",
-    },
-  ];
-
-  // Sort posts by date (newest first) and limit to 6
-  const sortedAndLimitedPosts = [...blogPosts]
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
-    .slice(0, 6);
 
   return (
     <>
@@ -320,21 +252,17 @@ export const Homepage = () => {
                 ].map((step, index) => (
                   <div
                     key={index}
-                    className="relative flex justify-center items-start"
+                    className="flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105 relative"
                   >
-                    <div className="bg-white aspect-square w-full rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-blue-500 hover:border-2 cursor-pointer group flex flex-col items-center pt-10 pb-6 px-6">
-                      <div className="absolute -top-7 left-1/2 -translate-x-1/2 w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-lg transition-all duration-300 group-hover:bg-blue-700 z-10">
-                        {step.number}
-                      </div>
-                      <h3 className="text-4xl font-semibold text-gray-900 mb-2 mt-6 tracking-tight group-hover:text-blue-700 transition-colors duration-300 text-center">
-                        {step.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed text-2xl text-center">
-                        {index === 0
-                          ? "Talopaketin hankinta alkaa täyttämällä helppo hakemus lomake."
-                          : step.description}
-                      </p>
+                    <div className="relative z-10 w-12 h-12 flex items-center justify-center bg-blue-600 text-white rounded-full text-xl font-bold mb-4 shadow-lg">
+                      {step.number}
                     </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2 tracking-tight">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -372,44 +300,7 @@ export const Homepage = () => {
         </div>
 
         {/* Blog Section */}
-          <div className="py-16 relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* White background banner for the title */}
-              <div className="bg-white bg-opacity-90 backdrop-blur-sm py-4 mb-12 rounded-lg shadow-md">
-                <h2 className="text-3xl font-bold text-center text-gray-900 tracking-tight">
-              {t("homepage.blog.title")}
-            </h2>
-              </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {sortedAndLimitedPosts.map((post, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105"
-                >
-                  <div className="aspect-w-16 aspect-h-9">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-48 object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="text-sm text-blue-600 mb-2">
-                      {formatDate(post.date)}
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                    <button className="text-blue-600 font-medium hover:text-blue-800 transition-colors">
-                      {t("homepage.blog.readMore")}
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+          <BlogSection />
         </div>
       </div>
     </>
