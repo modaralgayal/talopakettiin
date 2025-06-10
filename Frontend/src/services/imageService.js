@@ -49,7 +49,7 @@ export const imageCollections = {
     "TALOMALLISTO_Mallitalo-8-1-min_mjnxrv",
     "s5_mcgfwc",
     "jettatalo_talomalli2023_render_002-1536x1137.jpg_wcz5dd",
-    "JH-main.jpg_ewta1f",
+    "EXT_Cam006-1000px-800x601_xqowmh",
   ],
   icons: {
     google: "google_h79wym",
