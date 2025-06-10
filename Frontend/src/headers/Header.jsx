@@ -24,56 +24,6 @@ export const Header = () => {
     { name: t("navigation.blog"), path: "/blog" },
   ];
 
-  const handleAdminSignIn = async () => {
-    setIsLoading(true);
-    try {
-      const googleProvider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, googleProvider);
-
-      const user = result.user;
-      console.log("This is the user: ", user.email);
-      const idToken = await user.getIdToken();
-
-      // Check if user is admin
-      const checkRes = await fetch(`${API_BASE_URL}/api/user/check-admin`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          token: idToken,
-          userType: "admin",
-          email: user.email,
-        }),
-      });
-
-      const checkData = await checkRes.json();
-      if (checkData.success && checkData.isAdmin) {
-        // Sign in as admin
-        const res = await fetch(`${API_BASE_URL}/api/user/firebaseSignIn`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({
-            token: idToken,
-            userType: "admin",
-          }),
-        });
-
-        const data = await res.json();
-        if (data.success) {
-          navigate("/admin");
-        }
-      } else {
-        alert("You are not authorized as an admin.");
-      }
-    } catch (error) {
-      console.error("Admin Sign-In error:", error);
-      alert("Error during admin sign-in");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <header
       className={
@@ -197,16 +147,7 @@ export const Header = () => {
                 {item.name}
               </NavLink>
             ))}
-            <button
-              onClick={() => {
-                handleAdminSignIn();
-                setIsMobileMenuOpen(false);
-              }}
-              disabled={isLoading}
-              className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-purple-600 hover:bg-purple-700 disabled:opacity-50"
-            >
-              {isLoading ? "Loading..." : "Admin"}
-            </button>
+
             <NavLink
               to="/signin"
               className={({ isActive }) =>

@@ -170,7 +170,7 @@ export const ApplicationForm = ({isAuthenticated, setIsAuthenticated, setUserTyp
 
         <div className="relative mb-8 sm:mb-12">
           <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -z-10"></div>
-          <div className="flex justify-between flex-wrap gap-x-2 sm:gap-x-0">
+          <div className="flex justify-center flex-wrap gap-x-10">
             {steps.map(({ number, title }) => (
               <div
                 key={number}

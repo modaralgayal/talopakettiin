@@ -4,32 +4,11 @@ export const mockBlogs = [
     title: "Kodin energiatehokkuuden parantaminen",
     summary:
       "Opi parhaat käytännöt energiatehokkaan kodin luomiseen ja energiakustannusten säästämiseen.",
-    content: `Energiatehokkuus on yksi tärkeimmistä tekijöistä modernissa kodissa. Tässä artikkelissa käymme läpi parhaat käytännöt energiatehokkaan kodin luomiseen.
-
-## Miksi energiatehokkuus on tärkeää?
-
-Energiatehokkuus ei ole vain ympäristöystävällistä, vaan se säästää myös rahaa pitkällä aikavälillä. Tehokkaasti eristetty koti pysyy lämpimänä talvella ja viileänä kesällä, mikä vähentää lämmitys- ja jäähdytyskustannuksia.
-
-## Parhaat käytännöt
-
-1. **Hyvä eristys**
-   - Kattoeristys
-   - Seinäeristys
-   - Ikkunoiden energiatehokkuus
-
-2. **Älykäs lämmitys**
-   - Lämpöpumput
-   - Älytermostaatit
-   - Lämmön talteenotto
-
-3. **Energiatehokkaat laitteet**
-   - A+++ luokitukset
-   - Automaattiset sammutusjärjestelmät
-   - LED-valaistus
-
-## Yhteenveto
-
-Energiatehokkaan kodin luominen on investointi tulevaisuuteen. Se ei ainoastaan säästä rahaa, vaan myös vähentää hiilijalanjälkeäsi ja parantaa kotisi viihtyisyyttä.`,
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+     voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+      vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+    `,
     date: "2024-03-15",
     author: "Matti Meikäläinen",
     imageUrl:
@@ -40,35 +19,11 @@ Energiatehokkaan kodin luominen on investointi tulevaisuuteen. Se ei ainoastaan 
     title: "Kodin remontin suunnittelu",
     summary:
       "Kattava opas kodin remontin suunnitteluun ja toteutukseen - vältä yleisimmät virheet.",
-    content: `Kodin remontti voi tuntua valtavalta projektilta, mutta oikealla suunnittelulla se voi olla sujuvaa ja jopa nautinnollista. Tässä artikkelissa käymme läpi remontin vaiheet ja vinkit.
-
-## Remontin vaiheet
-
-1. **Suunnittelu**
-   - Budjetin määrittely
-   - Aikataulun tekeminen
-   - Ammattilaisten valinta
-
-2. **Valmistelut**
-   - Luvat ja ilmoitukset
-   - Materiaalivalinnat
-   - Työmaan järjestelyt
-
-3. **Toteutus**
-   - Työvaiheiden seuranta
-   - Laadunvalvonta
-   - Muutosten hallinta
-
-## Vinkit onnistuneeseen remonttiin
-
-- Tee kattava suunnitelma etukäteen
-- Pidä budjetti realistisena
-- Valitse luotettavat ammattilaiset
-- Ota huomioon myös odottamattomat kulut
-
-## Yhteenveto
-
-Hyvin suunniteltu remontti on investointi kotiisi ja elämänlaatuusi. Muista, että remontin tarkoitus on parantaa kodin viihtyisyyttä ja toimivuutta.`,
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+     voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+      vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+    `,
     date: "2024-03-10",
     author: "Liisa Laatikainen",
     imageUrl:
@@ -80,35 +35,11 @@ Hyvin suunniteltu remontti on investointi kotiisi ja elämänlaatuusi. Muista, e
     title: "Kodin älytekniikan hyödyt",
     summary:
       "Tutustu älykodin mahdollisuuksiin ja miten ne voivat tehdä elämästäsi helpompaa ja tehokkaampaa.",
-    content: `Älytekniikka on muuttanut tapamme elää ja asua. Tässä artikkelissa käymme läpi, miten älytekniikka voi parantaa kodin toimivuutta ja viihtyisyyttä.
-
-## Älykodin perusteet
-
-1. **Valaistus**
-   - Älyvalot
-   - Automaattiset ajastimet
-   - Liikkeentunnistimet
-
-2. **Lämmitys ja jäähdytys**
-   - Älytermostaatit
-   - Zonelämmitys
-   - Energiankulutuksen seuranta
-
-3. **Turvallisuus**
-   - Älykamerat
-   - Lukitusjärjestelmät
-   - Hälytysjärjestelmät
-
-## Älykodin hyödyt
-
-- Energian säästö
-- Turvallisuuden parantaminen
-- Mukavuuden lisääminen
-- Elämäntavan automatisointi
-
-## Yhteenveto
-
-Älytekniikka ei ole enää vain tulevaisuuden visio, vaan konkreettinen tapa parantaa kodin toimivuutta ja viihtyisyyttä. Pienillä investoinneilla voit tehdä kodistasi älykkäämmän ja tehokkaamman.`,
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+     voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+      vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+    `,
     date: "2024-03-01",
     author: "Teemu Teknologia",
     imageUrl:

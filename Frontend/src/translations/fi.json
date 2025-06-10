@@ -57,7 +57,7 @@
       "subtext": "Hakemuksen täyttäminen on täysin ilmaista"
     },
     "features": {
-      "title":"Mitä tässä tehdään?",
+      "title":"Miten tämä toimii?",
       "dreamHome": {
         "title": "Unelmakotisi suunnittelu",
         "description": "Määrittele toiveesi ja vaatimuksesi unelmakodillesi - autamme sinua löytämään täydellisen talopaketin."
@@ -76,7 +76,7 @@
       }
     },
     "process": {
-      "title": "Näin prosessi toimii",
+      "title": "Prosessin vaiheet",
       "steps": {
         "apply": {
           "title": "Täytä hakemus",
