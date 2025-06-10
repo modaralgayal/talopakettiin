@@ -45,16 +45,7 @@ export const getCloudinaryImages = (publicIds, options = {}) => {
 
 // Predefined image collections
 export const imageCollections = {
-  slideshow: [
-    "pexels-heyho-7587829_hhuv50",
-    "pexels-pixabay-259588_z6o2v9",
-    "pexels-pixasquare-1115804_ntadqq",
-    "pexels-binyaminmellish-106399_qnas3c",
-    "pexels-pixabay-534220_opvcow",
-    "pexels-frans-van-heerden-201846-1438832_rbsijk",
-    "pexels-pixabay-358636_p4jgdj",
-    "pexels-davidmcbee-1546166_nq2yim",
-  ],
+  slideshow: ["s3_llejwe", "s2_pltl26", "s4_xucptc", "s1_lkwtie"],
   icons: {
     google: "google_h79wym",
   },
