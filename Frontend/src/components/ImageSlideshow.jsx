@@ -2,14 +2,34 @@ import React, { useState, useEffect, useMemo } from "react";
 import { AdvancedImage } from "@cloudinary/react";
 import { getCloudinaryImages, imageCollections } from "../services/imageService";
 
-export const ImageSlideshow = ({ images = imageCollections.slideshow, options = {} }) => {
+export const ImageSlideshow = ({ images = imageCollections.slideshow }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
+  // Handle resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Get images based on dynamic window size
   const cloudinaryImages = useMemo(() => {
-    return getCloudinaryImages(images, options);
-  }, [images, options]);
+    return getCloudinaryImages(images, {
+      width: windowSize.width,
+      height: windowSize.height,
+    });
+  }, [images, windowSize]);
 
+  // Slideshow timer
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cloudinaryImages.length);

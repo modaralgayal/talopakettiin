@@ -10,8 +10,8 @@ const cld = new Cloudinary({
 
 // Default image transformations
 const defaultTransformations = {
-  width: 1600,
-  height: 900,
+  width: 1250,
+  height: 800,
 };
 
 /**
@@ -45,7 +45,12 @@ export const getCloudinaryImages = (publicIds, options = {}) => {
 
 // Predefined image collections
 export const imageCollections = {
-  slideshow: ["s3_llejwe", "s2_pltl26", "s4_xucptc", "s1_lkwtie"],
+  slideshow: [
+    "TALOMALLISTO_Mallitalo-8-1-min_mjnxrv",
+    "s5_mcgfwc",
+    "jettatalo_talomalli2023_render_002-1536x1137.jpg_wcz5dd",
+    "JH-main.jpg_ewta1f",
+  ],
   icons: {
     google: "google_h79wym",
   },
