@@ -10,6 +10,10 @@ const Blog = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   // Convert id to number, since mockBlogs uses numeric IDs
   const blogId = parseInt(id, 10);
   const blog = mockBlogs.find((item) => item.id === blogId);
@@ -18,7 +22,9 @@ const Blog = () => {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Blog not found</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            Blog not found
+          </h1>
           <button
             onClick={() => navigate("/blog")}
             className="text-blue-600 hover:text-blue-800 font-medium"
@@ -34,15 +40,15 @@ const Blog = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": blog.title,
-    "datePublished": blog.date,
-    "author": {
+    headline: blog.title,
+    datePublished: blog.date,
+    author: {
       "@type": "Person",
-      "name": blog.author
+      name: blog.author,
     },
-    "image": blog.imageUrl,
-    "description": blog.summary,
-    "articleBody": blog.content
+    image: blog.imageUrl,
+    description: blog.summary,
+    articleBody: blog.content,
   };
 
   // Format the date
@@ -84,22 +90,25 @@ const Blog = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
             <div className="prose prose-lg max-w-none">
-              {blog.content.split('\n\n').map((paragraph, index) => {
+              {blog.content.split("\n\n").map((paragraph, index) => {
                 // Check if paragraph is a heading
-                if (paragraph.startsWith('##')) {
+                if (paragraph.startsWith("##")) {
                   return (
-                    <h2 key={index} className="text-2xl font-bold text-gray-900 mt-8 mb-4">
-                      {paragraph.replace('##', '').trim()}
+                    <h2
+                      key={index}
+                      className="text-2xl font-bold text-gray-900 mt-8 mb-4"
+                    >
+                      {paragraph.replace("##", "").trim()}
                     </h2>
                   );
                 }
                 // Check if paragraph is a list item
-                if (paragraph.startsWith('1.') || paragraph.startsWith('-')) {
+                if (paragraph.startsWith("1.") || paragraph.startsWith("-")) {
                   return (
                     <ul key={index} className="list-disc pl-6 mb-4 space-y-2">
-                      {paragraph.split('\n').map((item, itemIndex) => (
+                      {paragraph.split("\n").map((item, itemIndex) => (
                         <li key={itemIndex} className="text-gray-700">
-                          {item.replace(/^[0-9]+\.\s*|^-\s*/, '')}
+                          {item.replace(/^[0-9]+\.\s*|^-\s*/, "")}
                         </li>
                       ))}
                     </ul>
