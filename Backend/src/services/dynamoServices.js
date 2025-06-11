@@ -425,7 +425,7 @@ export const acceptOffer = async (req, res) => {
       from: "info@talopakettiin.fi",
       to: emailAddress,
       subject: "Offer Accepted Notification",
-      text: `Hello,
+      text: `Hei!
 
       The offer with ID ${id} has been accepted. All related applications have been updated accordingly.
 
@@ -524,15 +524,16 @@ export const makeOffer = async (req, res) => {
     const mailOptions = {
       from: "info@talopakettiin.fi",
       to: customerEmail,
-      subject: "New Offer Received",
-      text: `Hello,
+      subject: "Tarjous tehty",
+      text: `Hei!
 
-      You have received a new offer from ${providerName}.
+      Olet saanut tarjouksen toimittajalta ${providerName}.
 
       Please log in to your Talopakettiin account to view the offer details.
+      Ole hyvä ja kirjaudu sinun Talopakettiin käyttäjään nähdäksesi tarjouksen tiedot.
 
-      Thank you,
-      Talopakettiin Team`,
+      Ystävällisin terveisin,
+      Talopakettiin.fi tiimi`,
     };
 
     console.log("Sending offer notification email to customer");
@@ -611,8 +612,11 @@ export const editApplication = async (req, res) => {
       const mailOptions = {
         from: "info@talopakettiin.fi",
         to: user.email,
-        subject: "Application Edited Successfully",
-        text: `Hello,\n\nYour application \"${applicationName}\" has been updated successfully.\n\nThank you,\nTalopakettiin Team`,
+        subject: "Hakemus päivitetty",
+        text: `Hei!,\n
+        \n Sinun hakemuksesi \"${applicationName}\" tiedot ovat päivittyneet.\n
+        \n Ystävällisin terveisin,
+        \nTalopakettiin.fi tiimi`,
       };
 
       await transporter.sendMail(mailOptions);

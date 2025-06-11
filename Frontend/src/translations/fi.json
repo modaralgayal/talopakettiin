@@ -13,6 +13,8 @@
   },
   "navigation": {
     "home": "Etusivu",
+    "applications": "Hakemukset",
+    "info": "Info",
     "adminDashboard":"Hallintapaneeli",
     "homeDescription": "Tutustu palveluumme, kilpailuta itsellesi paras talopaketti",
     "about": "Tietoa meistä",

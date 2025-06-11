@@ -14,6 +14,8 @@
   "navigation": {
     "blog": "Blog",
     "home": "Home",
+    "applications": "Applications",
+    "info": "Info",
     "adminDashboard": "Dashboard",
     "homeDescription": "Explore our service, compare house packages and find the best fit for you",
     "about": "About Us",

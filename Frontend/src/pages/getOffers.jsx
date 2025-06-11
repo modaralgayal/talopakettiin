@@ -68,10 +68,10 @@ const GetOffers = () => {
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Received Offers</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">Saapuneet tarjoukset</h2>
       {offers.length === 0 ? (
         <p className="text-gray-500 text-center py-8">
-          No offers received yet.
+          Ei tarjouksia vielä.
         </p>
       ) : (
         <div className="space-y-4">
@@ -85,10 +85,6 @@ const GetOffers = () => {
                   <h3 className="text-lg font-semibold text-gray-800 mb-1">
                     {offer.offerData?.firmName}
                   </h3>
-                  <p className="text-gray-600 mb-2">
-                    <span className="font-medium">Provider:</span>{" "}
-                    {offer.offerData?.providerEmail}
-                  </p>
                   <p className="text-gray-700">
                     {offer.offerData?.description}
                   </p>
@@ -97,7 +93,7 @@ const GetOffers = () => {
                   <div className="text-3xl font-bold text-blue-600">
                     {offer.offerData?.price} €
                   </div>
-                  <div className="text-sm text-gray-500 mt-1">Total price</div>
+                  <div className="text-sm text-gray-500 mt-1">Kokonaissumma</div>
                 </div>
               </div>
 
@@ -121,7 +117,7 @@ const GetOffers = () => {
                         d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
                       />
                     </svg>
-                    View Proposal
+                    Katso Tarjous
                   </button>
                 )}
 
@@ -141,7 +137,7 @@ const GetOffers = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Offer Accepted
+                    Hakemus neuvottelu vaiheessa
                   </span>
                 ) : (
                   <button
@@ -168,7 +164,7 @@ const GetOffers = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Accept Offer
+                    Keskustele lisää
                   </button>
                 )}
               </div>

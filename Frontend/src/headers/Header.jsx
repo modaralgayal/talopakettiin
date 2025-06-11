@@ -7,6 +7,7 @@ import { useLanguage } from "../context/languageContext";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 import { API_BASE_URL } from "../config/apiConfig";
+import { DropdownMenu } from "../components/dropdownMenu";
 
 export const Header = () => {
   const location = useLocation();
@@ -17,12 +18,15 @@ export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const navigationItems = [
-    { name: t("navigation.home"), path: "/" },
-    { name: t("navigation.about"), path: "/about" },
-    { name: t("navigation.contact"), path: "/contact" },
-    { name: t("navigation.blog"), path: "/blog" },
-  ];
+  const navigationGroups = {
+    info: {
+      title: t("navigation.info"),
+      items: [
+        { name: t("navigation.about"), path: "/about" },
+        { name: t("navigation.contact"), path: "/contact" },
+      ],
+    },
+  };
 
   return (
     <header
@@ -46,21 +50,38 @@ export const Header = () => {
             </NavLink>
 
             {/* Main Navigation - Desktop */}
-            <ul className="hidden md:flex md:flex-wrap lg:flex-nowrap gap-x-4 gap-y-2">
-              {navigationItems.map((item) => (
-                <li key={item.name}>
-                  <NavLink
-                    to={item.path}
-                    className={({ isActive }) =>
-                      `text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
-                        isActive
-                          ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
-                          : ""
-                      }`
-                    }
-                  >
-                    {item.name}
-                  </NavLink>
+            <ul className="hidden md:flex md:flex-wrap lg:flex-nowrap gap-x-4 gap-y-">
+              <li>
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `flex items-center text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
+                      isActive
+                        ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
+                        : ""
+                    }`
+                  }
+                >
+                  {t("navigation.home")}
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/blog"
+                  className={({ isActive }) =>
+                    `flex items-center text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
+                      isActive
+                        ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
+                        : ""
+                    }`
+                  }
+                >
+                  {t("navigation.blog")}
+                </NavLink>
+              </li>
+              {Object.entries(navigationGroups).map(([key, group]) => (
+                <li key={key}>
+                  <DropdownMenu items={group.items} title={group.title} />
                 </li>
               ))}
             </ul>
@@ -71,19 +92,13 @@ export const Header = () => {
             <LanguageSwitcher />
             <NavLink
               to="/signin"
-              className={({ isActive }) =>
-                `hidden md:inline-block text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
-                  isActive
-                    ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
-                    : ""
-                }`
-              }
+              className="hidden md:inline-flex text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors"
             >
               {t("common.signIn")}
             </NavLink>
             <NavLink
               to="/formpage"
-              className="hidden md:inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+              className="hidden md:inline-flex bg-blue-600 text-white text-lg font-medium px-4 py-2 rounded-md transition-colors hover:bg-blue-700"
             >
               {t("navigation.fillApplication")}
             </NavLink>
@@ -131,23 +146,42 @@ export const Header = () => {
         {/* Mobile menu */}
         <div className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navigationItems.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.path}
-                className={({ isActive }) =>
-                  `block px-3 py-2 rounded-md text-base font-medium ${
-                    isActive
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-white/20"
-                  }`
-                }
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {item.name}
-              </NavLink>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `block px-3 py-2 rounded-md text-base font-medium ${
+                  isActive
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-white/20"
+                }`
+              }
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {t("navigation.home")}
+            </NavLink>
+            {Object.entries(navigationGroups).map(([key, group]) => (
+              <div key={key} className="space-y-1">
+                <div className="px-3 py-2 text-base font-medium text-gray-500">
+                  {group.title}
+                </div>
+                {group.items.map((item) => (
+                  <NavLink
+                    key={item.name}
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `block pl-6 pr-3 py-2 rounded-md text-base font-medium ${
+                        isActive
+                          ? "text-blue-600 bg-blue-50"
+                          : "text-gray-700 hover:text-blue-600 hover:bg-white/20"
+                      }`
+                    }
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </NavLink>
+                ))}
+              </div>
             ))}
-
             <NavLink
               to="/signin"
               className={({ isActive }) =>

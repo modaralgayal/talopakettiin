@@ -93,7 +93,7 @@ export const OptionRender = ({
       formData[field].includes("enterOther"));
 
   const yesValue = t("form.options.yes");
-  const noValue = t("form.options.yes");
+
 
   // Show the details input if showDetailsOnYes and 'Kyllä' is selected
   const showDetails =
@@ -134,6 +134,7 @@ export const OptionRender = ({
               type="text"
               className="w-full mt-2 p-3 border rounded-lg"
               placeholder={t("form.options.enterOther")}
+              maxLength={500}
               value={formData[`${field}Other`] || ""}
               onChange={(e) => handleOtherInputChange(e.target.value)}
             />
@@ -171,6 +172,7 @@ export const OptionRender = ({
               className="w-full mt-2 p-3 border rounded-lg"
               placeholder={t("form.options.enterOther")}
               value={formData[`${field}Other`] || ""}
+              maxLength={500}
               onChange={(e) => handleOtherInputChange(e.target.value)}
             />
           )}
@@ -229,6 +231,7 @@ export const OptionRender = ({
                 type="text"
                 className="w-full mt-2 p-3 border rounded-lg"
                 placeholder={t(`form.fields.${field}Details`)}
+                maxLength={500}
                 value={formData[`${field}Details`] || ""}
                 onChange={(e) => handleDetailsInputChange(e.target.value)}
               />
