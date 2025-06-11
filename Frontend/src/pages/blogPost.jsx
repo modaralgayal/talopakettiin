@@ -4,6 +4,7 @@ import { mockBlogs } from "../mockData/mockBlogs";
 import Seo from "../seo/Seo";
 import { useTranslation } from "react-i18next";
 import { format } from "date-fns";
+import { useEffect } from "react";
 
 const Blog = () => {
   let { id } = useParams();
