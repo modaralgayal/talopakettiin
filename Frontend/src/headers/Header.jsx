@@ -24,6 +24,7 @@ export const Header = () => {
       items: [
         { name: t("navigation.about"), path: "/about" },
         { name: t("navigation.contact"), path: "/contact" },
+        { name: t("navigation.privacyPolicy"), path: "/privacy-policy" },
       ],
     },
   };
