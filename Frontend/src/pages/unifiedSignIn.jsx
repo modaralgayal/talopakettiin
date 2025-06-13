@@ -224,26 +224,40 @@ export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="w-full max-w-md p-8 bg-white/30 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-200/60 flex flex-col items-center animate-fade-in">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4 drop-shadow">{t("Kirjaudu")}</h1>
-        <p className="text-gray-700/90 mb-8 text-center drop-shadow">Valitse käyttäjätyyppisi jatkaaksesi</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-4 drop-shadow">
+          {t("Kirjaudu")}
+        </h1>
+        <p className="text-gray-700/90 mb-8 text-center drop-shadow">
+          Valitse käyttäjätyyppisi jatkaaksesi
+        </p>
         <div className="flex w-full gap-4 mb-6">
           <button
             onClick={() => handleUserTypeSelection("customer")}
-            className={`flex-1 flex flex-col items-center justify-center p-6 bg-white/40 backdrop-blur-md border border-gray-200/40 rounded-xl shadow-md transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-lg hover:bg-white/60 focus:outline-none ${selectedUserType === "customer" ? "ring-2 ring-blue-500" : ""}`}
+            className={`flex-1 flex flex-col items-center justify-center p-6 bg-white/40 backdrop-blur-md border border-gray-200/40 rounded-xl shadow-md transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-lg hover:bg-white/60 focus:outline-none ${
+              selectedUserType === "customer" ? "ring-2 ring-blue-500" : ""
+            }`}
             type="button"
           >
             <FaUser className="w-8 h-8 mb-2 text-blue-600" />
             <span className="text-lg font-semibold text-gray-900">Hakija</span>
-            <span className="text-gray-600 text-sm mt-1">Etsin sopivaa talopakettia</span>
+            <span className="text-gray-600 text-sm mt-1">
+              Etsin sopivaa talopakettia
+            </span>
           </button>
           <button
             onClick={() => handleUserTypeSelection("provider")}
-            className={`flex-1 flex flex-col items-center justify-center p-6 bg-white/40 backdrop-blur-md border border-gray-200/40 rounded-xl shadow-md transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-lg hover:bg-white/60 focus:outline-none ${selectedUserType === "provider" ? "ring-2 ring-blue-500" : ""}`}
+            className={`flex-1 flex flex-col items-center justify-center p-6 bg-white/40 backdrop-blur-md border border-gray-200/40 rounded-xl shadow-md transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-lg hover:bg-white/60 focus:outline-none ${
+              selectedUserType === "provider" ? "ring-2 ring-blue-500" : ""
+            }`}
             type="button"
           >
             <FaBuilding className="w-8 h-8 mb-2 text-blue-600" />
-            <span className="text-lg font-semibold text-gray-900">Toimittaja</span>
-            <span className="text-gray-600 text-sm mt-1">Teen talopakettitarjouksia</span>
+            <span className="text-lg font-semibold text-gray-900">
+              Toimittaja
+            </span>
+            <span className="text-gray-600 text-sm mt-1">
+              Teen talopakettitarjouksia
+            </span>
           </button>
         </div>
         <button
@@ -254,9 +268,26 @@ export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
           <GoogleLogo />
           {isLoading ? "Kirjaudutaan..." : "Kirjaudu Googlella"}
         </button>
-        {/* Optionally add Microsoft sign-in here with similar styling */}
+
+        {/*
+        <button
+          onClick={initalizeMicrosoftSignin}
+          disabled={isLoading}
+          className="w-full flex items-center justify-center gap-3 py-3 px-6 mb-2 rounded-full bg-[#2F2F2F] text-white font-semibold text-lg shadow-lg hover:scale-105 hover:shadow-blue-500/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          <MicrosoftLogo />
+          {isLoading ? "Kirjaudutaan..." : "Kirjaudu Microsoftilla"}
+        </button>*/}
         {message && (
-          <div className={`mt-4 w-full text-center rounded-lg py-2 px-4 ${messageType === "error" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"}`}>{message}</div>
+          <div
+            className={`mt-4 w-full text-center rounded-lg py-2 px-4 ${
+              messageType === "error"
+                ? "bg-red-100 text-red-700"
+                : "bg-green-100 text-green-700"
+            }`}
+          >
+            {message}
+          </div>
         )}
       </div>
     </div>
