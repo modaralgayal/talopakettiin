@@ -222,96 +222,41 @@ export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-gradient-to-b 
-        from-white to-blue-50 py-12 px-4 sm:px-6 lg:px-8"
-    >
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
-        <div className="flex justify-between items-center">
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">
-            {t("common.signIn")}
-          </h2>
-        </div>
-
-        <p className="mt-2 text-center text-sm text-gray-600">
-          {t("auth.selectUserType")}
-        </p>
-
-        {/* User Type Selection */}
-        <div className="grid grid-cols-2 gap-6 mb-8">
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="w-full max-w-md p-8 bg-white/30 backdrop-blur-lg rounded-2xl shadow-2xl border border-gray-200/60 flex flex-col items-center animate-fade-in">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4 drop-shadow">{t("Kirjaudu")}</h1>
+        <p className="text-gray-700/90 mb-8 text-center drop-shadow">Valitse käyttäjätyyppisi jatkaaksesi</p>
+        <div className="flex w-full gap-4 mb-6">
           <button
-            type="button"
             onClick={() => handleUserTypeSelection("customer")}
-            className={`flex flex-col items-center justify-center p-8 rounded-xl border-2 transition-all ${
-              selectedUserType === "customer"
-                ? "border-blue-500 bg-blue-50 scale-105"
-                : "border-gray-200 hover:border-blue-300 hover:scale-105"
-            }`}
-          >
-            <FaUser className="w-12 h-12 mb-4 text-blue-500" />
-            <span className="text-xl font-semibold">
-              {t("auth.customer.title")}
-            </span>
-            <span className="text-sm text-gray-500 mt-2">
-              {t("auth.customer.description")}
-            </span>
-          </button>
-
-          <button
+            className={`flex-1 flex flex-col items-center justify-center p-6 bg-white/40 backdrop-blur-md border border-gray-200/40 rounded-xl shadow-md transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-lg hover:bg-white/60 focus:outline-none ${selectedUserType === "customer" ? "ring-2 ring-blue-500" : ""}`}
             type="button"
-            onClick={() => handleUserTypeSelection("provider")}
-            className={`flex flex-col items-center justify-center p-8 rounded-xl border-2 transition-all ${
-              selectedUserType === "provider"
-                ? "border-blue-500 bg-blue-50 scale-105"
-                : "border-gray-200 hover:border-blue-300 hover:scale-105"
-            }`}
           >
-            <FaBuilding className="w-12 h-12 mb-4 text-blue-500" />
-            <span className="text-xl font-semibold">
-              {t("auth.provider.title")}
-            </span>
-            <span className="text-sm text-gray-500 mt-2">
-              {t("auth.provider.description")}
-            </span>
+            <FaUser className="w-8 h-8 mb-2 text-blue-600" />
+            <span className="text-lg font-semibold text-gray-900">Hakija</span>
+            <span className="text-gray-600 text-sm mt-1">Etsin sopivaa talopakettia</span>
+          </button>
+          <button
+            onClick={() => handleUserTypeSelection("provider")}
+            className={`flex-1 flex flex-col items-center justify-center p-6 bg-white/40 backdrop-blur-md border border-gray-200/40 rounded-xl shadow-md transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-lg hover:bg-white/60 focus:outline-none ${selectedUserType === "provider" ? "ring-2 ring-blue-500" : ""}`}
+            type="button"
+          >
+            <FaBuilding className="w-8 h-8 mb-2 text-blue-600" />
+            <span className="text-lg font-semibold text-gray-900">Toimittaja</span>
+            <span className="text-gray-600 text-sm mt-1">Teen talopakettitarjouksia</span>
           </button>
         </div>
-
-        {/* Google Sign-In Button */}
         <button
           onClick={initializeGoogleSignIn}
-          className="w-full py-3 px-6 bg-white text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all duration-200 flex items-center justify-center gap-3 text-lg shadow-sm hover:shadow-md hover:scale-[1.02]"
+          disabled={isLoading}
+          className="w-full flex items-center justify-center gap-3 py-3 px-6 mt-2 mb-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold text-lg shadow-lg hover:scale-105 hover:shadow-blue-500/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           <GoogleLogo />
-          {t("auth.signInWithGoogle")}
+          {isLoading ? "Kirjaudutaan..." : "Kirjaudu Googlella"}
         </button>
-
-        {/* Microsoft Sign-In Button 
-        <button
-          onClick={initalizeMicrosoftSignin}
-          className="w-full py-3 px-6 bg-[#2F2F2F] text-white border-2 border-[#2F2F2F] rounded-lg hover:bg-[#1F1F1F] transition-all duration-200 flex items-center justify-center gap-3 text-lg shadow-md hover:shadow-lg hover:scale-[1.02]"
-        >
-          <MicrosoftLogo />
-          {t("auth.signInWithMicrosoft")}
-        </button>*/}
-
-        {/* Message Display */}
+        {/* Optionally add Microsoft sign-in here with similar styling */}
         {message && (
-          <div
-            className={`mt-4 p-3 rounded ${
-              messageType === "error"
-                ? "bg-red-100 text-red-700"
-                : "bg-green-100 text-green-700"
-            }`}
-          >
-            {message}
-          </div>
-        )}
-
-        {/* Loading Spinner */}
-        {isLoading && (
-          <div className="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-          </div>
+          <div className={`mt-4 w-full text-center rounded-lg py-2 px-4 ${messageType === "error" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"}`}>{message}</div>
         )}
       </div>
     </div>
