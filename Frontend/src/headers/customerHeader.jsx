@@ -10,6 +10,8 @@ export const CustomerHeader = ({ handleLogout }) => {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = React.useRef();
 
   const navigationGroups = {
     info: {
@@ -50,7 +52,7 @@ export const CustomerHeader = ({ handleLogout }) => {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    `flex items-center text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
+                    `flex items-center text-gray-900 drop-shadow hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
                       isActive
                         ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
                         : ""
@@ -71,12 +73,48 @@ export const CustomerHeader = ({ handleLogout }) => {
           {/* Right side - Language Switcher and Logout */}
           <div className="flex items-center space-x-4 md:space-x-6">
             <LanguageSwitcher />
-            <button
-              onClick={handleLogout}
-              className="hidden md:inline-flex bg-red-500 text-white text-lg font-medium px-4 py-2 rounded-md transition-colors hover:bg-red-600"
+            {/* Dropdown for logout and privacy policy */}
+            <div
+              className="relative hidden md:block group"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
             >
-              {t("common.logout")}
-            </button>
+              <button
+                className={`text-gray-900 drop-shadow hover:text-blue-600 text-lg font-medium transition-colors relative px-3 py-2 rounded-md flex items-center focus:outline-none ${isDropdownOpen ? "text-blue-600" : ""}`}
+                tabIndex={0}
+                aria-haspopup="true"
+                aria-expanded={isDropdownOpen}
+                type="button"
+              >
+                {/* Hamburger icon */}
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+                </svg>
+              </button>
+              <div
+                className={`absolute right-0 top-full min-w-full w-48 rounded-xl bg-white/90 border border-gray-200 shadow-xl transition-all duration-200 transform origin-top z-50 ${isDropdownOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}`}
+                style={{ marginTop: 0 }}
+              >
+                <div className="py-2 relative z-20">
+                  <NavLink
+                    to="/privacy-policy"
+                    className={({ isActive }) =>
+                      `block px-6 py-3 text-base font-semibold rounded-md transition-colors text-gray-900 drop-shadow hover:bg-blue-50 hover:text-blue-700 focus:bg-blue-100 focus:text-blue-700 outline-none cursor-pointer ${isActive ? "bg-blue-100 text-blue-700" : ""}`
+                    }
+                    tabIndex={0}
+                  >
+                    {t("navigation.privacyPolicy")}
+                  </NavLink>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-6 py-3 text-base font-semibold rounded-md transition-colors text-red-700 drop-shadow hover:bg-red-50 hover:text-red-900 focus:bg-red-100 focus:text-red-900 outline-none cursor-pointer"
+                    tabIndex={0}
+                  >
+                    {t("common.logout")}
+                  </button>
+                </div>
+              </div>
+            </div>
 
             {/* Mobile menu button */}
             <button

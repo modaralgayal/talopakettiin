@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 import { API_BASE_URL } from "../config/apiConfig";
 import { useTranslation } from "react-i18next";
-import blackLogo from "../headers/talopakettiinlogovariants-black.png"; // Assuming logo is also accessible here
+import blackLogo from "../headers/talopakettiinfinallogo-white.png"; // Assuming logo is also accessible here
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ const Footer = () => {
     { name: t("navigation.about"), path: "/about" },
     { name: t("navigation.blog"), path: "/blog" },
     { name: t("navigation.contact"), path: "/contact" },
+    { name: t("navigation.privacyPolicy"), path: "/privacy-policy" },
   ];
 
   const handleAdminSignIn = async () => {

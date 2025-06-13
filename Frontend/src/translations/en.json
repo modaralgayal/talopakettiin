@@ -30,7 +30,8 @@
     "next": "Next",
     "sendApplication": "Send Application",
     "signin": "Sign In",
-    "makeOffer": "Make Offer"
+    "makeOffer": "Make Offer",
+    "privacyPolicy": "Privacy Policy"
   },
   "auth": {
     "signInWithMicrosoft": "Sign in with Microsoft",
@@ -55,7 +56,7 @@
   "homepage": {
     "hero": {
       "title": "Find the house package of your dreams!",
-      "subtitle": "The easiest way to compare house packages and get offers from reliable suppliers. Fill out one application and we’ll take care of the rest.",
+      "subtitle": "The easiest way to compare house packages and get offers from reliable suppliers. Fill out one application and we'll take care of the rest.",
       "cta": "Fill Application",
       "subtext": "Filling out the application is completely free"
     },

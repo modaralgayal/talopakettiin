@@ -28,7 +28,8 @@
     "next": "Nästa",
     "sendApplication": "Skicka ansökan",
     "signin": "Logga in",
-    "makeOffer": "Ge ett erbjudande"
+    "makeOffer": "Ge ett erbjudande",
+    "privacyPolicy": "Integritetspolicy"
   },
   "auth": {
     "signInWithGoogle":"Logga in med Google",

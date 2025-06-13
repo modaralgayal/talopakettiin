@@ -31,6 +31,7 @@ import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import Blog from "./pages/blogPost";
 import Blogs from "./pages/blogs";
+import { PrivacyPolicy } from "./pages/privacyPolicy";
 
 // Define public routes that don't require authentication
 const publicRoutes = [
@@ -41,7 +42,16 @@ const publicRoutes = [
   "/formpage",
   "/blog",
   "/blog/:id",
+  "/privacy-policy",
 ];
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+  return null;
+}
 
 function App() {
   const [userType, setUserType] = useState(null);
@@ -131,6 +141,7 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ScrollToTop />
       {userType === "customer" ? (
         <CustomerHeader handleLogout={handleLogout} />
       ) : userType === "provider" ? (
@@ -240,6 +251,23 @@ function App() {
           <Route path="/blog/:id" element={<Blog />} />
 
           <Route path="/blog" element={<Blogs />} />
+
+          <Route
+            path="/privacy-policy"
+            element={
+              <>
+                <Helmet>
+                  <title>{`Talopakettiin - ${t("navigation.privacyPolicy")}`}</title>
+                  <meta
+                    name="description"
+                    content="Tietosuojakäytäntö - Talopakettiin"
+                  />
+                  <link rel="canonical" href="/privacy-policy" />
+                </Helmet>
+                <PrivacyPolicy />
+              </>
+            }
+          />
 
           {/* Protected Routes */}
           <Route

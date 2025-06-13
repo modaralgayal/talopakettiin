@@ -30,7 +30,8 @@
     "next": "Seuraava",
     "sendApplication": "Lähetä Hakemus",
     "signin": "Kirjaudu sisään",
-    "makeOffer": "Tee tarjous"
+    "makeOffer": "Tee tarjous",
+    "privacyPolicy": "Tietosuojakäytäntö"
   },
   "auth": {
     "signInWithMicrosoft": "Kirjaudu Microsoftilla",

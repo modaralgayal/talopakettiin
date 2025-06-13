@@ -55,7 +55,7 @@ export const Header = () => {
                 <NavLink
                   to="/"
                   className={({ isActive }) =>
-                    `flex items-center text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
+                    `flex items-center text-gray-900 drop-shadow hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
                       isActive
                         ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
                         : ""
@@ -69,7 +69,7 @@ export const Header = () => {
                 <NavLink
                   to="/blog"
                   className={({ isActive }) =>
-                    `flex items-center text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
+                    `flex items-center text-gray-900 drop-shadow hover:text-blue-600 text-lg font-medium transition-colors relative hover:bg-white/20 px-3 py-2 rounded-md ${
                       isActive
                         ? "text-blue-600 after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-full after:h-0.5 after:bg-blue-600"
                         : ""
@@ -92,7 +92,7 @@ export const Header = () => {
             <LanguageSwitcher />
             <NavLink
               to="/signin"
-              className="hidden md:inline-flex text-gray-700 hover:text-blue-600 text-lg font-medium transition-colors"
+              className="hidden md:inline-flex text-gray-900 drop-shadow hover:text-blue-600 text-lg font-medium transition-colors"
             >
               {t("common.signIn")}
             </NavLink>
@@ -149,10 +149,10 @@ export const Header = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-md text-base font-medium ${
+                `block px-3 py-2 rounded-md text-base font-medium text-gray-900 drop-shadow ${
                   isActive
                     ? "text-blue-600 bg-blue-50"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-white/20"
+                    : "hover:text-blue-600 hover:bg-white/20"
                 }`
               }
               onClick={() => setIsMobileMenuOpen(false)}
@@ -169,10 +169,10 @@ export const Header = () => {
                     key={item.name}
                     to={item.path}
                     className={({ isActive }) =>
-                      `block pl-6 pr-3 py-2 rounded-md text-base font-medium ${
+                      `block pl-6 pr-3 py-2 rounded-md text-base font-medium text-gray-900 drop-shadow ${
                         isActive
                           ? "text-blue-600 bg-blue-50"
-                          : "text-gray-700 hover:text-blue-600 hover:bg-white/20"
+                          : "hover:text-blue-600 hover:bg-white/20"
                       }`
                     }
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -185,10 +185,10 @@ export const Header = () => {
             <NavLink
               to="/signin"
               className={({ isActive }) =>
-                `block px-3 py-2 rounded-md text-base font-medium ${
+                `block px-3 py-2 rounded-md text-base font-medium text-gray-900 drop-shadow ${
                   isActive
                     ? "text-blue-600 bg-blue-50"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-white/20"
+                    : "hover:text-blue-600 hover:bg-white/20"
                 }`
               }
               onClick={() => setIsMobileMenuOpen(false)}
