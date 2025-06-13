@@ -18,7 +18,7 @@ export const logOut = (req, res) => {
     const cookieOptions = {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      sameSite: "None",
+      sameSite: "lax",
       path: "/",
     };
 
@@ -91,7 +91,7 @@ export const firebaseSignIn = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: expiresIn,
-      sameSite: "None",
+      sameSite: "lax",
       path: "/",
     };
     res.cookie("session", sessionCookie, cookieOptions);

@@ -33,6 +33,7 @@
     "makeOffer": "Make Offer"
   },
   "auth": {
+    "signInWithMicrosoft": "Sign in with Microsoft",
     "signInWithGoogle": "Sign in with Google",
     "selectUserType": "Select your user type to continue",
     "customer": {

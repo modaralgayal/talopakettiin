@@ -33,6 +33,7 @@
     "makeOffer": "Tee tarjous"
   },
   "auth": {
+    "signInWithMicrosoft": "Kirjaudu Microsoftilla",
     "signInWithGoogle":"Kirjaudu Googlella",
     "selectUserType": "Valitse käyttäjätyyppisi jatkaaksesi",
     "customer": {
