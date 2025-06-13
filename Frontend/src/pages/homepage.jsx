@@ -128,7 +128,7 @@ export const Homepage = () => {
   ];
 
   return (
-    <>
+    <div>
       <Seo
         title={`Talopakettiin - ${t("navigation.home")}`}
         description={t("navigation.homeDescription")}
@@ -148,32 +148,139 @@ export const Homepage = () => {
       <div className="relative min-h-screen font-['Avenir']">
         {/* Slideshow background - fixed to cover the entire viewport */}
         <div className="fixed inset-0 w-full h-full z-0">
-            <ImageSlideshow />
-          {/* Optional overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/10" />
-          </div>
+          <ImageSlideshow />
+        </div>
 
         {/* Main content - positioned relative and above the slideshow */}
         <div className="relative z-10 pt-20">
-          {/* Added padding-top to account for the fixed header */}
-
           {/* Hero Section */}
           <div className="pt-32 pb-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-              <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">
-                {t("homepage.hero.title")}
-              </h1>
-              <p className="text-2xl text-white max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
-                {t("homepage.hero.subtitle")}
+                <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                  {t("homepage.hero.title")}
+                </h1>
+                <p className="text-2xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                  {t("homepage.hero.subtitle")}
+                </p>
+                <Link
+                  to="/formpage"
+                  className="inline-flex items-center px-12 py-6 border-2 border-transparent text-xl font-bold rounded-full shadow-xl text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-300 tracking-wide transform hover:scale-105 hover:shadow-blue-500/25"
+                >
+                  {t("homepage.hero.cta")}
+                  <svg
+                    className="ml-3 -mr-1 w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Link>
+                <p className="mt-4 text-lg text-white/80 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                  {t("homepage.hero.subtext")}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="py-16 relative z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Glassmorphic banner for the title */}
+              <div className="bg-white/10 backdrop-blur-lg py-6 mb-12 rounded-2xl shadow-lg border border-white/20">
+                <h2 className="text-3xl font-bold text-center text-white tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                  {t("homepage.features.title")}
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-lg border border-white/20 transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:bg-white/15 group"
+                  >
+                    <div className="mb-6 text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3 tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] group-hover:text-blue-300 transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white/80 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                      {feature.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Process Section */}
+          <div className="w-full relative z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+              {/* Glassmorphic banner for the title */}
+              <div className="bg-white/10 backdrop-blur-lg py-6 mb-12 rounded-2xl shadow-lg border border-white/20">
+                <h2 className="text-3xl font-bold text-center text-white tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                  {t("homepage.process.title")}
+                </h2>
+              </div>
+              <div className="relative">
+                <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white/20 -translate-y-1/2 hidden lg:block" />
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  {[
+                    {
+                      number: "1",
+                      title: t("homepage.process.steps.apply.title"),
+                      description: t("homepage.process.steps.apply.description"),
+                    },
+                    {
+                      number: "2",
+                      title: t("homepage.process.steps.offers.title"),
+                      description: t("homepage.process.steps.offers.description"),
+                    },
+                    {
+                      number: "3",
+                      title: t("homepage.process.steps.choose.title"),
+                      description: t("homepage.process.steps.choose.description"),
+                    },
+                  ].map((step, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center text-center bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-lg border border-white/20 transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:bg-white/15 relative group"
+                  >
+                    <div className="relative z-10 w-16 h-16 flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full text-2xl font-bold mb-6 shadow-lg group-hover:from-blue-500 group-hover:to-blue-600 transition-all duration-300">
+                      {step.number}
+                    </div>
+                    <h3 className="text-xl font-semibold text-white mb-3 tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)] group-hover:text-blue-300 transition-colors duration-300">
+                      {step.title}
+                    </h3>
+                    <p className="text-white/80 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                      {step.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="w-full bg-white/10 backdrop-blur-lg py-16 relative z-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <h2 className="text-3xl font-bold mb-4 tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                {t("homepage.cta.title")}
+              </h2>
+              <p className="text-xl mb-8 leading-relaxed text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+                {t("homepage.cta.subtitle")}
               </p>
               <Link
                 to="/formpage"
-                className="inline-flex items-center px-12 py-6 border-2 border-transparent text-xl font-bold rounded-full shadow-xl text-white bg-blue-600 hover:bg-blue-700 transition-all duration-200 tracking-wide transform hover:scale-105"
+                className="inline-flex items-center px-8 py-4 border-2 border-transparent text-lg font-medium rounded-full text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-300 tracking-wide shadow-lg hover:shadow-blue-500/25 hover:scale-105"
               >
-                {t("homepage.hero.cta")}
+                {t("homepage.cta.button")}
                 <svg
-                  className="ml-3 -mr-1 w-6 h-6"
+                  className="ml-2 -mr-1 w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -184,128 +291,17 @@ export const Homepage = () => {
                   />
                 </svg>
               </Link>
-              <p className="mt-4 text-lg text-white/90">
-                {t("homepage.hero.subtext")}
-              </p>
-              </div>
-            </div>
-            </div>
-
-            {/* Features Section */}
-          <div className="py-16 relative z-10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* White background banner for the title */}
-              <div className="bg-white bg-opacity-90 backdrop-blur-sm py-4 mb-12 rounded-lg shadow-md">
-                <h2 className="text-3xl font-bold text-center text-gray-900 tracking-tight">
-                  {t("homepage.features.title")}
-                </h2>
-              </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105 hover:border-blue-500 hover:border-2 cursor-pointer group"
-                >
-                  <div className="mb-4 text-blue-500 group-hover:text-blue-700 transition-colors duration-300">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2 tracking-tight group-hover:text-blue-700 transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
-        </div>
 
-        {/* Process Section with solid background */}
-          <div className="w-full relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-              {/* White background banner for the title */}
-              <div className="bg-white bg-opacity-90 backdrop-blur-sm py-4 mb-12 rounded-lg shadow-md">
-                <h2 className="text-3xl font-bold text-center text-gray-900 tracking-tight">
-              {t("homepage.process.title")}
-            </h2>
-              </div>
-            <div className="relative">
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-blue-200 -translate-y-1/2 hidden lg:block" />
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    number: "1",
-                    title: t("homepage.process.steps.apply.title"),
-                    description: t("homepage.process.steps.apply.description"),
-                  },
-                  {
-                    number: "2",
-                    title: t("homepage.process.steps.offers.title"),
-                    description: t("homepage.process.steps.offers.description"),
-                  },
-                  {
-                    number: "3",
-                    title: t("homepage.process.steps.choose.title"),
-                    description: t("homepage.process.steps.choose.description"),
-                  },
-                ].map((step, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col items-center text-center bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-2xl hover:scale-105 relative"
-                  >
-                    <div className="relative z-10 w-12 h-12 flex items-center justify-center bg-blue-600 text-white rounded-full text-xl font-bold mb-4 shadow-lg">
-                      {step.number}
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2 tracking-tight">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-          <div className="w-full bg-white bg-opacity-40 backdrop-blur-lg py-16 relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-3xl font-bold mb-4 tracking-tight text-gray-800">
-              {t("homepage.cta.title")}
-            </h2>
-              <p className="text-xl mb-8 leading-relaxed text-gray-800">
-              {t("homepage.cta.subtitle")}
-            </p>
-            <Link
-              to="/formpage"
-                className="inline-flex items-center px-8 py-4 border-2 border-transparent text-lg font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 tracking-wide"
-            >
-              {t("homepage.cta.button")}
-              <svg
-                className="ml-2 -mr-1 w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        {/* Blog Section */}
+          {/* Blog Section */}
           <BlogSection />
         </div>
       </div>
-    </>
+    </div>
+    </div>
+
   );
 };
 
 export default Homepage;
- 

@@ -231,7 +231,6 @@ export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             {t("common.signIn")}
           </h2>
-          <LanguageSwitcher />
         </div>
 
         <p className="mt-2 text-center text-sm text-gray-600">
@@ -286,14 +285,14 @@ export const UnifiedSignIn = ({ setUserType, setIsAuthenticated }) => {
           {t("auth.signInWithGoogle")}
         </button>
 
-        {/* Microsoft Sign-In Button */}
+        {/* Microsoft Sign-In Button 
         <button
           onClick={initalizeMicrosoftSignin}
           className="w-full py-3 px-6 bg-[#2F2F2F] text-white border-2 border-[#2F2F2F] rounded-lg hover:bg-[#1F1F1F] transition-all duration-200 flex items-center justify-center gap-3 text-lg shadow-md hover:shadow-lg hover:scale-[1.02]"
         >
           <MicrosoftLogo />
           {t("auth.signInWithMicrosoft")}
-        </button>
+        </button>*/}
 
         {/* Message Display */}
         {message && (
