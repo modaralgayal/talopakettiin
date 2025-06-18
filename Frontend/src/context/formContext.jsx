@@ -70,6 +70,7 @@ const createDefaultForm = () => {
     fullName: "",
     phoneNumber: "",
     additionalInfo: "",
+    privacyPolicy: false,
   };
 
   return defaultFormData;
@@ -200,6 +201,9 @@ export const FormProvider = ({ children }) => {
         }
         if (!formData.phoneNumber) {
           errors.phoneNumber = t("form.options.fieldRequired");
+        }
+        if (!formData.privacyPolicy) {
+          errors.privacyPolicy = t("form.options.privacyPolicyRequired");
         }
         break;
       default:

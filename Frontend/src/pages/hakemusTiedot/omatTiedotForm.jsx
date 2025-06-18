@@ -118,6 +118,49 @@ export const OmatTiedotForm = ({ formData, setFormData, validationErrors }) => {
         fieldType="input"
         showDetailsOnYes
       />
+
+      {/* Privacy Policy Checkbox */}
+      <div className="space-y-4">
+        <div className="flex items-start">
+          <div className="flex items-center h-5">
+            <input
+              type="checkbox"
+              id="privacyPolicy"
+              name="privacyPolicy"
+              checked={formData.privacyPolicy || false}
+              onChange={(e) =>
+                setFormData({ ...formData, privacyPolicy: e.target.checked })
+              }
+              className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              required
+            />
+          </div>
+          <div className="ml-3 text-sm">
+            <label
+              htmlFor="privacyPolicy"
+              className="font-medium text-gray-700"
+            >
+              {t("form.fields.privacyPolicyAgreement")} *
+            </label>
+            <p className="text-gray-500 mt-1">
+              {t("form.fields.privacyPolicyDescription")}{" "}
+              <a
+                href="/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                {t("navigation.privacyPolicy")}
+              </a>
+            </p>
+          </div>
+        </div>
+        {validationErrors.privacyPolicy && (
+          <span className="text-red-500 text-sm">
+            {validationErrors.privacyPolicy}
+          </span>
+        )}
+      </div>
     </div>
   );
 };
