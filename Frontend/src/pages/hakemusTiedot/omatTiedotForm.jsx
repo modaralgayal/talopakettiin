@@ -143,7 +143,7 @@ export const OmatTiedotForm = ({ formData, setFormData, validationErrors }) => {
               {t("form.fields.privacyPolicyAgreement")} *
             </label>
             <p className="text-gray-500 mt-1">
-              {t("form.fields.privacyPolicyDescription")}{" "}
+              {t("form.fields.privacyPolicyDescription")} {" "}
               <a
                 href="/privacy-policy"
                 target="_blank"
@@ -160,6 +160,53 @@ export const OmatTiedotForm = ({ formData, setFormData, validationErrors }) => {
             {validationErrors.privacyPolicy}
           </span>
         )}
+      </div>
+
+      {/* Attachments Upload */}
+      <div className="space-y-2">
+        <label className="block text-lg font-medium text-gray-700">
+          {t("form.fields.attachments")}
+        </label>
+        <div className="flex items-center gap-4 flex-wrap">
+          <label className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg cursor-pointer hover:bg-blue-700 transition-colors">
+            <span>+ {t("common.add")}</span>
+            <input
+              type="file"
+              multiple
+              accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.txt,.zip"
+              style={{ display: 'none' }}
+              onChange={e => {
+                const files = Array.from(e.target.files);
+                const maxSize = 5 * 1024 * 1024;
+                const validFiles = files.filter(file => file.size <= maxSize);
+                setFormData({
+                  ...formData,
+                  attachments: [...(formData.attachments || []), ...validFiles],
+                });
+                // Reset input value so same file can be re-added if deleted
+                e.target.value = '';
+              }}
+            />
+          </label>
+          {formData.attachments && formData.attachments.length > 0 && (
+            formData.attachments.map((file, idx) => (
+              <span key={idx} className="inline-flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-medium text-gray-800 mr-2 mb-2">
+                {file.name}
+                <button
+                  type="button"
+                  className="ml-2 text-gray-500 hover:text-red-600 focus:outline-none"
+                  onClick={() => {
+                    const newFiles = formData.attachments.filter((_, i) => i !== idx);
+                    setFormData({ ...formData, attachments: newFiles });
+                  }}
+                  aria-label="Remove attachment"
+                >
+                  ×
+                </button>
+              </span>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

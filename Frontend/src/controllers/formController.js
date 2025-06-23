@@ -4,14 +4,39 @@ import { FORMS_API_URL } from "../config/apiConfig";
 // Send Form Data
 export const sendFormData = async (formData) => {
   try {
-    // Get the token from wherever you store it after Google sign-in
-
-    const response = await axios.post(
-      `${FORMS_API_URL}/receive-form-data`,
-      formData,
-      { withCredentials: true }
-    );
-
+    let response;
+    // If there are attachments, use FormData
+    if (formData.attachments && formData.attachments.length > 0) {
+      const data = new FormData();
+      // Append all fields except attachments
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key === 'attachments') return;
+        if (Array.isArray(value) && typeof value[0] !== 'object') {
+          // For array fields (not files), stringify
+          data.append(key, JSON.stringify(value));
+        } else {
+          data.append(key, value);
+        }
+      });
+      // Append files
+      formData.attachments.forEach((file, idx) => {
+        data.append('attachments', file);
+      });
+      response = await axios.post(
+        `${FORMS_API_URL}/receive-form-data`,
+        data,
+        {
+          withCredentials: true,
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
+    } else {
+      response = await axios.post(
+        `${FORMS_API_URL}/receive-form-data`,
+        formData,
+        { withCredentials: true }
+      );
+    }
     if (response.data.success) {
       return {
         success: true,

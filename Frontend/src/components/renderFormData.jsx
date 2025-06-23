@@ -84,7 +84,7 @@ export const RenderFormData = ({ formData }) => {
     },
     {
       title: t("form.steps.personalInfo"),
-      fields: ["customerStatus", "hasPlot", "additionalInfo"],
+      fields: ["customerStatus", "hasPlot", "additionalInfo", "attachments"],
     },
   ];
 
@@ -268,6 +268,23 @@ export const RenderFormData = ({ formData }) => {
           >
             <span className="font-medium">{label}:</span>
             <span className="text-gray-700">{displayValue}</span>
+          </div>
+        );
+      }
+
+      // Show attachments as a list of file names
+      if (key === "attachments" && value && value.length > 0) {
+        return (
+          <div
+            key={`${sectionTitle}-attachments`}
+            className="flex flex-col py-2 border-b"
+          >
+            <span className="font-medium">{t("form.fields.attachments")}:</span>
+            <ul className="text-gray-700 list-disc ml-6">
+              {value.map((file, idx) => (
+                <li key={idx}>{file.name || file}</li>
+              ))}
+            </ul>
           </div>
         );
       }

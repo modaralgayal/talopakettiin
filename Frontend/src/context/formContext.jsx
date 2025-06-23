@@ -71,6 +71,7 @@ const createDefaultForm = () => {
     phoneNumber: "",
     additionalInfo: "",
     privacyPolicy: false,
+    attachments: [], // Optional attachments
   };
 
   return defaultFormData;

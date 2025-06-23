@@ -12,21 +12,46 @@ import {
   makeOffer,
   makeOfferMiddleware,
 } from "../services/dynamoServices.js";
-import dotenv from "dotenv"
-dotenv.config()
+import dotenv from "dotenv";
+import { formSubmissionLimiter } from "../middleware/rateLimit.js";
+import { applicationValidation } from "../middleware/applicationValidation.js";
+import { validationResult } from "express-validator";
+dotenv.config();
 
 const router = express.Router();
-router.post("/receive-form-data", protect, receiveFormData);
+router.post(
+  "/receive-form-data",
+  protect,
+  formSubmissionLimiter,
+  applicationValidation,
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    next();
+  },
+  receiveFormData
+);
 router.get("/get-user-forms", protect, getApplicationsForUser);
 router.post("/delete-user-entry", protect, deleteItemByEntryId);
 router.post("/get-all-entries", protect, getAllEntryIds);
 router.get("/get-user-offers", protect, getOffersForUser);
 router.put("/accept-given-offer", protect, acceptOffer);
 router.get("/test-sub-content", protect);
-router.post("/make-offer", protect, makeOfferMiddleware, makeOffer);
+router.post(
+  "/make-offer",
+  protect,
+  formSubmissionLimiter,
+  makeOfferMiddleware,
+  makeOffer
+);
 router.get("/get-provider-offers", protect, getOfferForProvider);
-router.put("/edit-application", protect, editApplication);
-
-
+router.put(
+  "/edit-application",
+  protect,
+  formSubmissionLimiter,
+  editApplication
+);
 
 export default router;

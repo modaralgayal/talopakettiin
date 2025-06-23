@@ -364,48 +364,43 @@ export const acceptOffer = async (req, res) => {
       throw new Error("Provider email not found in offer.");
     }
 
-    // Step 2: Update Offer Status to "Accepted"
-    const offerUpdateParams = {
-      TableName: "Talopakettiin-API",
-      Key: { id: { S: id } },
-      UpdateExpression: "SET #status = :status",
-      ExpressionAttributeNames: { "#status": "status" },
-      ExpressionAttributeValues: { ":status": { S: "Accepted" } },
-      ReturnValues: "ALL_NEW",
-    };
+    // Step 3: Fetch the application by id (entryId is the application's id)
+    let application = null;
+    let applicationName = "N/A";
+    let applicantName = "N/A";
+    let applicantPhone = "N/A";
+    let applicantEmail = "N/A";
+    try {
+      const getAppParams = {
+        TableName: "Talopakettiin-API",
+        Key: { id: { S: entryId } },
+      };
+      const appResult = await dynamoDBClient.send(
+        new GetItemCommand(getAppParams)
+      );
+      if (appResult.Item) {
+        application = unmarshall(appResult.Item);
+        console.log(application);
+        const formData = application.formData || {};
+        applicationName = formData.applicationName || "N/A";
+        applicantName = formData.fullName || "N/A";
+        applicantPhone = formData.phoneNumber || "N/A";
+        applicantEmail = application.customerEmail || "N/A";
+        console.log("This is the formData: ", formData);
+      }
+    } catch (err) {
+      console.error("Error fetching application by id:", err);
+    }
 
-    console.log("Updating Offer:", offerUpdateParams);
-    await dynamoDBClient.send(new UpdateItemCommand(offerUpdateParams));
-
-    // Step 3: Query Applications using entryType-entryId GSI
-    const queryParams = {
-      TableName: "Talopakettiin-API",
-      IndexName: "entryType-entryId-index",
-      KeyConditionExpression: "entryType = :entryType AND entryId = :entryId",
-      ExpressionAttributeValues: {
-        ":entryType": { S: "application" },
-        ":entryId": { S: entryId },
-      },
-    };
-
-    console.log("Querying Applications:", queryParams);
-    const queryResult = await dynamoDBClient.send(
-      new QueryCommand(queryParams)
-    );
-    const applications = queryResult.Items || [];
-
-    console.log("Applications Found:", applications.length);
-
-    // Step 4: Batch Update Application Statuses
-    for (const app of applications) {
+    // Step 4: Batch Update Application Statuses (if needed, for this single application)
+    if (application) {
       const updateParams = {
         TableName: "Talopakettiin-API",
-        Key: { id: { S: app.id.S } },
+        Key: { id: { S: entryId } },
         UpdateExpression: "SET #status = :status",
         ExpressionAttributeNames: { "#status": "status" },
         ExpressionAttributeValues: { ":status": { S: "Accepted" } },
       };
-
       console.log("Updating Application:", updateParams);
       await dynamoDBClient.send(new UpdateItemCommand(updateParams));
     }
@@ -421,16 +416,18 @@ export const acceptOffer = async (req, res) => {
       },
     });
 
+    // Get offer name (try several possible fields)
+    const offerName =
+      offer.offerData?.name ||
+      offer.offerData?.offerName ||
+      offer.name ||
+      "N/A";
+
     const mailOptions = {
       from: "info@talopakettiin.fi",
       to: emailAddress,
-      subject: "Offer Accepted Notification",
-      text: `Hei!
-
-      The offer with ID ${id} has been accepted. All related applications have been updated accordingly.
-
-      Thank you,
-      Talopakettiin Team`,
+      subject: "Tarjous hyväksytty ilmoitus",
+      text: `Hei!\n\nTarjouksesi hakemukseen "${applicationName}" on hyväksytty.\n\nHakijan tiedot:\n- Nimi: ${applicantName}\n- Puhelin: ${applicantPhone} \n- Sähköposti: ${applicantEmail} \n\nKaikki tähän tarjoukseen liittyvät hakemukset on päivitetty.\n\nYstävällisin terveisin,\nTalopakettiin.fi tiimi`,
     };
 
     console.log("Sending Email:", mailOptions);
@@ -524,16 +521,8 @@ export const makeOffer = async (req, res) => {
     const mailOptions = {
       from: "info@talopakettiin.fi",
       to: customerEmail,
-      subject: "Tarjous tehty",
-      text: `Hei!
-
-      Olet saanut tarjouksen toimittajalta ${providerName}.
-
-      Please log in to your Talopakettiin account to view the offer details.
-      Ole hyvä ja kirjaudu sinun Talopakettiin käyttäjään nähdäksesi tarjouksen tiedot.
-
-      Ystävällisin terveisin,
-      Talopakettiin.fi tiimi`,
+      subject: "Olet saanut tarjouksen",
+      text: `Hei!\n\nOlet saanut tarjouksen toimittajalta ${providerName}.\n\nKirjaudu Talopakettiin-tilillesi nähdäksesi tarjouksen tiedot.\n\nYstävällisin terveisin,\nTalopakettiin.fi tiimi`,
     };
 
     console.log("Sending offer notification email to customer");
@@ -613,10 +602,7 @@ export const editApplication = async (req, res) => {
         from: "info@talopakettiin.fi",
         to: user.email,
         subject: "Hakemus päivitetty",
-        text: `Hei!,\n
-        \n Sinun hakemuksesi \"${applicationName}\" tiedot ovat päivittyneet.\n
-        \n Ystävällisin terveisin,
-        \nTalopakettiin.fi tiimi`,
+        text: `Hei!\n\nSinun hakemuksesi "${applicationName}" tiedot on päivitetty.\n\nYstävällisin terveisin,\nTalopakettiin.fi tiimi`,
       };
 
       await transporter.sendMail(mailOptions);

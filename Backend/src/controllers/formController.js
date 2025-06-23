@@ -94,11 +94,8 @@ export const receiveFormData = async (req, res) => {
       const mailOptions = {
         from: "info@talopakettiin.fi",
         to: user.email,
-        subject: "Application Submitted Successfully",
-        text: `Hei!\n
-        \n Hakemuksesi \"${applicationName}\" on vastaanotettu!\n
-        \n Kiitos,
-        \nTalopakettiin.fi tiimi`,
+        subject: "Hakemus vastaanotettu",
+        text: `Hei!\n\nHakemuksesi \"${applicationName}\" on vastaanotettu.\n\nKiitos,\nTalopakettiin.fi tiimi`,
       };
 
       await transporter.sendMail(mailOptions);

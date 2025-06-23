@@ -25,13 +25,18 @@ router.post("/firebaseSignIn", firebaseSignIn);
 router.post("/check-admin", checkAdminStatus);
 router.post("/check-provider", checkProviderStatus);
 
-router.post("/add-provider-domain", addProviderDomain);
-router.post("/add-provider-email", addProviderEmail);
+router.post("/add-provider-domain", protect, addProviderDomain);
+router.post("/add-provider-email", protect, addProviderEmail);
 
 router.get("/get-all-providers", protect, getProvidersHelper);
 router.get("/get-all-domain", protect, getDomainsHelper);
 
-router.delete("/delete-domain-or-provider", protect, deleteProviderOrDomain, deleteItemByEntryId);
+router.delete(
+  "/delete-domain-or-provider",
+  protect,
+  deleteProviderOrDomain,
+  deleteItemByEntryId
+);
 
 // Validate token route
 router.post("/validate-token", protect, (req, res) => {
