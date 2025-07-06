@@ -16,121 +16,118 @@ export const AboutPage = () => {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "Talopakettiin - Tietoa meistä",
-    "description": "Tutustu Talopakettiin-tiimiin! Olemme intohimoisia ammattilaisia, jotka yhdistävät teknologian, visuaalisuuden ja rakennusalan osaamisen luodaksemme parhaan palvelun talopakettien hankintaan.",
+    "name": "Talopakettiin - Tietoa sivusta",
+    "description": "Talopakettiin on talopakettien kilpailutuspalvelu, joka yhdistää kotihankkijat ja luotettavat talotoimittajat. Autamme sinua löytämään unelmiesi talopaketin helposti ja läpinäkyvästi.",
     "url": "https://talopakettiin.fi/about",
     "mainEntity": {
       "@type": "Organization",
       "name": "Talopakettiin",
       "description": "Talopakettien kilpailutuspalvelu",
       "url": "https://talopakettiin.fi",
-      "employee": [
-        {
-          "@type": "Person",
-          "name": "Mudar Algayal",
-          "jobTitle": "Technical Lead",
-          "description": "Opiskelija Helsingin yliopistossa ja tekninen johtaja Talopakettiin-projektissa. Erikoistunut ohjelmistokehitykseen ja teknisiin ratkaisuihin."
-        },
-        {
-          "@type": "Person",
-          "name": "Valtteri Nikkanen",
-          "jobTitle": "Valokuvaaja & Yrittäjä",
-          "description": "Ammattitaitoinen valokuvaaja ja yrittäjä, joka tuo visuaalista osaamista ja yrittäjähenkeä Talopakettiin-projektiin."
-        },
-        {
-          "@type": "Person",
-          "name": "Robert Enroth",
-          "jobTitle": "Sähköasentaja & Yrittäjä",
-          "description": "Kokenut sähköasentaja ja yrittäjä, joka tuo laaja-alaisen rakennusalan osaamisen ja yrittäjähenkeä projektiimme."
-        }
-      ]
+      "serviceType": "House Package Comparison Service"
     }
   };
-
-  const teamMembers = [
-    {
-      name: "Mudar Algayal",
-      role: "Technical Lead",
-      description:
-        "Opiskelija Helsingin yliopistossa ja tekninen johtaja Talopakettiin-projektissa. Erikoistunut ohjelmistokehitykseen ja teknisiin ratkaisuihin.",
-      image: "https://placehold.co/400x400/e2e8f0/1e40af?text=Mudar",
-    },
-    {
-      name: "Valtteri Nikkanen",
-      role: "Valokuvaaja & Yrittäjä",
-      description:
-        "Ammattitaitoinen valokuvaaja ja yrittäjä, joka tuo visuaalista osaamista ja yrittäjähenkeä Talopakettiin-projektiin.",
-      image: "https://placehold.co/400x400/e2e8f0/1e40af?text=Valtteri",
-    },
-    {
-      name: "Robert Enroth",
-      role: "Sähköasentaja & Yrittäjä",
-      description:
-        "Kokenut sähköasentaja ja yrittäjä, joka tuo laaja-alaisen rakennusalan osaamisen ja yrittäjähenkeä projektiimme.",
-      image: "https://placehold.co/400x400/e2e8f0/1e40af?text=Robert",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50 py-16">
       <Seo
-        title="Tietoa meistä - Talopakettiin"
-        description="Tutustu Talopakettiin-tiimiin, joka auttaa sinua löytämään unelmiesi talopaketin. Yhdistämme teknologian, visuaalisuuden ja rakennusalan osaamisen parhaan palvelun luomiseksi."
+        title="Tietoa sivusta - Talopakettiin"
+        description="Talopakettiin on talopakettien kilpailutuspalvelu, joka yhdistää kotihankkijat ja luotettavat talotoimittajat. Autamme sinua löytämään unelmiesi talopaketin."
         canonical="https://talopakettiin.fi/about"
         schemaMarkup={jsonLd}
       />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Tietoa meistä
+            Tietoa sivusta
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Olemme intohimoisia ammattilaisia, jotka yhdistävät teknologian,
-            visuaalisuuden ja rakennusalan osaamisen luodaksemme parhaan
-            palvelun talopakettien hankintaan.
+            Talopakettiin on talopakettien kilpailutuspalvelu, joka yhdistää kotihankkijat ja luotettavat talotoimittajat.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105"
-            >
-              <div className="aspect-w-1 aspect-h-1">
-                <img
-                  src={member.image}
-                  alt={`${member.name} - ${member.role} at Talopakettiin`}
-                  className="w-full h-64 object-cover"
-                  loading="lazy"
-                  width="400"
-                  height="400"
-                  decoding="async"
-                />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Mitä teemme?
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Autamme sinua löytämään unelmiesi talopaketin vertailemalla eri toimittajien tarjouksia. 
+              Yksi hakemus riittää - me hoidamme loput puolestasi.
+            </p>
+            <ul className="text-gray-600 space-y-2">
+              <li>• Talopakettien kilpailutus</li>
+              <li>• Luotettavien toimittajien verkosto</li>
+              <li>• Läpinäkyvä vertailu</li>
+              <li>• Ilmainen palvelu</li>
+            </ul>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Miksi Talopakettiin?
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Talopakettien hankinta voi olla monimutkaista. Me teemme siitä yksinkertaisempaa 
+              ja läpinäkyvämpää.
+            </p>
+            <ul className="text-gray-600 space-y-2">
+              <li>• Säästä aikaa ja vaivaa</li>
+              <li>• Vertaa useita tarjouksia</li>
+              <li>• Vain luotettavat toimittajat</li>
+              <li>• Henkilökohtainen palvelu</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Miten se toimii?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-blue-600">1</span>
               </div>
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-blue-600 font-medium mb-4">{member.role}</p>
-                <p className="text-gray-600 leading-relaxed">
-                  {member.description}
-                </p>
-              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Täytä hakemus</h3>
+              <p className="text-gray-600">
+                Kerro toiveistasi ja vaatimuksistasi unelmakotisi suhteen
+              </p>
             </div>
-          ))}
+            <div>
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-blue-600">2</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Saat tarjouksia</h3>
+              <p className="text-gray-600">
+                Talotoimittajat tutustuvat hakemukseesi ja tekevät sinulle tarjouksia
+              </p>
+            </div>
+            <div>
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-blue-600">3</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Valitse paras</h3>
+              <p className="text-gray-600">
+                Vertaile tarjouksia ja valitse sinulle sopivin vaihtoehto
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="mt-16 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
-            Yhteinen visio
+            Ota yhteyttä
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Haluamme tehdä talopakettien hankinnasta helpompaa ja
-            läpinäkyvämpää. Yhdistämällä teknologian, visuaalisuuden ja
-            rakennusalan osaamisen, autamme asiakkaitamme löytämään
-            unelmakotinsa. Ota meihin yhteyttä <a href="/contact" className="text-blue-600 hover:underline">täältä</a>.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+            Onko sinulla kysymyksiä palvelustamme? Ota meihin yhteyttä, niin autamme sinua löytämään unelmiesi talopaketin.
           </p>
+          <a 
+            href="/contact" 
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+          >
+            Ota yhteyttä
+          </a>
         </div>
       </div>
     </div>
